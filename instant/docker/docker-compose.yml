@@ -53,10 +53,12 @@ services:
       - spring.jpa.properties.hibernate.search.backend.lucene_version=lucene_current
     volumes:
       - hapi-data:/data/hapi
-
+      
   gofr:
     container_name: gofr
-    image: intrahealth/gofr:latest
+    build:  
+      context: ../../../gofr
+      dockerfile: instant/docker/Dockerfile
     depends_on:
       - fhir
     environment:
@@ -75,6 +77,8 @@ services:
     ports:
       - "4000:4000"
     restart: always
+    volumes: 
+      - ../../../gofr:/src
 
 
 networks:

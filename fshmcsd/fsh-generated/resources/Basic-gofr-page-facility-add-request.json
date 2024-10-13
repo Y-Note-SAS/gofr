@@ -148,6 +148,10 @@
         },
         {
           "url": "field",
+          "valueString": "Location.creationordernumber"
+        },
+        {
+          "url": "field",
           "valueString": "Location.alias"
         },
         {

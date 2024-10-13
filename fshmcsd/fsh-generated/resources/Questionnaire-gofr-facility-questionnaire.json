@@ -29,12 +29,36 @@
           "repeats": false
         },
         {
+          "linkId": "Location.creationordernumber",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:creationordernumber",
+          "text": "Facility Creation Order Number",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.openingordernumber",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:openingordernumber",
+          "text": "Facility Opening Order Number",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.transformationnumber",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:transformationnumber",
+          "text": "Facility Transformation Number",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
           "linkId": "Location.alias",
           "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.alias",
           "text": "Alternative/Nick Names",
           "type": "string",
           "required": false,
-          "repeats": true
+          "repeats": false
         },
         {
           "linkId": "Location.description",

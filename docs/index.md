@@ -19,7 +19,7 @@ GOFR is a GUI on top of the popular and open source HAPI FHIR Server that makes 
 
 * CSV, DHIS2, and FHIR servers as data sources.
 * Nested lists, ie. facilities that are administrative hierarchies like state->county->hospital.
-* An API and backend engine that use [FHIR](https://www.hl7.org/fhir/location.html) Location resources based on the [mCSD](http://wiki.ihe.net/index.php/Mobile_Care_Services_Discovery_(mCSD)) profile.
+* An API and backend engine that use [FHIR](https://www.hl7.org/fhir/location.html) resources based on the [mCSD](http://wiki.ihe.net/index.php/Mobile_Care_Services_Discovery_(mCSD)) profile.
 * Modular system to extend algorithms for matching.
 
 Many new features in addition to the above are planned for completion in 2022.

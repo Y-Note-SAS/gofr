@@ -7,6 +7,10 @@
       "valueString": "Base.Entities"
     },
     {
+      "url": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:creationordernumber",
+      "valueString": "Location.creationordernumber"
+    },
+    {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
       "valueCode": "business"
     }

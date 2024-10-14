@@ -216,6 +216,7 @@ router.put('/:partition/:resource/:id', (req, res) => {
     return res.status(403).json(outcomes.DENIED);
   }
   fhirAxios.update(update, req.params.partition).then((resource) => {
+    console.log('start update ', resource)
     fhirAudit.update(req.user, req.ip, `${resource.resourceType}/${resource.id
     }${resource?.meta?.versionId ? `/_history/${resource.meta.versionId}` : ''}`, true);
     res.status(200).json(resource);

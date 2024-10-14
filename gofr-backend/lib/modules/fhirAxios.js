@@ -194,7 +194,6 @@ const fhirAxios = {
     }
     const auth = fhirAxios.__getAuth();
     axios.post(url.toString(), resource, { auth }).then((response) => {
-      console.log("data created ", response.data)
       resolve(response.data);
     }).catch((err) => {
       reject(err);

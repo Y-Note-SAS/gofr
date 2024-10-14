@@ -30,7 +30,7 @@
         },
         {
           "linkId": "Location.creationordernumber",  
-          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:creationordernumber",
+          "definition": "http://gofr.org/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:creationordernumber",
           "text": "Facility Creation Order Number",
           "type": "string",
           "required": false,
@@ -48,6 +48,78 @@
           "linkId": "Location.transformationnumber",  
           "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:transformationnumber",
           "text": "Facility Transformation Number",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.publiccategory",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:publiccategory",
+          "text": "Public Category",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.privatecategory",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:privatecategory",
+          "text": "Private Category",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.creationdate",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:creationdate",
+          "text": "Creation Date",
+          "type": "date",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.openingdate",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:openingdate",
+          "text": "Opening Date",
+          "type": "date",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.transformationdate",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:transformationdate",
+          "text": "Transformation Date",
+          "type": "date",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.providerquality",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:providerquality",
+          "text": "Provider Quality",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.equipements",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:equipements",
+          "text": "Equipments",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.equipementsfunctionality",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:equipementsfunctionality",
+          "text": "Equipments Functionality",
+          "type": "string",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.plotterequipment",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.extension:plotterequipment",
+          "text": "Plotter Equipment",
           "type": "string",
           "required": false,
           "repeats": false
@@ -219,6 +291,30 @@
           "type": "string",
           "repeats": false,
           "required": false
+        },
+        {
+          "linkId": "Location.position.landtitle",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.position.extension:landtitle",
+          "text": "Land Title",
+          "type": "attachment",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.position.rental",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.position.extension:rental",
+          "text": "Rental",
+          "type": "attachment",
+          "required": false,
+          "repeats": false
+        },
+        {
+          "linkId": "Location.position.geographicalarea",  
+          "definition": "http://ihe.net/fhir/StructureDefinition/IHE.mCSD.FacilityLocation#Location.position.extension:geographicalarea",
+          "text": "Geographical Area",
+          "type": "string",
+          "required": false,
+          "repeats": false
         }
       ]
     },

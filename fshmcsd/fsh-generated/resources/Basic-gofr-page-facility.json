@@ -117,6 +117,54 @@
         },
         {
           "url": "field",
+          "valueString": "Location.extension:creationordernumber"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:openingordernumber"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:transformationnumber"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:publiccategory"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:privatecategory"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:creationdate"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:openingdate"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:transformationdate"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:providerquality"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:equipements"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:equipementsfunctionality"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.extension:plotterequipment"
+        },
+        {
+          "url": "field",
           "valueString": "Location.alias"
         },
         {
@@ -159,6 +207,18 @@
         {
           "url": "field",
           "valueString": "Location.position"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.position.extension:rental"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.position.extension:landtitle"
+        },
+        {
+          "url": "field",
+          "valueString": "Location.position.extension:geographicalarea"
         }
       ],
       "url": "http://gofr.org/fhir/StructureDefinition/gofr-page-section"

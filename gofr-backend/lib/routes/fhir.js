@@ -34,6 +34,10 @@ router.get('/:partition/:resource/:id?', (req, res, next) => {
   }
   if (req.params.id) {
     fhirAxios.read(req.params.resource, req.params.id, '', req.params.partition).then((resource) => {
+      console.log('req params resources ', req.params.resource)
+      console.log('req. params id ', req.params.id)
+      console.log('req. params id ', req.params.partition)
+      console.log(" resource read ", resource)
       if (allowed === true) {
         return res.status(200).json(resource);
       }
@@ -212,6 +216,7 @@ router.put('/:partition/:resource/:id', (req, res) => {
     return res.status(403).json(outcomes.DENIED);
   }
   fhirAxios.update(update, req.params.partition).then((resource) => {
+    console.log('start update ', resource)
     fhirAudit.update(req.user, req.ip, `${resource.resourceType}/${resource.id
     }${resource?.meta?.versionId ? `/_history/${resource.meta.versionId}` : ''}`, true);
     res.status(200).json(resource);

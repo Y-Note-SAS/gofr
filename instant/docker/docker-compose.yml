@@ -7,9 +7,9 @@ services:
     volumes:
       - ../../../resources/keycloak/themes/gofr:/opt/jboss/keycloak/themes/gofr
       - keycloak_data:/opt/jboss/keycloak/standalone/data
-    command: ["start-dev", "--http-port=8084"]
+    command: ["start-dev", "--http-port=9090"]
     ports:
-      - "8084:8084"
+      - "9090:9090"
     environment:
       - KEYCLOAK_ADMIN_USER=admin
       - KEYCLOAK_ADMIN=admin
@@ -81,11 +81,11 @@ services:
       - app__core__path=/src/gofr-backend/lib
       - app__installed=${false}
       # - app__idp=gofr
-      - keycloak__baseURL=http://keycloak:8084/
+      - keycloak__baseURL=http://keycloak:9090/
       - REDIS_HOST=redis
       - keycloak__cleint_id=gofr
     ports:
-      - "4000:4000"
+      - "5001:5001"
     restart: always
     volumes: 
       - ../../../gofr:/src

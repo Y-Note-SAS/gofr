@@ -13,12 +13,12 @@
   },
   "server": {
     "hostname": "0.0.0.0",
-    "port": 4000
+    "port": 5001
   },
   "keycloak": {
     "adminUser": "admin",
-    "adminPassword": "admin",
-    "installedLocation": "/home/user/keycloak-15.0.2",
+    "adminPassword": "admin123",
+    "installedLocation": "/",
     "baseURL": "http://localhost:8080/keycloak/auth",
     "realm": "GOFR",
     "UIClientId": "gofr-gui",

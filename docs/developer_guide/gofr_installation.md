@@ -126,7 +126,7 @@
 
 ### 10. Accessing GOFR
 
-    <http://localhost:4000>
+    <http://localhost:5001>
 
 
 Install redis.
@@ -270,7 +270,7 @@ Running GOFR in production mode
 cd gofr/gofr-backend/lib
 node app.js
 ```
-Access GOFR at: http://localhost:4000
+Access GOFR at: http://localhost:5001
 
 ## Running GOFR in Development Mode
 

@@ -1,12 +1,12 @@
 version: '3.3'
 
 services:
-  keycloak:
-    container_name: keycloak
+  keycloak-test-local:
+    container_name: keycloak-test-local
     image: keycloak/keycloak:20.0.2-2
     volumes:
       - ../../../resources/keycloak/themes/gofr:/opt/jboss/keycloak/themes/gofr
-      - keycloak_data:/opt/jboss/keycloak/standalone/data
+      - keycloak_data-test-local:/opt/jboss/keycloak/standalone/data
     command: ["start-dev", "--http-port=9090"]
     ports:
       - "9090:9090"
@@ -22,22 +22,22 @@ services:
 
       
       
-  redis:
+  redis-test-local:
     image: redis:alpine
     command: ["redis-server", "--appendonly", "yes"]
-    container_name: redis
+    container_name: redis-test-local
     restart: always
     volumes:
-      - redis-data:/data
+      - redis-data-test-local:/data
 
-  fhir:
-    container_name: hapi-fhir
+  fhir-test-local:
+    container_name: hapi-fhir-test-local
     image: hapiproject/hapi:v5.5.2-distroless
     ports:
       - "8080:8080"
     restart: always
     depends_on:
-      - redis
+      - redis-test-local
     environment:
       # add mcsd ig
       - hapi.fhir.implementationguides.mcsd.name=ihe.iti.mcsd
@@ -61,28 +61,28 @@ services:
       - spring.jpa.properties.hibernate.search.backend.directory.root=target/lucenefiles
       - spring.jpa.properties.hibernate.search.backend.lucene_version=lucene_current
     volumes:
-      - hapi-data:/data/hapi
+      - hapi-data-test-local:/data/hapi
       
-  gofr:
-    container_name: gofr
+  gofr-test-local:
+    container_name: gofr-test-local
     build:  
       context: ../../../gofr
       dockerfile: instant/docker/Dockerfile
     depends_on:
-      - fhir
+      - fhir-test-local
     environment:
       # use gofr for authn/authz which is default
       - app__idp=keycloak
       - mCSD__server__protocal=http
-      - mCSD__server__host=fhir
+      - mCSD__server__host=fhir-test-local
       - mCSD__server__port=8080
       - mCSD__server__basePath=fhir
       - app__site__path=/src/gofr-backend/docker-site
       - app__core__path=/src/gofr-backend/lib
       - app__installed=${false}
       # - app__idp=gofr
-      - keycloak__baseURL=http://keycloak:9090/
-      - REDIS_HOST=redis
+      - keycloak__baseURL=http://keycloak-test-local:9090/
+      - REDIS_HOST=redis-test-local
       - keycloak__cleint_id=gofr
     ports:
       - "5001:5001"
@@ -94,10 +94,10 @@ services:
 networks:
 # set app-wide default network
   default:
-    name: demo
+    name: test-local
 
 
 volumes:
-  redis-data:
-  hapi-data:
-  keycloak_data:
+  redis-data-test-local:
+  hapi-data-test-local:
+  keycloak_data-test-local:

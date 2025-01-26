@@ -70,6 +70,7 @@ services:
       dockerfile: instant/docker/Dockerfile
     depends_on:
       - fhir-test-local
+      - keycloak-test-local 
     environment:
       # use gofr for authn/authz which is default
       - app__idp=keycloak

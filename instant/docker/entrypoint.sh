@@ -14,7 +14,7 @@
 # # npm -v
 # # Ajouter des commandes supplémentaires si nécessaire
 # echo "start install "
-cd /src/gofr-backend
+cd /src/gofr-backend 
 npm install
 
 
@@ -30,6 +30,8 @@ npm install
 # cp -r /gofr/gofr-backend /src/gofr-backend
 # Attendre que le service FHIR soit prêt
 dockerize -wait-retry-interval 5s -timeout 120s -wait ${FHIR_BASE_URL}/DEFAULT/metadata
+# Attendre que le service Keycloak soit prêt
+dockerize -wait-retry-interval 5s -timeout 120s -wait http://keycloak-test-local:9090/
 echo "start project "
 
 # Démarrer l'application

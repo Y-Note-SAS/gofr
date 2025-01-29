@@ -3,10 +3,10 @@ FROM node:fermium
 # for wget
 RUN apt-get -qq update && apt-get install -y -qq git && apt-get install -y --no-install-recommends wget
 
-# ARG branch=master
-# RUN git clone --branch ${branch} https://github.com/intrahealth/gofr /src/
+ARG branch=test-gofr
+RUN git clone --branch ${branch} https://github.com/Y-Note-SAS/gofr /src/
 
-COPY ../../../ /src/
+
 # install dependencies
 # ADD package-lock.json /src/
 # ADD package.json /src/

@@ -7,23 +7,23 @@ module.exports = {
   devServer: {
     proxy: {
       '^/gofrapp': {
-        target: 'http://localhost:5001/',
+        target: 'http://localhost:4000/',
         logLevel: 'debug'
       },
       '^/translator': {
-        target: 'http://localhost:5001/',
+        target: 'http://localhost:4000/',
         logLevel: 'debug'
       },
       '^/auth': {
-        target: 'http://localhost:5001/',
+        target: 'http://localhost:4000/',
         logLevel: 'debug'
       },
       '^/users': {
-        target: 'http://localhost:5001/',
+        target: 'http://localhost:4000/',
         logLevel: 'debug'
       },
       '^/config': {
-        target: 'http://localhost:5001/',
+        target: 'http://localhost:4000/',
         logLevel: 'debug'
       }
     }

@@ -86,7 +86,7 @@ services:
       - REDIS_HOST=redis-test-local
       - keycloak__cleint_id=gofr
     ports:
-      - "5001:5001"
+      - "4000:4000"
     restart: always
     volumes: 
       - ../../../gofr:/src

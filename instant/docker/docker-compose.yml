@@ -1,43 +1,34 @@
-version: '3.3'
+version: '3.7'
 
 services:
-  keycloak-test-local:
-    container_name: keycloak-test-local
-    image: keycloak/keycloak:20.0.2-2
-    volumes:
-      - ../../../resources/keycloak/themes/gofr:/opt/jboss/keycloak/themes/gofr
-      - keycloak_data-test-local:/opt/jboss/keycloak/standalone/data
-    command: ["start-dev", "--http-port=9090"]
-    ports:
-      - "9090:9090"
-    environment:
-      - KEYCLOAK_ADMIN_USER=admin
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin123
-      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
-      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin123
-      - KC_HOSTNAME_STRICT=false #deactivate fixed hostname
-      - KC_HOSTNAME_STRICT_HTTPS=false #For local access to console admin in start mode
-      - KC_HTTP_ENABLED=true
+#   keycloak:
+#     container_name: keycloak
+#     image: jboss/keycloak:15.0.2
+#     volumes:
+#       - ../../../resources/keycloak/themes/gofr:/opt/jboss/keycloak/themes/gofr
+#     command: ["-Djboss.http.port=8084"]
+#     ports:
+#       - "8084:8084"
+#     environment:
+#       - KEYCLOAK_USER=admin
+#       - KEYCLOAK_PASSWORD=admin
 
-      
-      
-  redis-test-local:
+  redis:
     image: redis:alpine
     command: ["redis-server", "--appendonly", "yes"]
-    container_name: redis-test-local
+    container_name: redis
     restart: always
     volumes:
-      - redis-data-test-local:/data
+      - redis-data:/data
 
-  fhir-test-local:
-    container_name: hapi-fhir-test-local
+  fhir:
+    container_name: hapi-fhir
     image: hapiproject/hapi:v5.5.2-distroless
     ports:
       - "8080:8080"
     restart: always
     depends_on:
-      - redis-test-local
+      - redis
     environment:
       # add mcsd ig
       - hapi.fhir.implementationguides.mcsd.name=ihe.iti.mcsd
@@ -61,44 +52,50 @@ services:
       - spring.jpa.properties.hibernate.search.backend.directory.root=target/lucenefiles
       - spring.jpa.properties.hibernate.search.backend.lucene_version=lucene_current
     volumes:
-      - hapi-data-test-local:/data/hapi
-      
-  gofr-test-local:
-    container_name: gofr-test-local
-    build:  
-      context: ../../../gofr
-      dockerfile: instant/docker/Dockerfile
+      - hapi-data:/data/hapi
+
+  gofr:
+    container_name: gofr
+   # image: intrahealth/gofr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile 
     depends_on:
-      - fhir-test-local
-      - keycloak-test-local 
+      - fhir
     environment:
       # use gofr for authn/authz which is default
       # - app__idp=keycloak
       - mCSD__server__protocal=http
-      - mCSD__server__host=fhir-test-local
+      - mCSD__server__host=fhir
       - mCSD__server__port=8080
       - mCSD__server__basePath=fhir
       - app__site__path=/src/gofr-backend/docker-site
       - app__core__path=/src/gofr-backend/lib
       - app__installed=${false}
       - app__idp=gofr
-      - keycloak__baseURL=http://keycloak-test-local:9090/
-      - REDIS_HOST=redis-test-local
-      - keycloak__cleint_id=gofr
+      - keycloak__baseURL=http://keycloak:8084/auth
+      - REDIS_HOST=redis
     ports:
       - "4000:4000"
     restart: always
-    volumes: 
-      - ../../../gofr:/src
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: ghcr.io/joeferner/redis-commander:latest
+    restart: always
+    environment:
+    - REDIS_HOSTS=local:redis:6379
+    ports:
+    - "8082:8081"
+    user: redis
 
 
 networks:
 # set app-wide default network
   default:
-    name: test-local
+    name: live
 
 
 volumes:
-  redis-data-test-local:
-  hapi-data-test-local:
-  keycloak_data-test-local:
+  redis-data:
+  hapi-data:

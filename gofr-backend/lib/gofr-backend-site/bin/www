@@ -15,8 +15,9 @@ const fhirAudit = ihrissmartrequire('fhirAudit.js');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.SERVER__PORT || siteConfig.server.port || '4000');
-app.set('port', port);
+const port = normalizePort('4000');
+logger.info("port get", normalizePort(process.env.SERVER__PORT || siteConfig.server.port || '4000'))
+app.set('port get for front', port);
 
 /**
  * Create HTTP server.

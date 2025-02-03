@@ -16,8 +16,8 @@ const fhirAudit = ihrissmartrequire('fhirAudit.js');
  */
 
 const port = normalizePort('4000');
-logger.info("port get", normalizePort(process.env.SERVER__PORT || siteConfig.server.port || '4000'))
-app.set('port get for front', port);
+logger.error(`port get front, ${normalizePort(process.env.SERVER__PORT || siteConfig.server.port || '4000')}`)
+app.set('port', port);
 
 /**
  * Create HTTP server.

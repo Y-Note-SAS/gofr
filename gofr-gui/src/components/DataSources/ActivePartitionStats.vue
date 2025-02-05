@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title primary-title>
-      <v-toolbar color="#78496a" dark height="40" style="font-size: 14px">
+      <v-toolbar color="#2D7A5E" dark height="40" style="font-size: 14px">
         {{title}}
       </v-toolbar>
     </v-card-title>
@@ -52,7 +52,7 @@
                     {{activePartition.createdTime}}
                   </v-chip>
         </v-flex>
-        <v-divider color="#78496a" vertical></v-divider>
+        <v-divider color="#2D7A5E" vertical></v-divider>
         <v-spacer></v-spacer>
         <v-flex xs5>
           <label v-if="!activePartition.sharedToAll">

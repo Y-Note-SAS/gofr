@@ -116,7 +116,7 @@
           >
             <v-progress-linear
               slot="progress"
-              color="blue"
+              color="green"
               indeterminate
             ></v-progress-linear>
             <template
@@ -130,7 +130,7 @@
                   <td>
                     <v-radio
                       :value="item.id"
-                      color="blue"
+                      color="green"
                     ></v-radio>
                   </td>
                 </v-radio-group>

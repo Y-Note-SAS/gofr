@@ -13,7 +13,7 @@
       >
         <v-card-text>
           <center>
-            <font style="color:blue">{{mappingStatusProgressTitle}}</font><br>
+            <font style="color:green">{{mappingStatusProgressTitle}}</font><br>
             <v-progress-circular
               :rotate="-90"
               :size="100"

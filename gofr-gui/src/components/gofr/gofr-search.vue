@@ -4,7 +4,7 @@
       <v-card-title>
         {{ $t("App.hardcoded-texts.Search") }} {{ $t(`App.fhir-resources-texts.${label}`) }}
         <v-spacer></v-spacer>
-        <v-btn :class="addLink ? addLink.class || 'primary' : 'primary'" :to="addLink ? addLink.url : '/resource/add/'+page">
+        <v-btn :style="{backgroundColor: addlink ?'#2D7A5E' : '#2D7A5E', color:'white'}" :to="addLink ? addLink.url : '/resource/add/'+page">
           <v-icon v-if="addLink && addLink.icon">{{ addLink.icon }}</v-icon>
           <v-icon v-else>mdi-database-plus</v-icon>
           {{ $t("App.hardcoded-texts.Add") }} {{ $t(`App.fhir-resources-texts.${label}`) }}

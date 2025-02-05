@@ -5,17 +5,17 @@
       <v-flex>
         <v-layout row wrap>
           <v-flex xs2>
-            <v-chip color="primary" dark outlined>
+            <v-chip color="danger" dark outlined>
               {{ $t(`App.hardcoded-texts.Facilities`) }}: {{totalFacilities}}
             </v-chip>
           </v-flex>
           <v-flex xs2>
-            <v-chip color="primary" dark outlined>
+            <v-chip color="secondary" dark outlined>
               {{ $t(`App.hardcoded-texts.Jurisdictions`) }}: {{totalJurisdictions}}
             </v-chip>
           </v-flex>
           <v-flex xs2>
-            <v-chip color="primary" dark outlined>
+            <v-chip color="none" dark outlined>
               {{ $t(`App.hardcoded-texts.Services`) }}: {{totalServices}}
             </v-chip>
           </v-flex>

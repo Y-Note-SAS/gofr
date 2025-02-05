@@ -21,7 +21,7 @@
       >
         <v-card-title primary-title>
           <v-toolbar
-            color="primary"
+            color="#2D7A5E"
             style="color: white"
           >
             <v-layout
@@ -59,7 +59,7 @@
               :error-messages="usernameErrors"
               v-model="username"
               filled
-              color="deep-purple"
+              color="deep-green"
               :label="$t(`App.hardcoded-texts.User Name`)"
             />
             <v-text-field
@@ -71,7 +71,7 @@
               v-model="password"
               filled
               type="password"
-              color="deep-purple"
+              color="deep-#2D7A5E"
               :label="$t(`App.hardcoded-texts.Password`)"
             />
           </v-form>
@@ -80,7 +80,7 @@
           <v-toolbar>
             <v-btn
               v-if="$store.state.config.generalConfig.selfRegistration.enabled"
-              color="primary"
+              color="#2D7A5E"
               @click="displaySignup"
             >{{ $t(`App.hardcoded-texts.Signup`) }}</v-btn>
             <v-spacer></v-spacer>
@@ -88,7 +88,7 @@
               @click="authenticate()"
               :disabled="$v.$invalid"
               class="white--text"
-              color="primary"
+              color="#2D7A5E"
               depressed
             >{{ $t(`App.hardcoded-texts.Login`) }}</v-btn>
           </v-toolbar>

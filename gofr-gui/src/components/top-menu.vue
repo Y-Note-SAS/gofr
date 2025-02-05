@@ -264,7 +264,7 @@
             <span>{{ $t('App.menu.addJurisdiction.tooltip')}}</span>
           </v-tooltip>
         </v-list>
-        <v-list
+        <!-- <v-list
           class="lastMenu"
           v-if="$tasksVerification.hasPermissionByName('special', 'custom', 'view-add-facility-page')"
         >
@@ -402,7 +402,7 @@
               </v-tooltip>
             </v-list>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </li>
     <li

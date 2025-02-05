@@ -30,7 +30,7 @@
         >
           <v-card-text>
             <center>
-              <font style="color:blue">{{$store.state.scoresProgressData.scoreProgressTitle}}</font><br>
+              <font style="color:green">{{$store.state.scoresProgressData.scoreProgressTitle}}</font><br>
               <v-progress-circular
                 :rotate="-90"
                 :size="100"
@@ -673,7 +673,7 @@
         </v-flex>
         <v-flex xs4>
           <v-card
-            color="blue lighten-2"
+            color="green lighten-2"
             dark
           >
             <v-card-title primary-title>

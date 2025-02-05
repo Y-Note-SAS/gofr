@@ -5,8 +5,8 @@
     app
     clipped
     permanent
-    class="primary darken-1 white--text font-weight-bold"
-    style="z-index: 3;"
+    class="darken-1 white--text font-weight-bold"
+    style="z-index: 3; background-color: #1B4D3E;"
     width="358"
   >
   <!-- <v-navigation-drawer
@@ -44,7 +44,7 @@
             color="white--text"
             :value="item.active"
             v-model="item.active"
-            :class="(item.active ? 'primary darken-2' : '')"
+            :style="{ backgroundColor: item.active ? '#2D7A5E' : '#1B4D3E' }"
             no-action
           >
             <template v-slot:activator>
@@ -60,7 +60,7 @@
                   color="white--text"
                   :value="sub.active"
                   v-model="sub.active"
-                  :class="(sub.active ? 'primary darken-2' : '')"
+                  :style="{ backgroundColor: sub.active ? '#2D7A5E' : '#1B4D3E' }"                  
                   sub-group
                   no-action
                 >
@@ -72,7 +72,7 @@
                       v-if="sub_sub.external != true"
                       :key="sub_sub.id"
                       :to="sub_sub.url"
-                      active-class="primary darken-2"
+                      :style="{ backgroundColor: sub_sub.active ? '#2D7A5E' : '#2D7A5E' }"
                       dense
                     >
                       <v-icon v-if="sub_sub.icon" left>{{sub_sub.icon}}</v-icon>
@@ -84,7 +84,7 @@
                       :key="sub_sub.id"
                       :href="sub_sub.url"
                       target="_blank"
-                      active-class="primary darken-2"
+                      :style="{ backgroundColor: sub_sub.active ? '#2D7A5E' : '#2D7A5E' }"
                       dense
                     >
                       <v-icon v-if="sub_sub.icon" left>{{sub_sub.icon}}</v-icon>
@@ -99,7 +99,7 @@
                 <v-list-item
                   :key="sub.id"
                   :to="sub.url"
-                  active-class="primary darken-2"
+                  :style="{ backgroundColor: sub.active ? '#2D7A5E' : '#2D7A5E' }"
                   dense
                   v-if="sub.external != true"
                 >
@@ -112,7 +112,7 @@
                   :key="sub.id"
                   :href="sub.url"
                   target="_blank"
-                  active-class="primary darken-2"
+                   :style="{ backgroundColor: sub.active ? '#2D7A5E' : '#2D7A5E' }"
                   dense
                 >
                   <v-icon v-if="sub.icon" left>{{sub.icon}}</v-icon>

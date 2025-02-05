@@ -9,7 +9,7 @@
               <v-flex xs3>
                 <v-card height="209">
                   <v-card-title primary-title>
-                    <v-toolbar color="#78496a" dark height="40"  style="font-size: 14px">
+                    <v-toolbar color="#2D7A5E" dark height="40"  style="font-size: 14px">
                       {{ $t(`App.hardcoded-texts.Active Partition`) }}
                     </v-toolbar>
                   </v-card-title>
@@ -37,7 +37,7 @@
               <v-flex xs3>
                 <v-card height="209">
                   <v-card-title primary-title>
-                    <v-toolbar color="#78496a" dark height="40" style="font-size: 14px">
+                    <v-toolbar color="#2D7A5E" dark height="40" style="font-size: 14px">
                       {{ $t(`App.hardcoded-texts.Active Reconciliation Pair`) }}
                     </v-toolbar>
                   </v-card-title>

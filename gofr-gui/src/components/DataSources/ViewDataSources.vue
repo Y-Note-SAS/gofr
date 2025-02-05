@@ -413,7 +413,7 @@
             >
               <v-progress-linear
                 slot="progress"
-                color="blue"
+                color="#2D7A5E"
                 indeterminate
               ></v-progress-linear>
               <template
@@ -427,7 +427,7 @@
                     <td>
                       <v-radio
                         :value="item"
-                        color="blue"
+                        color="#2D7A5E"
                       ></v-radio>
                     </td>
                   </v-radio-group>
@@ -524,7 +524,7 @@
             >
               <v-progress-linear
                 slot="progress"
-                color="blue"
+                color="#2D7A5E"
                 indeterminate
               ></v-progress-linear>
               <template
@@ -539,7 +539,7 @@
                       <v-radio
                         :disabled="item.display === 'DEFAULT'"
                         :value="item"
-                        color="blue"
+                        color="#2D7A5E"
                       ></v-radio>
                     </td>
                   </v-radio-group>

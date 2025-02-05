@@ -9,7 +9,7 @@
         width="300"
       >
         <v-card
-          color="primary"
+          color="#2D7A5E"
           dark
         >
           <v-card-text>
@@ -52,7 +52,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
-              color="primary"
+              color="#2D7A5E"
               @click.native="closeDialogError"
             >{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
           </v-card-actions>
@@ -64,7 +64,7 @@
         width="300"
       >
         <v-card
-          color="primary"
+          color="#2D7A5E"
           dark
         >
           <v-card-text>
@@ -120,7 +120,7 @@
     </v-main>
     <v-footer
       dark
-      color="primary"
+      color="#2D7A5E"
       :fixed="fixed"
       app
       height="20"
@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     closeDialogError () {
-      this.$store.state.errorColor = 'primary'
+      this.$store.state.errorColor = '#2D7A5E'
       this.$store.state.dialogError = false
     },
     renderInitialPage () {

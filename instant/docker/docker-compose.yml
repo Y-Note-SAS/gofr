@@ -56,7 +56,9 @@ services:
 
   gofr:
     container_name: gofr
-    image: intrahealth/gofr:latest
+    build:  
+      context: .     
+      dockerfile: Dockerfile
     depends_on:
       - fhir
     environment:

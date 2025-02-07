@@ -44,7 +44,10 @@
             color="white--text"
             :value="item.active"
             v-model="item.active"
-            :style="{ backgroundColor: item.active ? '#2D7A5E' : '#1B4D3E' }"
+            :class="{
+              'active-background': item.active,
+              'inactive-background': !item.active
+            }"
             no-action
           >
             <template v-slot:activator>
@@ -60,7 +63,10 @@
                   color="white--text"
                   :value="sub.active"
                   v-model="sub.active"
-                  :style="{ backgroundColor: sub.active ? '#2D7A5E' : '#1B4D3E' }"                  
+                  :class="{
+                    'active-background': item.active,
+                    'inactive-background': !item.active
+                  }"               
                   sub-group
                   no-action
                 >
@@ -72,7 +78,10 @@
                       v-if="sub_sub.external != true"
                       :key="sub_sub.id"
                       :to="sub_sub.url"
-                      :style="{ backgroundColor: sub_sub.active ? '#2D7A5E' : '#2D7A5E' }"
+                      :class="{
+                        'active-background': item.active,
+                        'inactive-background': !item.active
+                      }"
                       dense
                     >
                       <v-icon v-if="sub_sub.icon" left>{{sub_sub.icon}}</v-icon>
@@ -84,7 +93,10 @@
                       :key="sub_sub.id"
                       :href="sub_sub.url"
                       target="_blank"
-                      :style="{ backgroundColor: sub_sub.active ? '#2D7A5E' : '#2D7A5E' }"
+                      :class="{
+                        'active-background': item.active,
+                        'inactive-background': !item.active
+                      }"
                       dense
                     >
                       <v-icon v-if="sub_sub.icon" left>{{sub_sub.icon}}</v-icon>
@@ -112,7 +124,10 @@
                   :key="sub.id"
                   :href="sub.url"
                   target="_blank"
-                   :style="{ backgroundColor: sub.active ? '#2D7A5E' : '#2D7A5E' }"
+                  :class="{
+                    'active-background': item.active,
+                    'inactive-background': !item.active
+                  }"
                   dense
                 >
                   <v-icon v-if="sub.icon" left>{{sub.icon}}</v-icon>
@@ -260,3 +275,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navigation-drawer {
+  background-color: #1b4d3e;
+  z-index: 3;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.active-background {
+  background-color: #2d7a5e !important;
+}
+
+.inactive-background {
+  background-color: #1b4d3e !important;
+}
+</style>

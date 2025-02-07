@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = {
   outputDir: path.resolve(__dirname, "../gofr-backend/lib/gofr-backend-site/gui"),
-  publicPath: '/gofr/',
+  publicPath: '/',
   runtimeCompiler: true,
   transpileDependencies: ['vuetify'],
   devServer: {

@@ -25,6 +25,7 @@ terraform.tfstate.backup
 _static
 _templates
 *.mo
+/gofr-backend/lib/gofr-backend-site/gui/
 
 # tests
 tests/node_modules

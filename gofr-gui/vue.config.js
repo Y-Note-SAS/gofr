@@ -1,7 +1,8 @@
 const path = require("path");
 module.exports = {
   outputDir: path.resolve(__dirname, "../gofr-backend/lib/gofr-backend-site/gui"),
-  publicPath: '/',
+  publicPath: './',
+  filenameHashing: true,  // Active le hash des fichiers
   runtimeCompiler: true,
   transpileDependencies: ['vuetify'],
   devServer: {

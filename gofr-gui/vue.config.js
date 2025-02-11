@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  outputDir: path.resolve(__dirname, "../gofr-backend/lib/gofr-backend-site/gui"),
+  outputDir: path.resolve(__dirname, "../gofr-backend/docker-site/gui"),
   publicPath: './',
   filenameHashing: true,  // Active le hash des fichiers
   runtimeCompiler: true,

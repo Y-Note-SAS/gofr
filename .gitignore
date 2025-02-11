@@ -26,7 +26,7 @@ _static
 _templates
 *.mo
 /gofr-backend/lib/gofr-backend-site/gui/
-
+/gofr-backend/docker-site/gui
 # tests
 tests/node_modules
 tests/screenshot*

@@ -82,7 +82,7 @@ services:
 networks:
 # set app-wide default network
   default:
-    name: demo
+    name: live
 
 
 volumes:

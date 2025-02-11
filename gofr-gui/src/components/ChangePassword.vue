@@ -11,11 +11,11 @@
           style="max-width: 500px;"
         >
           <v-system-bar
-            color="deep-purple darken-4"
+            color="#1b4d3e"
             dark
           />
           <v-toolbar
-            color="deep-purple accent-4"
+            color="#1b4d3e"
             cards
             dark
             filled
@@ -36,7 +36,7 @@
               v-model="oldPassword"
               type="password"
               filled
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Old Password`)"
             />
             <v-text-field
@@ -47,7 +47,7 @@
               v-model="password"
               type="password"
               filled
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Password`)"
             />
             <v-text-field
@@ -58,7 +58,7 @@
               v-model="retype_password"
               type="password"
               filled
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Re-type Password`)"
             />
           </v-form>
@@ -75,7 +75,7 @@
               @click="verifyPassword()"
               :disabled="$v.$invalid"
               class="white--text"
-              color="deep-purple accent-4"
+              color="#1b4d3e"
               depressed
             >
               <v-icon left>mdi-find-replace</v-icon>{{ $t(`App.hardcoded-texts.Change`) }}

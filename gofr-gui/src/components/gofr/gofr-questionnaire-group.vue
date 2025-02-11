@@ -4,7 +4,7 @@
     max-width="700"
     outlined
     >
-    <v-card-title class="primary white--text text-uppercase font-weight-bold">
+    <v-card-title class="primary white--text text-uppercase font-weight-bold " style="background-color: #1b4d3e !important;">
       {{ $t(`App.fhir-resources-texts.${label}`) }}
     </v-card-title>
     <v-card-text 

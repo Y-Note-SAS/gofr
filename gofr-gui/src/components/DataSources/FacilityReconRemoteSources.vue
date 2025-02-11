@@ -74,7 +74,7 @@
                   v-if="$store.state.dhis.user.orgId"
                   :disabled="shareWithAll"
                   slot="activator"
-                  color="primary"
+                  color="#1b4d3e"
                   :label="$t(`App.hardcoded-texts.Share with other users of the same org unit as yours`)"
                   v-model="shareToSameOrgid"
                 ></v-checkbox>
@@ -96,7 +96,7 @@
                     v-if="canShareToAll"
                     :disabled="!shareWithAll"
                     slot="activator"
-                    color="primary"
+                    color="#1b4d3e"
                     :label="$t(`App.hardcoded-texts.Limit orgs sharing by DHIS2 user orgid`)"
                     v-model="limitShareByOrgId"
                     v-bind="attrs"

@@ -10,7 +10,7 @@
       <v-overlay :value="overlay">
         <v-progress-circular
           size="50"
-          color="primary"
+          color="#2d7a5e"
           indeterminate
           ></v-progress-circular>
         <v-btn icon @click="overlay = false">
@@ -23,8 +23,8 @@
         right
         permanent
         clipped
-        class="primary darken-1 white--text"
-        style="z-index: 3;"
+        class="white--text"
+        style="z-index: 3; background-color: #2d7a5e;"
         >
         <v-list class="white--text">
           <v-list-item>

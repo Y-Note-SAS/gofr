@@ -239,7 +239,7 @@
                         <v-tooltip top>
                           <template v-slot:activator="{ on }">
                             <v-btn
-                              color="primary"
+                              color="#1b4d3e"
                               small
                               dark
                               @click.native="match('match', item.id, item.name, item.source2IdHierarchy)"
@@ -411,7 +411,7 @@
                 fab
                 dark
                 x-small
-                color="primary"
+                color="#1b4d3e"
                 @click="helpDialog = true"
                 v-on="on"
               >

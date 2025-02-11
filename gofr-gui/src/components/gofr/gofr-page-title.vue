@@ -3,7 +3,7 @@
     <v-alert
       border="left"
       colored-border
-      color="deep-purple accent-4"
+      color="#1b4d3e"
       elevation="2"
       max-width="700"
     >

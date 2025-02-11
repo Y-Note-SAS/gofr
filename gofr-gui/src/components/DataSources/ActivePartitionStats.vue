@@ -11,7 +11,7 @@
         <v-flex xs6>
           <label v-if="loading.facilitiesCount">
             <v-progress-linear
-              color="deep-purple accent-4"
+              color="#1b4d3e"
               indeterminate
               rounded
               height="6"
@@ -28,7 +28,7 @@
           </label>
           <label v-if="loading.jurisdictionsCount">
             <v-progress-linear
-              color="deep-purple accent-4"
+              color="#1b4d3e"
               indeterminate
               rounded
               height="6"

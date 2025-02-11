@@ -238,7 +238,7 @@
                           v-if="$store.state.dhis.user.orgId"
                           :disabled="shareWithAll"
                           v-on="on"
-                          color="primary"
+                          color="#1b4d3e"
                           label="Share with other users of the same org unit as yours"
                           v-model="shareToSameOrgid"
                         ></v-checkbox>
@@ -260,7 +260,7 @@
                         <v-checkbox
                           v-if="shareWithAll && $store.state.dhis.user.orgId"
                           v-on="on"
-                          color="primary"
+                          color="#1b4d3e"
                           :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
                           v-model="limitShareByOrgId"
                         >
@@ -474,7 +474,7 @@
                     fab
                     dark
                     small
-                    color="primary"
+                    color="#1b4d3e"
                     v-on="on"
                     @click="showMoreLevel"
                   >

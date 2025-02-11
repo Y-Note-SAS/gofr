@@ -82,7 +82,7 @@
             @click="changeStatus('Active')"
             :disabled="$v.$invalid"
             class="white--text"
-            color="deep-purple accent-4"
+            color="#1b4d3e"
             depressed
           >
             <v-icon left>mdi-check-circle</v-icon>{{ $t(`App.hardcoded-texts.Approve`) }}
@@ -145,7 +145,7 @@
         >
           <v-progress-linear
             slot="progress"
-            color="blue"
+            color="#1b4d3e"
             indeterminate
           ></v-progress-linear>
           <template

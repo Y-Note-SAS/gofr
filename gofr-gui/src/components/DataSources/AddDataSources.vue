@@ -115,7 +115,7 @@
               fab
               dark
               x-small
-              color="primary"
+              color="#1b4d3e"
               @click="helpDialog = true"
               v-on="on"
             >

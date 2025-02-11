@@ -9,7 +9,7 @@
           <slot name="header"></slot>
         </v-col>
         <v-col :cols="$store.state.cols.content" v-if="loading">
-          <v-progress-linear indeterminate color="primary"></v-progress-linear>
+          <v-progress-linear indeterminate color="#2d7a5e"></v-progress-linear>
         </v-col>
         <v-col :cols="$store.state.cols.content" v-else>
           <slot name="value"></slot>

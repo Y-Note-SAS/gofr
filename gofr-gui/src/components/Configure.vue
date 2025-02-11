@@ -1,162 +1,94 @@
 <template>
   <v-container>
-    <v-dialog
-      persistent
-      v-model="autoDisableSingleDatasourceDialog"
-      max-width="500px"
-    >
+    <v-dialog persistent v-model="autoDisableSingleDatasourceDialog" max-width="500px">
       <v-card>
-        <v-toolbar
-          color="error"
-          dark
-        >
+        <v-toolbar color="error" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.Disabling Single Data Source Limit`) }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn
-            icon
-            dark
-            @click.native="autoDisableSingleDatasource('cancel')"
-          >
+          <v-btn icon dark @click.native="autoDisableSingleDatasource('cancel')">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
         <v-card-text>
-          {{ $t(`App.hardcoded-texts.Disabling limiting reconciliation to be done against one choosen data source will also disable the single data source limit, click OK to proceed`) }}
+          {{ $t(`App.hardcoded-texts.Disabling limiting reconciliation to be done against one choosen data source will
+          also disable the single data source limit, click OK to proceed`) }}
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="primary"
-            @click.native="autoDisableSingleDatasource('cancel')"
-          >{{ $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
+          <v-btn color="#2d7a5e" @click.native="autoDisableSingleDatasource('cancel')">{{
+            $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
           <v-spacer></v-spacer>
-          <v-btn
-            color="error"
-            @click.native="autoDisableSingleDatasource('ok')"
-          >{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
+          <v-btn color="error" @click.native="autoDisableSingleDatasource('ok')">{{ $t(`App.hardcoded-texts.Ok`)
+            }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
-      persistent
-      v-model="defineSuperuserRole"
-      width="620px"
-    >
+    <v-dialog persistent v-model="defineSuperuserRole" width="620px">
       <v-card>
-        <v-toolbar
-          color="primary"
-          dark
-        >
+        <v-toolbar color="#2d7a5e" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.DHIS2 superuser role that can be an administrator of GOFR`) }}
           </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-select
-            @change="saveConfiguration('generalConfig', 'externalAuth')"
-            :label="$t(`App.hardcoded-texts.Superuser Role Name`)"
-            item-text='displayName'
-            item-value='id'
-            :loading="loadingDhis2Roles"
-            required
-            :items="dhis2Roles"
-            v-model="$store.state.config.generalConfig.externalAuth.adminRole"
-          ></v-select>
+          <v-select @change="saveConfiguration('generalConfig', 'externalAuth')"
+            :label="$t(`App.hardcoded-texts.Superuser Role Name`)" item-text='displayName' item-value='id'
+            :loading="loadingDhis2Roles" required :items="dhis2Roles"
+            v-model="$store.state.config.generalConfig.externalAuth.adminRole"></v-select>
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="primary"
+          <v-btn color="#2d7a5e"
             :disabled='!$store.state.config.generalConfig.externalAuth.adminRole || dhis2Roles.length === 0'
-            @click="saveConfiguration('generalConfig', 'authDisabled')"
-          >
+            @click="saveConfiguration('generalConfig', 'authDisabled')">
             <v-icon left>mdi-content-save</v-icon>
             {{ $t(`App.hardcoded-texts.Save`) }}
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
-      persistent
-      v-model="selectDatasourceDialog"
-      width="800px"
-    >
+    <v-dialog persistent v-model="selectDatasourceDialog" width="800px">
       <v-card>
-        <v-toolbar
-          color="primary"
-          dark
-        >
+        <v-toolbar color="#2d7a5e" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.Select datasource to fix source 2`) }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="searchDatasource"
-            append-icon="mdi-search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-          <v-btn
-            icon
-            dark
-            @click.native="closeDatasourceDialog"
-          >
+          <v-text-field v-model="searchDatasource" append-icon="mdi-search" label="Search" single-line
+            hide-details></v-text-field>
+          <v-btn icon dark @click.native="closeDatasourceDialog">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
         {{ $t(`App.hardcoded-texts.This lists only those datasets that have been shared to all users`) }}
         <v-card-text>
-          <v-data-table
-            :headers="dataSourceHeaders"
-            :items="sharedToAllDatasets"
-            dark
-            class="elevation-1"
-            :search="searchDatasource"
-          >
-            <v-progress-linear
-              slot="progress"
-              color="green"
-              indeterminate
-            ></v-progress-linear>
-            <template
-              v-slot:item="{ item }"
-            >
+          <v-data-table :headers="dataSourceHeaders" :items="sharedToAllDatasets" dark class="elevation-1"
+            :search="searchDatasource">
+            <v-progress-linear slot="progress" color="green" indeterminate></v-progress-linear>
+            <template v-slot:item="{ item }">
               <tr>
-                <v-radio-group
-                  v-model='fixSource2To'
-                  style="height: 5px"
-                >
+                <v-radio-group v-model='fixSource2To' style="height: 5px">
                   <td>
-                    <v-radio
-                      :value="item.id"
-                      color="green"
-                    ></v-radio>
+                    <v-radio :value="item.id" color="green"></v-radio>
                   </td>
                 </v-radio-group>
-                <td>{{item.name}}</td>
-                <td>{{item.userID.userName}}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.userID.userName }}</td>
                 <td>
-                  {{item.createdTime}}
+                  {{ item.createdTime }}
                 </td>
               </tr>
             </template>
           </v-data-table>
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="error"
-            @click="closeDatasourceDialog"
-          >
+          <v-btn color="error" @click="closeDatasourceDialog">
             <v-icon left>mdi-cancel</v-icon>
             {{ $t(`App.hardcoded-texts.Cancel`) }}
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            :disabled='!fixSource2To || sharedToAllDatasets.length === 0'
-            @click="savefixSource2To"
-          >
+          <v-btn color="#2d7a5e" class="white--text" :disabled='!fixSource2To || sharedToAllDatasets.length === 0'
+            @click="savefixSource2To">
             <v-icon left>mdi-content-save</v-icon>
             {{ $t(`App.hardcoded-texts.Save`) }}
           </v-btn>
@@ -175,23 +107,16 @@
           <v-card-text>
             <v-layout column>
               <v-flex>
-                <v-switch
-                  @change="saveConfiguration('userConfig', 'useCSVHeader')"
-                  color="primary"
+                <v-switch @change="saveConfiguration('userConfig', 'useCSVHeader')" color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Apply user defined headers when reconciling`)"
-                  v-model="$store.state.config.userConfig.reconciliation.useCSVHeader"
-                >
+                  v-model="$store.state.config.userConfig.reconciliation.useCSVHeader">
                 </v-switch>
               </v-flex>
               <v-flex>
-                <v-autocomplete
-                  @change="saveConfiguration('userConfig', 'activePartition')"
-                  :items="$store.state.dataSources"
-                  item-text="display"
-                  item-value="name"
+                <v-autocomplete @change="saveConfiguration('userConfig', 'activePartition')"
+                  :items="$store.state.dataSources" item-text="display" item-value="name"
                   v-model="$store.state.config.userConfig.FRDatasource"
-                  :label="$t(`App.hardcoded-texts.Facility Registry Datasource`)"
-                ></v-autocomplete>
+                  :label="$t(`App.hardcoded-texts.Facility Registry Datasource`)"></v-autocomplete>
               </v-flex>
             </v-layout>
           </v-card-text>
@@ -206,108 +131,68 @@
           <v-card-text>
             <v-layout column>
               <v-flex>
-                <v-switch
-                  @change="saveConfiguration('generalConfig', 'parentConstraint')"
-                  color="primary"
+                <v-switch @change="saveConfiguration('generalConfig', 'parentConstraint')" color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Perform match based on parent constraint`)"
-                  v-model="$store.state.config.generalConfig.reconciliation.parentConstraint.enabled"
-                >
+                  v-model="$store.state.config.generalConfig.reconciliation.parentConstraint.enabled">
                 </v-switch>
-                <v-card
-                  v-if="!$store.state.config.generalConfig.reconciliation.parentConstraint.enabled"
-                  color="grey lighten-3"
-                  style="margin-left:100px"
-                >
-                  <v-checkbox
-                    @change="saveConfiguration('generalConfig', 'parConstrIdAuto')"
-                    color="primary"
+                <v-card v-if="!$store.state.config.generalConfig.reconciliation.parentConstraint.enabled"
+                  color="grey lighten-3" style="margin-left:100px">
+                  <v-checkbox @change="saveConfiguration('generalConfig', 'parConstrIdAuto')" color="#2d7a5e"
                     :label="$t(`App.hardcoded-texts.Automatch By ID`)"
                     v-model="$store.state.config.generalConfig.reconciliation.parentConstraint.idAutoMatch"
-                    disabled
-                  ></v-checkbox>
-                  <v-checkbox
-                    @change="saveConfiguration('generalConfig', 'parConstrNameAuto')"
-                    color="primary"
+                    disabled></v-checkbox>
+                  <v-checkbox @change="saveConfiguration('generalConfig', 'parConstrNameAuto')" color="#2d7a5e"
                     :label="$t(`App.hardcoded-texts.Automatch By Name (when parents differ)`)"
-                    v-model="$store.state.config.generalConfig.reconciliation.parentConstraint.nameAutoMatch"
-                  ></v-checkbox>
+                    v-model="$store.state.config.generalConfig.reconciliation.parentConstraint.nameAutoMatch"></v-checkbox>
                 </v-card>
                 <v-card>
                   <v-card-title primary-title>
                     {{ $t(`App.hardcoded-texts.Choose ways datasets can be added`) }}
                   </v-card-title>
                   <v-card-text>
-                    <v-checkbox
-                      :label="$t(`App.hardcoded-texts.CSV Upload`)"
-                      v-model="$store.state.config.generalConfig.datasetsAdditionWays"
-                      value="CSV Upload"
-                      @change="checkDatasetsAdditionWays('upload')"
-                    ></v-checkbox>
-                    <v-checkbox
-                      :label="$t(`App.hardcoded-texts.Remote Servers Sync`)"
-                      v-model="$store.state.config.generalConfig.datasetsAdditionWays"
-                      value="Remote Servers Sync"
-                      @change="checkDatasetsAdditionWays('remote')"
-                    ></v-checkbox>
-                    <v-checkbox
-                      :label="$t(`App.hardcoded-texts.Blank Datasource`)"
-                      v-model="$store.state.config.generalConfig.datasetsAdditionWays"
-                      value="Blank Datasource"
-                      @change="checkDatasetsAdditionWays('blank')"
-                    ></v-checkbox>
+                    <v-checkbox color="#2d7a5e" :label="$t(`App.hardcoded-texts.CSV Upload`)"
+                      v-model="$store.state.config.generalConfig.datasetsAdditionWays" value="CSV Upload"
+                      @change="checkDatasetsAdditionWays('upload')"></v-checkbox>
+                    <v-checkbox color="#2d7a5e" :label="$t(`App.hardcoded-texts.Remote Servers Sync`)"
+                      v-model="$store.state.config.generalConfig.datasetsAdditionWays" value="Remote Servers Sync"
+                      @change="checkDatasetsAdditionWays('remote')"></v-checkbox>
+                    <v-checkbox color="#2d7a5e" :label="$t(`App.hardcoded-texts.Blank Datasource`)"
+                      v-model="$store.state.config.generalConfig.datasetsAdditionWays" value="Blank Datasource"
+                      @change="checkDatasetsAdditionWays('blank')"></v-checkbox>
                   </v-card-text>
                 </v-card>
-                <v-switch
-                  @change="saveConfiguration('generalConfig', 'allowShareToAllForNonAdmin')"
-                  color="primary"
+                <v-switch @change="saveConfiguration('generalConfig', 'allowShareToAllForNonAdmin')" color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Allow non admin users to share datasets will all users`)"
-                  v-model="$store.state.config.generalConfig.allowShareToAllForNonAdmin"
-                >
+                  v-model="$store.state.config.generalConfig.allowShareToAllForNonAdmin">
                 </v-switch>
                 <v-tooltip top>
                   <template v-slot:activator="{ on }">
-                    <v-switch
-                      @change="displayDatasourceDialog"
-                      color="primary"
+                    <v-switch @change="displayDatasourceDialog" color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Select a data source to serve as Source 2 for all reconciliation`)"
-                      v-model="$store.state.config.generalConfig.reconciliation.fixSource2"
-                      v-on="on"
-                    />
+                      v-model="$store.state.config.generalConfig.reconciliation.fixSource2" v-on="on" />
                   </template>
-                  <span>{{ $t(`App.hardcoded-texts.This will limit users to perform reconciliations against the chosen data source`) }}</span>
+                  <span>{{ $t(`App.hardcoded-texts.This will limit users to perform reconciliations against the chosen
+                    data
+                    source`) }}</span>
                 </v-tooltip>
                 <template v-slot:activator="{ on }">
                   <template v-if='$store.state.config.generalConfig.reconciliation.fixSource2'>
-                    {{ $t(`App.hardcoded-texts.Source2 Limited To`) }}: <v-chip>{{fixedSource2To}}</v-chip>
-                      <v-tooltip top>
-                        <v-btn
-                          fab
-                          dark
-                          color="primary"
-                          small
-                          @click="displayDatasourceDialog"
-                          v-on="on"
-                        >
-                          <v-icon dark>mdi-format-list-bulleted</v-icon>
-                        </v-btn>
-                        <span>{{ $t(`App.hardcoded-texts.Change dataset`) }}</span>
-                      </v-tooltip>
+                    {{ $t(`App.hardcoded-texts.Source2 Limited To`) }}: <v-chip>{{ fixedSource2To }}</v-chip>
+                    <v-tooltip top>
+                      <v-btn fab white color="#1b4d3e" small @click="displayDatasourceDialog" v-on="on">
+                        <v-icon dark>mdi-format-list-bulleted</v-icon>
+                      </v-btn>
+                      <span>{{ $t(`App.hardcoded-texts.Change dataset`) }}</span>
+                    </v-tooltip>
                   </template>
                 </template>
-                <v-switch
-                  @change="singleDatasource"
-                  color="primary"
+                <v-switch @change="singleDatasource" color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Single data source per user`)"
-                  v-model="$store.state.config.generalConfig.reconciliation.singleDataSource"
-                >
+                  v-model="$store.state.config.generalConfig.reconciliation.singleDataSource">
                 </v-switch>
-                <v-switch
-                  v-if="$store.state.dhis.user.orgId"
-                  @change="saveConfiguration('generalConfig', 'singlePair')"
-                  color="primary"
-                  :label="$t(`App.hardcoded-texts.Single data source pair per org unit`)"
-                  v-model="$store.state.config.generalConfig.reconciliation.singlePair"
-                >
+                <v-switch v-if="$store.state.dhis.user.orgId" @change="saveConfiguration('generalConfig', 'singlePair')"
+                  color="#2d7a5e" :label="$t(`App.hardcoded-texts.Single data source pair per org unit`)"
+                  v-model="$store.state.config.generalConfig.reconciliation.singlePair">
                 </v-switch>
               </v-flex>
               <v-flex>
@@ -316,106 +201,57 @@
                     {{ $t(`App.hardcoded-texts.GOFR Authentication`) }}
                   </v-card-title>
                   <v-card-text>
-                    <v-switch
-                      @change="disableGOFRAuth"
-                      color="primary"
+                    <v-switch @change="disableGOFRAuth" color="#2d7a5e"
                       :label="$t(`App.hardcoded-texts.Disable Authentication`)"
-                      v-model="$store.state.config.generalConfig.authDisabled"
-                    >
+                      v-model="$store.state.config.generalConfig.authDisabled">
                     </v-switch>
-                    <v-card
-                      v-if="$store.state.config.generalConfig.authDisabled"
-                      color="grey lighten-3"
-                      style="margin-left:100px"
-                    >
-                    {{ $t(`App.hardcoded-texts.External Authentication Method`) }}
-                      <v-radio-group
-                        v-model="$store.state.config.generalConfig.authMethod"
-                        @change="saveConfiguration('generalConfig', 'useDhis2Auth')"
-                      >
-                        <v-radio
-                          label="dhis2"
-                          value="dhis2"
-                          disabled
-                        ></v-radio>
-                        <v-radio
-                          label="iHRIS"
-                          value="iHRIS"
-                          disabled
-                        ></v-radio>
+                    <v-card v-if="$store.state.config.generalConfig.authDisabled" color="grey lighten-3"
+                      style="margin-left:100px">
+                      {{ $t(`App.hardcoded-texts.External Authentication Method`) }}
+                      <v-radio-group v-model="$store.state.config.generalConfig.authMethod"
+                        @change="saveConfiguration('generalConfig', 'useDhis2Auth')">
+                        <v-radio label="dhis2" value="dhis2" disabled></v-radio>
+                        <v-radio label="iHRIS" value="iHRIS" disabled></v-radio>
                       </v-radio-group>
-                      <v-select
-                        style="width: 350px"
-                        @change="saveConfiguration('generalConfig', 'externalAuth')"
-                        :label="$t(`App.hardcoded-texts.Superuser Role Name`)"
-                        item-text='displayName'
-                        item-value='id'
-                        :loading="loadingDhis2Roles"
-                        required
-                        :items="dhis2Roles"
-                        v-model="$store.state.config.generalConfig.externalAuth.adminRole"
-                      ></v-select>
-                      <v-checkbox
-                        @change="saveConfiguration('generalConfig', 'externalAuth')"
+                      <v-select style="width: 350px" @change="saveConfiguration('generalConfig', 'externalAuth')"
+                        :label="$t(`App.hardcoded-texts.Superuser Role Name`)" item-text='displayName' item-value='id'
+                        :loading="loadingDhis2Roles" required :items="dhis2Roles"
+                        v-model="$store.state.config.generalConfig.externalAuth.adminRole"></v-select>
+                      <v-checkbox @change="saveConfiguration('generalConfig', 'externalAuth')"
                         v-if="$store.state.config.generalConfig.authMethod"
                         :label="$t(`App.hardcoded-texts.Pull org units`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
-                      >
+                        v-model="$store.state.config.generalConfig.externalAuth.pullOrgUnits">
                       </v-checkbox>
-                      <v-checkbox
-                        @change="saveConfiguration('generalConfig', 'externalAuth')"
+                      <v-checkbox @change="saveConfiguration('generalConfig', 'externalAuth')"
                         v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
                         :label="$t(`App.hardcoded-texts.Share orgs with other users`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.shareOrgUnits"
-                      >
+                        v-model="$store.state.config.generalConfig.externalAuth.shareOrgUnits">
                       </v-checkbox>
-                      <v-checkbox
-                        @change="saveConfiguration('generalConfig', 'externalAuth')"
-                        v-if="
-                      $store.state.config.generalConfig.externalAuth.shareOrgUnits &&
-                      $store.state.config.generalConfig.externalAuth.pullOrgUnits
-                    "
-                        :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.shareByOrgId"
-                      >
+                      <v-checkbox @change="saveConfiguration('generalConfig', 'externalAuth')" v-if="
+                        $store.state.config.generalConfig.externalAuth.shareOrgUnits &&
+                        $store.state.config.generalConfig.externalAuth.pullOrgUnits
+                      " :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
+                        v-model="$store.state.config.generalConfig.externalAuth.shareByOrgId">
                       </v-checkbox>
-                      <v-text-field
-                        style="width: 350px"
-                        outline
+                      <v-text-field style="width: 350px" outline
                         v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
                         :label="$t(`App.hardcoded-texts.Dataset Name`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.datasetName"
-                        @blur="ensureNameUnique"
-                        @input="ensureNameUnique"
-                        :error-messages="datasetNameErrors"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        style="width: 350px"
-                        outline
+                        v-model="$store.state.config.generalConfig.externalAuth.datasetName" @blur="ensureNameUnique"
+                        @input="ensureNameUnique" :error-messages="datasetNameErrors" required></v-text-field>
+                      <v-text-field style="width: 350px" outline
                         v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
                         :label="$t(`App.hardcoded-texts.User Name`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.userName"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        style="width: 350px"
-                        outline
+                        v-model="$store.state.config.generalConfig.externalAuth.userName" required></v-text-field>
+                      <v-text-field style="width: 350px" outline
                         v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
                         :label="$t(`App.hardcoded-texts.Password`)"
-                        v-model="$store.state.config.generalConfig.externalAuth.password"
-                        type="password"
-                        required
-                      ></v-text-field>
+                        v-model="$store.state.config.generalConfig.externalAuth.password" type="password"
+                        required></v-text-field>
                       <v-flex xs3>
-                        <v-btn
-                          color="primary"
+                        <v-btn color="#2d7a5e"
                           :disabled='datasetNameErrors.length > 0 || !$store.state.config.generalConfig.externalAuth.datasetName'
-                          small
-                          rounded
-                          v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
-                          @click="pullOrgUnits"
-                        >{{ $t(`App.hardcoded-texts.start pulling`) }}</v-btn>
+                          small rounded v-if="$store.state.config.generalConfig.externalAuth.pullOrgUnits"
+                          @click="pullOrgUnits">{{ $t(`App.hardcoded-texts.start pulling`) }}</v-btn>
                       </v-flex>
                     </v-card>
                   </v-card-text>
@@ -428,19 +264,13 @@
                     {{ $t(`App.hardcoded-texts.Self Registration`) }}
                   </v-card-title>
                   <v-card-text>
-                    <v-switch
-                      @change="saveConfiguration('generalConfig', 'selfRegistration')"
-                      color="primary"
+                    <v-switch @change="saveConfiguration('generalConfig', 'selfRegistration')" color="#2d7a5e"
                       :label="$t(`App.hardcoded-texts.Enable self registration`)"
-                      v-model="$store.state.config.generalConfig.selfRegistration.enabled"
-                    >
+                      v-model="$store.state.config.generalConfig.selfRegistration.enabled">
                     </v-switch>
-                    <v-switch
-                      @change="saveConfiguration('generalConfig', 'selfRegistration')"
-                      color="primary"
+                    <v-switch @change="saveConfiguration('generalConfig', 'selfRegistration')" color="#2d7a5e"
                       :label="$t(`App.hardcoded-texts.Requires Admin Approval Of Self Registration`)"
-                      v-model="$store.state.config.generalConfig.selfRegistration.requiresApproval"
-                    >
+                      v-model="$store.state.config.generalConfig.selfRegistration.requiresApproval">
                     </v-switch>
                   </v-card-text>
                 </v-card>
@@ -452,23 +282,17 @@
                     {{ $t(`App.hardcoded-texts.Public Access`) }}
                   </v-card-title>
                   <v-card-text>
-                    <v-switch
-                      @change="saveConfiguration('generalConfig', 'enablePublicAccess')"
-                      color="primary"
+                    <v-switch @change="saveConfiguration('generalConfig', 'enablePublicAccess')" color="#2d7a5e"
                       :label="$t(`App.hardcoded-texts.Enable public access`)"
-                      v-model="$store.state.config.generalConfig.public_access.enabled"
-                    >
+                      v-model="$store.state.config.generalConfig.public_access.enabled">
                     </v-switch>
-                    <v-autocomplete
-                      v-if="$store.state.config.generalConfig.public_access.enabled"
-                      @change="saveConfiguration('generalConfig', 'publicPartition')"
-                      :items="$store.state.dataSources"
-                      item-text="display"
-                      item-value="name"
+                    <v-autocomplete v-if="$store.state.config.generalConfig.public_access.enabled"
+                      @change="saveConfiguration('generalConfig', 'publicPartition')" :items="$store.state.dataSources"
+                      item-text="display" item-value="name"
                       v-model="$store.state.config.generalConfig.public_access.partition"
-                      :label="$t(`App.hardcoded-texts.Public Datasource`)"
-                    ></v-autocomplete>
-                    <v-btn color="primary" @click="$router.push('/Resource/view/facility-public-filter/facility-public-filter')">
+                      :label="$t(`App.hardcoded-texts.Public Datasource`)"></v-autocomplete>
+                    <v-btn color="#2d7a5e" class="white--text"
+                      @click="$router.push('/Resource/view/facility-public-filter/facility-public-filter')">
                       {{ $t(`App.hardcoded-texts.Filter Access`) }}
                     </v-btn>
                   </v-card-text>
@@ -482,39 +306,25 @@
                   </v-card-title>
                   <v-card-text>
                     {{ $t(`App.hardcoded-texts.Autosync Below Remote Datasets`) }}
-                    <v-text-field
-                      style="width: 350px"
-                      outline
-                      @blur="saveConfiguration('generalConfig', 'datasetsAutosyncTime')"
-                      name="cron_time"
+                    <v-text-field style="width: 350px" outline
+                      @blur="saveConfiguration('generalConfig', 'datasetsAutosyncTime')" name="cron_time"
                       :label="$t(`App.hardcoded-texts.Cron Time`)"
-                      v-model="$store.state.config.generalConfig.datasetsAutosyncTime"
-                    ></v-text-field>
-                    <v-data-table
-                      :headers="cronDataSourceHeaders"
-                      :items="remoteDatasets"
-                      hide-default-footer
-                      class="elevation-1"
-                      pagination.sync="pagination"
-                    >
-                      <template
-                        v-slot:item="{ item }"
-                      >
+                      v-model="$store.state.config.generalConfig.datasetsAutosyncTime"></v-text-field>
+                    <v-data-table :headers="cronDataSourceHeaders" :items="remoteDatasets" hide-default-footer
+                      class="elevation-1" pagination.sync="pagination">
+                      <template v-slot:item="{ item }">
                         <tr>
-                          <td>{{item.display}}</td>
-                          <td>{{item.owner}}</td>
+                          <td>{{ item.display }}</td>
+                          <td>{{ item.owner }}</td>
                           <td>
-                            {{item.createdTime}}
+                            {{ item.createdTime }}
                           </td>
                           <td>
-                            {{item.lastUpdate}}
+                            {{ item.lastUpdate }}
                           </td>
                           <td>
-                            <v-switch
-                              @change="controlDatasetsCronjobs(item)"
-                              color="primary"
-                              v-model="datasetsAutosyncState[item.id]"
-                            >
+                            <v-switch @change="controlDatasetsCronjobs(item)" color="#2d7a5e"
+                              v-model="datasetsAutosyncState[item.id]">
                             </v-switch>
                           </td>
                         </tr>
@@ -531,54 +341,31 @@
                   <v-card-actions>
                     <v-layout column>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.SMTP Host`)"
-                          v-model="smtp.host"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.SMTP Host`)" v-model="smtp.host"
+                          filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.SMTP Port`)"
-                          v-model="smtp.port"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.SMTP Port`)" v-model="smtp.port"
+                          filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.SMTP Username`)"
-                          v-model="smtp.username"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.SMTP Username`)" v-model="smtp.username"
+                          filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-text-field
-                          type="password"
-                          :label="$t(`App.hardcoded-texts.SMTP Password`)"
-                          v-model="smtp.password"
-                          autocomplete='new-password'
-                          filled
-                        ></v-text-field>
+                        <v-text-field type="password" :label="$t(`App.hardcoded-texts.SMTP Password`)"
+                          v-model="smtp.password" autocomplete='new-password' filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-switch
-                          color="primary"
-                          :label="$t(`App.hardcoded-texts.SMTP Secured`)"
-                          v-model="smtp.secured"
-                        >
+                        <v-switch color="#2d7a5e" :label="$t(`App.hardcoded-texts.SMTP Secured`)"
+                          v-model="smtp.secured">
                         </v-switch>
                       </v-flex>
                       <v-flex>
-                        <v-layout
-                          row
-                          wrap
-                        >
+                        <v-layout row wrap>
                           <v-spacer></v-spacer>
                           <v-flex xs1>
-                            <v-btn
-                              color="primary"
-                              @click="saveSMTP"
-                            >
+                            <v-btn class="white--text" color="#2d7a5e" @click="saveSMTP">
                               <v-icon>mdi-content-save</v-icon>{{ $t(`App.hardcoded-texts.Save`) }}
                             </v-btn>
                           </v-flex>
@@ -589,56 +376,34 @@
                 </v-card>
               </v-flex>
               <v-flex xs1>
-                <v-switch
-                  @change="saveConfiguration('generalConfig', 'recoProgressNotification')"
-                  color="primary"
+                <v-switch @change="saveConfiguration('generalConfig', 'recoProgressNotification')" color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Enable Endpoint Notification when reconciliation is done`)"
-                  v-model="$store.state.config.generalConfig.recoProgressNotification.enabled"
-                >
+                  v-model="$store.state.config.generalConfig.recoProgressNotification.enabled">
                 </v-switch>
-                <v-card
-                  color="grey lighten-3"
-                  v-if='$store.state.config.generalConfig.recoProgressNotification.enabled'
-                  style="margin-left:100px"
-                >
+                <v-card color="grey lighten-3" v-if='$store.state.config.generalConfig.recoProgressNotification.enabled'
+                  style="margin-left:100px">
                   <v-card-text>
                     {{ $t(`App.hardcoded-texts.End point to send notification when reconciliation is done`) }}
                   </v-card-text>
                   <v-card-actions>
                     <v-layout column>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.End point URL`)"
-                          v-model="notification_endpoint"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.End point URL`)" v-model="notification_endpoint"
+                          filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.End point Username`)"
-                          v-model="notification_username"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.End point Username`)"
+                          v-model="notification_username" filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-text-field
-                          :label="$t(`App.hardcoded-texts.End point Password`)"
-                          v-model="notification_password"
-                          filled
-                        ></v-text-field>
+                        <v-text-field :label="$t(`App.hardcoded-texts.End point Password`)"
+                          v-model="notification_password" filled></v-text-field>
                       </v-flex>
                       <v-flex>
-                        <v-layout
-                          row
-                          wrap
-                        >
+                        <v-layout row wrap>
                           <v-spacer></v-spacer>
                           <v-flex xs1>
-                            <v-btn
-                              color="primary"
-                              @click="recoProgressNotificationChanged"
-                              small
-                            >
+                            <v-btn class="white--text" color="primary" @click="recoProgressNotificationChanged" small>
                               <v-icon>mdi-content-save</v-icon>{{ $t(`App.hardcoded-texts.Save`) }}
                             </v-btn>
                           </v-flex>
@@ -653,13 +418,8 @@
         </v-card>
       </v-card-text>
     </v-card>
-    <appRemoteSync
-      syncType="dhisSync"
-      :serverName="$store.state.config.generalConfig.externalAuth.datasetName"
-      :userID="$store.state.auth.userID"
-      :sourceOwner="$store.state.auth.userID"
-      mode="full"
-    >
+    <appRemoteSync syncType="dhisSync" :serverName="$store.state.config.generalConfig.externalAuth.datasetName"
+      :userID="$store.state.auth.userID" :sourceOwner="$store.state.auth.userID" mode="full">
     </appRemoteSync>
   </v-container>
 </template>
@@ -682,7 +442,7 @@ export default {
       required: required
     }
   },
-  data () {
+  data() {
     return {
       smtp: {
         host: '',
@@ -712,13 +472,13 @@ export default {
     }
   },
   methods: {
-    controlDatasetsCronjobs (dataset) {
+    controlDatasetsCronjobs(dataset) {
       let formData = new FormData()
       formData.append('id', dataset.id)
       formData.append('enabled', this.datasetsAutosyncState[dataset.id])
       axios.post('/datasource/updateDatasetAutosync', formData)
     },
-    checkDatasetsAdditionWays (way) {
+    checkDatasetsAdditionWays(way) {
       if (this.$store.state.config.generalConfig.datasetsAdditionWays.length === 0) {
         this.$store.state.errorTitle = 'Cant disable both ways'
         this.$store.state.errorDescription = 'There must be atleast one way of adding a dataset'
@@ -736,7 +496,7 @@ export default {
         this.saveConfiguration('generalConfig', 'datasetsAdditionWays')
       }
     },
-    autoDisableSingleDatasource (confirmation) {
+    autoDisableSingleDatasource(confirmation) {
       if (confirmation === 'ok') {
         this.$store.state.config.generalConfig.reconciliation.singleDataSource = false
         this.saveConfiguration('generalConfig', 'fixSource2')
@@ -746,7 +506,7 @@ export default {
       }
       this.autoDisableSingleDatasourceDialog = false
     },
-    singleDatasource () {
+    singleDatasource() {
       if (
         this.$store.state.config.generalConfig.reconciliation.singleDataSource
       ) {
@@ -768,7 +528,7 @@ export default {
         this.saveConfiguration('generalConfig', 'singleDataSource')
       }
     },
-    displayDatasourceDialog () {
+    displayDatasourceDialog() {
       if (
         this.$store.state.config.generalConfig.reconciliation.fixSource2 ===
         true
@@ -784,19 +544,19 @@ export default {
         }
       }
     },
-    closeDatasourceDialog () {
+    closeDatasourceDialog() {
       this.selectDatasourceDialog = false
       if (!this.$store.state.config.generalConfig.reconciliation.fixSource2To) {
         this.$store.state.config.generalConfig.reconciliation.fixSource2 = false
         this.saveConfiguration('generalConfig', 'fixSource2')
       }
     },
-    savefixSource2To () {
+    savefixSource2To() {
       this.$store.state.config.generalConfig.reconciliation.fixSource2To = this.fixSource2To
       this.saveConfiguration('generalConfig', 'fixSource2To')
       this.selectDatasourceDialog = false
     },
-    disableGOFRAuth () {
+    disableGOFRAuth() {
       if (!this.$store.state.config.generalConfig.authDisabled) {
         this.saveConfiguration('generalConfig', 'authDisabled')
       } else if (this.$store.state.config.generalConfig.authDisabled) {
@@ -819,7 +579,7 @@ export default {
         this.defineSuperuserRole = true
       }
     },
-    recoProgressNotificationChanged () {
+    recoProgressNotificationChanged() {
       if (!this.$store.state.config.generalConfig.hasOwnProperty('recoProgressNotification')) {
         this.$store.state.config.generalConfig.recoProgressNotification = {}
       }
@@ -828,7 +588,7 @@ export default {
       this.$store.state.config.generalConfig.recoProgressNotification.password = this.notification_password
       this.saveConfiguration('generalConfig')
     },
-    saveSMTP () {
+    saveSMTP() {
       this.$store.state.config.generalConfig.smtp.host = this.smtp.host
       this.$store.state.config.generalConfig.smtp.port = this.smtp.port
       this.$store.state.config.generalConfig.smtp.username = this.smtp.username
@@ -840,7 +600,7 @@ export default {
       this.$store.state.errorTitle = 'Info'
       this.$store.state.errorDescription = 'SMTP saved'
     },
-    pullOrgUnits () {
+    pullOrgUnits() {
       this.saveConfiguration('generalConfig', 'externalAuth')
       let formData = new FormData()
       formData.append('host', this.$store.state.dhis.host)
@@ -878,7 +638,7 @@ export default {
           eventBus.$emit('runRemoteSync')
         })
     },
-    getDHIS2Roles (callback) {
+    getDHIS2Roles(callback) {
       let auth = this.$store.state.dhis.dev.auth
       if (auth.username === '') {
         auth = ''
@@ -889,7 +649,7 @@ export default {
           callback(roles)
         })
     },
-    ensureNameUnique () {
+    ensureNameUnique() {
       this.datasetNameErrors = []
       if (
         this.$store.state.config.generalConfig.externalAuth.datasetName === ''
@@ -904,7 +664,7 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     this.smtp.host = this.$store.state.config.generalConfig.smtp.host
     this.smtp.port = this.$store.state.config.generalConfig.smtp.port
     this.smtp.username = this.$store.state.config.generalConfig.smtp.username
@@ -941,7 +701,7 @@ export default {
     }
   },
   computed: {
-    dataSourceHeaders () {
+    dataSourceHeaders() {
       return [
         { sortable: false },
         { text: this.$t(`App.hardcoded-texts.Source Name`), align: 'left', value: 'name' },
@@ -958,7 +718,7 @@ export default {
         { text: this.$t(`App.hardcoded-texts.Enabled`), value: 'enabled' }
       ]
     },
-    fixedSource2To () {
+    fixedSource2To() {
       let dtSrc = ''
       for (let source of this.$store.state.dataSources) {
         if (
@@ -970,7 +730,7 @@ export default {
       }
       return dtSrc.name
     },
-    sharedToAllDatasets () {
+    sharedToAllDatasets() {
       let servers = []
       for (let sources of this.$store.state.dataSources) {
         if (sources.shareToAll && sources.shareToAll.activated) {
@@ -981,7 +741,7 @@ export default {
       }
       return servers
     },
-    remoteDatasets () {
+    remoteDatasets() {
       let servers = []
       for (let sources of this.$store.state.dataSources) {
         if (sources.source === 'remoteServer') {
@@ -991,7 +751,7 @@ export default {
       return servers
     }
   },
-  beforeCreate () {
+  beforeCreate() {
     if (!this.$store.state.config.generalConfig.hasOwnProperty('authMethod')) {
       this.$set(this.$store.state.config.generalConfig, 'authMethod', 'dhis2')
     }

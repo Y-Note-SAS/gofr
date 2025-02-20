@@ -8,7 +8,7 @@
       <v-overlay :value="overlay">
         <v-progress-circular
           size="50"
-          color="primary"
+          color="#2d7a5e"
           indeterminate
           ></v-progress-circular>
       </v-overlay>
@@ -18,9 +18,9 @@
         right
         permanent
         clipped
-        class="primary darken-1 white--text"
-        style="z-index: 3;"
+        class="white--text"
         width="350"
+        style="z-index: 3; background-color: #2d7a5e;"
         >
         <v-list class="white--text">
           <v-list-item>
@@ -78,7 +78,7 @@
           <v-divider color="white"></v-divider>
           <template v-if="!edit && links && links.length">
             <v-list-item v-for="(link,idx) in links" :key="link.url">
-              <v-btn :key="link.url" :text="!link.button" :to="getLinkUrl(link)" class="primary">
+              <v-btn :key="link.url" :text="!link.button" :to="getLinkUrl(link)" style="background-color: #2d7a5e;">
                 <v-icon light v-if="link.icon">{{link.icon}}</v-icon>
                 {{ linktext[idx]  }}
               </v-btn>

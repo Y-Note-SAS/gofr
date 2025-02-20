@@ -83,7 +83,7 @@
                                 :error-messages="nameErrors"
                                 v-model="name"
                                 filled
-                                color="deep-purple"
+                                color="#1b4d3e"
                                 label="Name"
                               />
                             </v-flex>
@@ -92,7 +92,7 @@
                               <v-text-field
                                 v-model="alt_name"
                                 filled
-                                color="deep-purple"
+                                color="#1b4d3e"
                                 label="Alternative Name"
                               />
                             </v-flex>
@@ -108,7 +108,7 @@
                                 required
                                 v-model="code"
                                 filled
-                                color="deep-purple"
+                                color="#1b4d3e"
                                 label="Code"
                               />
                             </v-flex>
@@ -156,7 +156,7 @@
                               <v-text-field
                                 v-model="lat"
                                 filled
-                                color="deep-purple"
+                                color="#1b4d3e"
                                 label="Latitude"
                               />
                             </v-flex>
@@ -166,7 +166,7 @@
                                 required
                                 v-model="long"
                                 filled
-                                color="deep-purple"
+                                color="#1b4d3e"
                                 label="Longitude"
                               />
                             </v-flex>
@@ -191,7 +191,7 @@
                                       <v-text-field
                                         v-model="contact.email"
                                         filled
-                                        color="deep-purple"
+                                        color="#1b4d3e"
                                         label="Email"
                                       />
                                     </v-flex>
@@ -200,7 +200,7 @@
                                       <v-text-field
                                         v-model="contact.phone"
                                         filled
-                                        color="deep-purple"
+                                        color="#1b4d3e"
                                         label="Phone"
                                       />
                                     </v-flex>
@@ -215,7 +215,7 @@
                                       <v-text-field
                                         v-model="contact.fax"
                                         filled
-                                        color="deep-purple"
+                                        color="#1b4d3e"
                                         label="Fax"
                                       />
                                     </v-flex>
@@ -224,7 +224,7 @@
                                       <v-text-field
                                         v-model="contact.website"
                                         filled
-                                        color="deep-purple"
+                                        color="#1b4d3e"
                                         label="Website"
                                       />
                                     </v-flex>
@@ -257,7 +257,7 @@
                         @click="addLocation()"
                         :disabled="$v.$invalid"
                         class="white--text"
-                        color="deep-purple accent-4"
+                        color="#1b4d3e"
                         depressed
                       >
                         <v-icon left>mdi-content-save</v-icon>

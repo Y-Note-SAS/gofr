@@ -39,7 +39,7 @@
                   @blur="ensureNameUnique"
                   @input="ensureNameUnique"
                   :error-messages="nameErrors"
-                  color="deep-purple"
+                  color="#1b4d3e"
                   :label="$t(`App.hardcoded-texts.Source Name`)"
                 ></v-text-field>
               </v-flex>

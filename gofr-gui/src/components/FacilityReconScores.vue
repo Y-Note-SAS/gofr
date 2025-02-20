@@ -36,7 +36,7 @@
                 :size="100"
                 :width="15"
                 :value="$store.state.scoresProgressData.scoreProgressPercent"
-                color="primary"
+                color="#1b4d3e"
                 v-if="$store.state.scoresProgressData.progressType == 'percent'"
               >
                 <v-avatar
@@ -371,7 +371,7 @@
           <template v-if='!$store.state.scoreSavingProgressData.savingMatches'>
             <template>
               <v-btn
-                color="primary"
+                color="#1b4d3e"
                 dark
                 @click="getScores(false)"
                 rounded

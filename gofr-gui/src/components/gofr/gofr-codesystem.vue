@@ -5,7 +5,7 @@
     <v-overlay :value="overlay">
       <v-progress-circular
         size="50"
-        color="primary"
+        color="#2d7a5e"
         indeterminate
         ></v-progress-circular>
     </v-overlay>
@@ -15,8 +15,8 @@
       right
       permanent
       clipped
-      class="primary darken-1 white--text"
-      style="z-index: 3;"
+      class=" darken-1 white--text"
+      style="z-index: 3; background-color: #1B4D3E;"
       >
       <v-list class="white--text">
         <v-list-item>

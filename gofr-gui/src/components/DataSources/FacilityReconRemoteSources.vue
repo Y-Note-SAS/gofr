@@ -44,26 +44,26 @@
               @blur="ensureNameUnique"
               @input="ensureNameUnique"
               :error-messages="nameErrors"
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Source Name`)"
             ></v-text-field>
             <v-text-field
               v-model="host"
               filled
               required
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Base URL`)"
             ></v-text-field>
             <v-text-field
               v-model="username"
               filled
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.User Name`)"
             ></v-text-field>
             <v-text-field
               v-model="password"
               filled
-              color="deep-purple"
+              color="#1b4d3e"
               :label="$t(`App.hardcoded-texts.Password`)"
               style="min-height: 96px"
               type="password"

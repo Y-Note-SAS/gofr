@@ -31,7 +31,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             @click.native="datasetLimit = false"
           >{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
         </v-card-actions>

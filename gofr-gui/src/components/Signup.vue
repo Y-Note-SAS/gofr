@@ -29,11 +29,11 @@
           style="max-width: 1500px;"
         >
           <v-system-bar
-            color="deep-purple darken-4"
+            color="#2d7a5e"
             dark
           />
           <v-toolbar
-            color="deep-purple accent-4"
+            color="#2d7a5e"
             cards
             dark
             text
@@ -63,7 +63,7 @@
                       :error-messages="firstnameErrors"
                       v-model="firstname"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.First Name`)"
                     />
                   </v-flex>
@@ -76,7 +76,7 @@
                       :error-messages="surnameErrors"
                       v-model="surname"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Surname`)"
                     />
                   </v-flex>
@@ -91,7 +91,7 @@
                     <v-text-field
                       v-model="othername"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Middle Names`)"
                     />
                   </v-flex>
@@ -105,7 +105,7 @@
                       :error-messages="phoneErrors"
                       v-model="phone"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Phone`)"
                     />
                   </v-flex>
@@ -125,7 +125,7 @@
                       :error-messages="emailErrors"
                       v-model="email"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Email`) + '*'"
                     />
                   </v-flex>
@@ -138,7 +138,7 @@
                       :error-messages="usernameErrors"
                       v-model="username"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.User Name`)"
                     />
                   </v-flex>
@@ -158,7 +158,7 @@
                       v-model="password"
                       type="password"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Password`)"
                     />
                   </v-flex>
@@ -172,7 +172,7 @@
                       v-model="retype_password"
                       type="password"
                       filled
-                      color="deep-purple"
+                      color="#1b4d3e"
                       :label="$t(`App.hardcoded-texts.Re-type Password`)"
                     />
                   </v-flex>
@@ -200,7 +200,7 @@
               @click="signup()"
               :disabled="$v.$invalid"
               class="white--text"
-              color="deep-purple accent-4"
+              color="#1b4d3e accent-4"
               depressed
             >
               <v-icon left>mdi-plus</v-icon>{{ $t(`App.hardcoded-texts.Add`) }}

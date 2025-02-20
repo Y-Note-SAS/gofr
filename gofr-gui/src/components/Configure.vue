@@ -2,7 +2,7 @@
   <v-container>
     <v-dialog persistent v-model="autoDisableSingleDatasourceDialog" max-width="500px">
       <v-card>
-        <v-toolbar color="error" dark>
+        <v-toolbar color="#2d7a5e" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.Disabling Single Data Source Limit`) }}
           </v-toolbar-title>

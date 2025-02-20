@@ -5,7 +5,7 @@
         <v-card>
           <v-card-subtitle class="error white--text text-uppercase font-weight-bold">Error</v-card-subtitle>
           <v-spacer />
-          <v-card-text class="primary--text font-weight-bold">{{issue.diagnostics}}</v-card-text>
+          <v-card-text class="font-weight-bold" style="background-color: #1b4d3e !important;">{{issue.diagnostics}}</v-card-text>
         </v-card>
       </v-col>
     </v-row>

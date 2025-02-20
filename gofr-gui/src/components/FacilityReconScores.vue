@@ -65,7 +65,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -90,7 +90,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -125,7 +125,7 @@
       >
         <v-card :width='dialogWidth' height="auto">
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -432,7 +432,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -1091,7 +1091,7 @@
                       <v-btn
                         v-if="$store.state.recoStatus == 'Done'"
                         disabled
-                        color="primary"
+                        color="#2d7a5e"
                         style='text-transform: none'
                         small
                         @click='acceptFlag(item.source1Id)'
@@ -1100,7 +1100,7 @@
                       </v-btn>
                       <v-btn
                         v-else
-                        color="primary"
+                        color="#2d7a5e"
                         style='text-transform: none'
                         small
                         @click='acceptFlag(item.source1Id)'
@@ -1149,7 +1149,7 @@
           v-if="goNextLevel == 'yes' && !$store.state.scoreSavingProgressData.savingMatches"
         >
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             rounded
             @click='levelChanged($store.state.recoLevel+1)'
           >
@@ -1163,7 +1163,7 @@
           v-if="lastLevelDone == 'yes'"
         >
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             rounded
             @click='$router.push({name:"FacilityRecoStatus"})'
           >

@@ -8,7 +8,7 @@
               <v-spacer></v-spacer>
               <v-flex xs3>
                 <v-card height="209">
-                  <v-card-title primary-title>
+                  <v-card-title >
                     <v-toolbar color="#2D7A5E" dark height="40"  style="font-size: 14px">
                       {{ $t(`App.hardcoded-texts.Active Partition`) }}
                     </v-toolbar>
@@ -21,7 +21,8 @@
                       v-model="$store.state.config.userConfig.FRDatasource"
                       :label="$t(`App.hardcoded-texts.Facility Registry Datasource`)"
                       @change="partitionChanged()"
-                    ></v-select>
+                      class="custom-text-color"
+                      ></v-select>
                   </v-card-text>
                 </v-card>
               </v-flex>
@@ -171,3 +172,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.custom-text-color .v-select__selection {
+  color: red !important; /* Change la couleur du texte sélectionné */
+}
+
+.custom-text-color .v-label {
+  color: blue !important; /* Change la couleur du label */
+}
+
+</style>

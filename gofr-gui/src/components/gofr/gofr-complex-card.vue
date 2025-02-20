@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-subtitle class="primary--text text-uppercase font-weight-bold">
+    <v-card-subtitle class="white--text text-uppercase font-weight-bold" style="background-color: #1b4d3e !important">
       {{ $t(`App.fhir-resources-texts.${display}`) }}
     </v-card-subtitle>
     <v-card-text v-for="(error,idx) in errors" :key="idx" class="error white--text font-weight-bold">

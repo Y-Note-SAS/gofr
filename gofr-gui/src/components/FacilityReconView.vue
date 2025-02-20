@@ -24,7 +24,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="#1b4d3e"
             dark
           >
             <v-toolbar-title>
@@ -53,7 +53,7 @@
       >
         <v-card height="500px">
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -112,7 +112,7 @@
                   text-sm-right
                 >
                   <v-btn
-                    color="primary"
+                    color="#2d7a5e"
                     :disabled="$v.$invalid"
                     dark
                     @click="saveEdit()"
@@ -266,7 +266,7 @@
           xl10
         >
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             dark
             @click='$router.push({name:"FacilityReconScores"})'
           >

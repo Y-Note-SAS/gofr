@@ -95,7 +95,7 @@ export default {
   beforeCreate: function () {
     questionnaire = this.$route.params.questionnaire
     page = this.$route.params.page
-    Vue.component('gofr-template', { template: '<div>Loading...</div>' })
+    Vue.component('gofr-template', { template: '<div style="color: #2d7a5e;">Loading...</div>' })
   }
 }
 </script>

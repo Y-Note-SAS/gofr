@@ -480,7 +480,7 @@
                               fab
                               dark
                               x-small
-                              color="primary"
+                              color="#2d7a5ey"
                               @click="addAvailableTime"
                               v-on="on"
                             >
@@ -616,7 +616,7 @@
                               fab
                               dark
                               x-small
-                              color="primary"
+                              color="#2d7a5ey"
                               @click="addUnavailableTime"
                               v-on="on"
                             >

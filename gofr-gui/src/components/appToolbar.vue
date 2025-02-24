@@ -13,7 +13,7 @@
     </router-link>
     <template v-if="$store.state.auth.userID">
       <v-spacer></v-spacer>
-      <label style="color: #569fd3">
+      <label style="color: #2d7a5e">
         {{$store.state.auth.username}} <v-icon>mdi-account</v-icon>
       </label>
     </template>

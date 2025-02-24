@@ -10,7 +10,7 @@
     >
       <v-card>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -81,21 +81,21 @@
               <v-radio
                 v-if='canUseUploadWay'
                 :disabled="!canAddDataset"
-                color="primary"
+                color="#2d7a5e"
                 :label="$t(`App.hardcoded-texts.Upload CSV`)"
                 value="upload"
               ></v-radio>
               <v-radio
                 v-if='canUseRemoteWay'
                 :disabled="!canAddDataset"
-                color="primary"
+                color="#2d7a5e"
                 :label="$t(`App.hardcoded-texts.Remote Source`)"
                 value="remote"
               ></v-radio>
               <v-radio
                 v-if='canUseBlankWay'
                 :disabled="!canAddDataset"
-                color="primary"
+                color="#2d7a5e"
                 :label="$t(`App.hardcoded-texts.Blank Source`)"
                 value="blank"
               ></v-radio>

@@ -32,8 +32,8 @@ var bar = new ProgressBar.Line('#progressBarContainer', {
   trailColor: '#eee',
   trailWidth: 1,
   svgStyle: {width: '100%', height: '100%'},
-  from: {color: '#569fd3'},
-  to: {color: '#d06f1a'},
+  from: {color: '#2d7a5e'},
+  to: {color: '#1ad054'},
   step: (state, bar) => {
     bar.path.setAttribute('stroke', state.color);
     bar.setText("Loading...");

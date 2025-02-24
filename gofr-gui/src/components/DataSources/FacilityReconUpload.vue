@@ -8,7 +8,7 @@
     >
       <v-card>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -20,7 +20,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             dark
             @click.native="closeDialog('FacilityReconView')"
           >
@@ -81,7 +81,7 @@
     >
       <v-card>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -98,7 +98,7 @@
           >{{ $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             dark
             @click.native="performExtraCheck"
           >{{ $t(`App.hardcoded-texts.Proceed`) }}</v-btn>
@@ -134,7 +134,7 @@
       width="300"
     >
       <v-card
-        color="primary"
+        color="#2d7a5e"
         dark
       >
         <v-card-text>
@@ -172,7 +172,7 @@
               :size="100"
               :width="15"
               :value="uploadPercent"
-              color="primary"
+              color="#1b4d3e"
             >
               <v-avatar
                 color="indigo"
@@ -250,7 +250,7 @@
                     <v-checkbox
                       v-if='$store.state.config.generalConfig.allowShareToAllForNonAdmin || $store.state.auth.role === "Admin"'
                       @change="sharingOptions"
-                      color="primary"
+                      color="#2d7a5e"
                       label="Share with all other users"
                       v-model="shareWithAll"
                     >
@@ -275,12 +275,12 @@
               </v-card-text>
             </v-card>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click.native="e1 = 2"
               v-if='uploadedFileName && uploadName && uploadNameErrors.length === 0'
             >{{ $t(`App.hardcoded-texts.Continue`) }}</v-btn>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click.native="e1 = 2"
               v-else
               disabled
@@ -500,7 +500,7 @@
               <v-spacer></v-spacer>
               <v-flex xs1>
                 <v-btn
-                  color="primary"
+                  color="#2d7a5e"
                   @click.native="confirmUpload = true"
                   :disabled="$v.$invalid"
                 >{{ $t(`App.hardcoded-texts.Upload`) }}</v-btn>

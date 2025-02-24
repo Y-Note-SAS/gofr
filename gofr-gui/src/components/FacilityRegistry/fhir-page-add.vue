@@ -112,7 +112,7 @@ export default {
   components: {
   },
   beforeCreate: function() {
-    Vue.component('gofr-template', { template: '<div>Loading...</div>' } )
+    Vue.component('gofr-template', { template: '<div style="color: #2d7a5e;">Loading...</div>' } )
   }
 }
 

@@ -93,7 +93,7 @@ export default {
       locale: 'en',
       locales: [
         { text: 'English', value: 'en' },
-        { text: 'French', value: 'fr' }
+        { text: 'Français', value: 'fr' }
       ],
       reload: 0,
       totalFacilities: 0,

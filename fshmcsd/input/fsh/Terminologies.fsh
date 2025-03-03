@@ -2712,10 +2712,10 @@ Usage: #definition
 * compose.include.concept[=].designation[=].use = http://terminology.hl7.org/CodeSystem/designation-usage#display
 * compose.include.concept[=].designation[=].value = "Finsk"
 * compose.include.concept[+].code = #fr
-* compose.include.concept[=].display = "French"
+* compose.include.concept[=].display = "Français"
 * compose.include.concept[=].designation[0].language = #en
 * compose.include.concept[=].designation[=].use = http://terminology.hl7.org/CodeSystem/designation-usage#display
-* compose.include.concept[=].designation[=].value = "French"
+* compose.include.concept[=].designation[=].value = "Français"
 * compose.include.concept[=].designation[+].language = #nl
 * compose.include.concept[=].designation[=].use = http://terminology.hl7.org/CodeSystem/designation-usage#display
 * compose.include.concept[=].designation[=].value = "Frans"

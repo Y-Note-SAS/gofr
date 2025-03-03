@@ -227,7 +227,7 @@
         <v-flex xs6>
           <v-card>
             <v-card-title primary-title>
-              <h3 class="headline mb-0">Source 2 Data Grid</h3>
+              <h3 class="headline mb-0">{{ $t(`App.fhir-resources-texts.Source 2 Data Grid`) }}</h3>
             </v-card-title>
             <template v-if="loadingSource2Grid">
               <v-progress-linear :indeterminate="true"></v-progress-linear>

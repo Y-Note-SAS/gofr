@@ -1219,7 +1219,7 @@
           },
           {
             "code": "fr",
-            "display": "French",
+            "display": "Français",
             "designation": [
               {
                 "language": "en",
@@ -1227,7 +1227,7 @@
                   "code": "display",
                   "system": "http://terminology.hl7.org/CodeSystem/designation-usage"
                 },
-                "value": "French"
+                "value": "Français"
               },
               {
                 "language": "nl",

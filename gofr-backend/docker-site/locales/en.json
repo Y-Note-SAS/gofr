@@ -212,7 +212,8 @@
       "Communication Language is required": "Communication Language is required",
       "Source 1 No Match":"Source 1 No Match",
       "true": "true",
-      "Continue": "Continue"
+      "Continue": "Continue",
+      "Source 2 Data Grid": "Source 2 Data Grid"
     },
     "hardcoded-texts": {
       "1": "1",
@@ -417,6 +418,7 @@
       "Source 1 Data Tree": "Source 1 Data Tree",
       "Source 2 Data Tree": "Source 2 Data Tree",
       "Source 1 Data Grid": "Source 1 Data Grid",
+      "Source 2 Data Grid": "Source 2 Data Grid",
       "FHIR Export": "FHIR Export",
       "CSV Export": "CSV Export",
       "Source2 Unmatched": "Source2 Unmatched",

@@ -527,7 +527,8 @@
       "Enabled": "Enabled",
       "initApp": "Initializing App",
       "GOFR Version": "GOFR Version",
-      "OK": "Ok"
+      "OK": "Ok",
+      "All Levels": "All Levels"
     },
     "title": "Manage",
     "site": "Demo"

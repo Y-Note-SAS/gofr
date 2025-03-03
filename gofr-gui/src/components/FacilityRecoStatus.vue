@@ -113,7 +113,7 @@
     </v-layout>
     <v-row>
       <v-col cols="1">
-        <b>All Levels</b>
+        <b>{{ $t(`App.hardcoded-texts.All levels`) }}</b>
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="1">

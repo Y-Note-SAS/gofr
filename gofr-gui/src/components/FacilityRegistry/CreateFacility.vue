@@ -118,7 +118,7 @@
                                 clearable
                                 :items="types"
                                 v-model="facilityType"
-                                label="Facility Type"
+                                :label="$t(`App.ihris-search.Facility Name`)"
                               ></v-select>
                             </v-flex>
                           </v-layout>

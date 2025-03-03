@@ -507,7 +507,7 @@
             >mdi-thumb-down</v-icon>
           </v-tab>
           <v-tab key="nomatch">
-            {{ $t(`App.hardcoded-texts.Source 1 NO MATCH`) }} ({{totalNoMatch}})
+            {{ $t(`App.hardcoded-texts.Source 1 No Match`) }} ({{totalNoMatch}})
             <v-icon
               color="white"
               right

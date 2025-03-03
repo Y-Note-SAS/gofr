@@ -25,7 +25,7 @@
                     </template>
                     <span>{{$t(`App.hardcoded-texts.Uninstall`) + " " + app.app_short_name}}</span>
                   </v-tooltip>
-                  <v-avatar color="primary" size="90">
+                  <v-avatar color="#1b4d3e" size="90">
                     <v-img :src="app.iconBase64"></v-img>
                   </v-avatar>
                   <div style="text-align: center">

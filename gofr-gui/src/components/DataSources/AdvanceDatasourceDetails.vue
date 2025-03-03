@@ -71,7 +71,7 @@
                     <td>
                       <v-radio
                         :value="item"
-                        color="blue"
+                        color="#1b4d3e"
                       ></v-radio>
                     </td>
                   </v-radio-group>

@@ -753,25 +753,28 @@
                   row
                   wrap
                 >
-                  <v-flex xs5>
-                    <v-tooltip top>
-                      <template v-slot:activator="{ on }">
-                        <v-switch
-                          label="Appointment Required"
-                          v-model="appointmentRequired"
-                          v-on="on"
-                        ></v-switch>
-                      </template>
-                      <span>If an appointment is required for access to this service</span>
-                    </v-tooltip>
-                  </v-flex>
-                  <v-spacer></v-spacer>
-                  <v-flex xs2>
-                    <v-switch
-                      label="Active"
-                      v-model="active"
-                    ></v-switch>
-                  </v-flex>
+                <v-flex xs5>
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on }">
+                      <v-switch
+                        label="Appointment Required"
+                        v-model="appointmentRequired"
+                        v-on="on"
+                        color="#2d7a5e"
+                      ></v-switch>
+                    </template>
+                    <span>If an appointment is required for access to this service</span>
+                  </v-tooltip>
+                </v-flex>
+                <v-spacer></v-spacer>
+                <v-flex xs2>
+                  <v-switch
+                    label="Active"
+                    v-model="active"
+                   color="#2d7a5e"
+                  ></v-switch>
+                </v-flex>
+                
                 </v-layout>
               </v-flex>
             </v-layout>

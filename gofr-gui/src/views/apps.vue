@@ -9,7 +9,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn 
                 icon 
-                color="primary" 
+                style="background-color: #1b4d3e;" 
                 x-large 
                 v-bind="attrs" 
                 v-on="on"
@@ -24,7 +24,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn 
                 icon 
-                color="primary" 
+                style="background-color: #1b4d3e;"  
                 x-large 
                 v-bind="attrs" 
                 v-on="on"
@@ -41,7 +41,7 @@
             <v-flex xs3 v-for="(app, index) in apps" :key="index">
               <v-card hover max-width="110" height="170" rounded :href="app | createAppURL">
                 <v-card-text>
-                  <v-avatar color="primary" size="90">
+                  <v-avatar color="#1b4d3e" size="90">
                     <v-img :src="app.iconBase64"></v-img>
                   </v-avatar>
                   <br>

@@ -23,7 +23,7 @@
             </v-col>
             <v-spacer></v-spacer>
             <v-col>
-              <v-btn small color="primary" :disabled="!app" @click="doUpload">
+              <v-btn small color="#1b4d3e" :disabled="!app" @click="doUpload">
                 <v-icon left>mdi-file-upload</v-icon>
                 {{$t(`App.hardcoded-texts.Install`)}}
               </v-btn>

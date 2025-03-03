@@ -7,6 +7,7 @@
         :disabled="disabled"
         :rules="rules"
         dense
+        color="green"
         :error-messages="errors"
         @change="errors = []"
       >

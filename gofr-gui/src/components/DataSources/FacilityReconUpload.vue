@@ -166,7 +166,7 @@
       >
         <v-card-text>
           <center>
-            <font style="color:blue">{{uploadStatus}}</font><br>
+            <font style="color:#1b4d3e">{{uploadStatus}}</font><br>
             <v-progress-circular
               :rotate="-90"
               :size="100"
@@ -215,7 +215,7 @@
               <v-card-title>{{ $t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }} - <b>{{ $t(`App.hardcoded-texts.Select a CSV file and upload`) }}</b></v-card-title>
               <v-card-text>
                 <v-text-field
-                  label="Enter Unique Name For Your Data"
+                  label="$t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }"
                   v-model="uploadName"
                   @blur="ensureNameUnique"
                   @input="ensureNameUnique"

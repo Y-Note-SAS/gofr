@@ -6,7 +6,7 @@
       width="300"
     >
       <v-card
-        color="primary"
+      style="background-color: #1b4d3e;" 
         dark
       >
         <v-card-text>
@@ -30,13 +30,13 @@
       >
         <v-card-text>
           <center>
-            <font style="color:blue">{{syncStatus}}</font><br>
+            <font style="color:#1b4d3e">{{syncStatus}}</font><br>
             <v-progress-circular
               :rotate="-90"
               :size="100"
               :width="15"
               :value="syncPercent"
-              color="primary"
+              color="#1b4d3e"
             >
               <v-avatar
                 color="indigo"

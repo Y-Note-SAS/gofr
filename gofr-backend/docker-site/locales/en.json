@@ -206,7 +206,13 @@
       "End Date": "End Date",
       "Facilities Service Is Offered": "Facilities Service Is Offered",
       "Facility Service Is Provided": "Facility Service Is Provided",
-      "HealthcareService": "HealthcareService"
+      "HealthcareService": "HealthcareService",
+      "Enter Unique Name For Your Data": "Enter Unique Name For Your Data",
+      "Upload name is required": "Upload name is required",
+      "Communication Language is required": "Communication Language is required",
+      "Source 1 No Match":"Source 1 No Match",
+      "true": "true",
+      "Continue": "Continue"
     },
     "hardcoded-texts": {
       "1": "1",
@@ -302,7 +308,6 @@
       "Map Headers": "Map Headers",
       "Upload CSV (utf-8 only)": "Upload CSV (utf-8 only)",
       "Select a CSV file and upload": "Select a CSV file and upload",
-      "Continue": "Continue",
       "Map an appropriate CSV header against those on the app": "Map an appropriate CSV header against those on the app",
       "Code": "Code",
       "Select": "Select",

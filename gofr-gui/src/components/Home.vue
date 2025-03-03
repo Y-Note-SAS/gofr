@@ -13,7 +13,7 @@
                       {{ $t(`App.hardcoded-texts.Active Partition`) }}
                     </v-toolbar>
                   </v-card-title>
-                  <v-card-text>
+                  <v-card-text class="partition-select-container">
                     <v-select
                       :items="$store.state.dataSources"
                       item-text="display"
@@ -21,9 +21,11 @@
                       v-model="$store.state.config.userConfig.FRDatasource"
                       :label="$t(`App.hardcoded-texts.Facility Registry Datasource`)"
                       @change="partitionChanged()"
+                      color="#2d7a5e"
                       class="custom-text-color"
-                      ></v-select>
+                    ></v-select>
                   </v-card-text>
+                  
                 </v-card>
               </v-flex>
               <v-spacer></v-spacer>
@@ -138,7 +140,7 @@ export default {
       locale: 'en',
       locales: [
         { text: 'English', value: 'en' },
-        { text: 'French', value: 'fr' }
+        { text: 'Français', value: 'fr' }
       ],
       reload: 0
     }
@@ -173,13 +175,37 @@ export default {
 }
 </script>
 
-<style scoped>
-.custom-text-color .v-select__selection {
-  color: red !important; /* Change la couleur du texte sélectionné */
+<style>
+/* Applique les styles uniquement au v-select contenu dans .partition-select-container */
+.partition-select-container .v-select__selection,
+.partition-select-container .v-select__selection--comma {
+  color: #2d7a5e !important;
 }
 
-.custom-text-color .v-label {
-  color: blue !important; /* Change la couleur du label */
+.partition-select-container .v-label {
+  color: #2d7a5e !important;
 }
 
+.partition-select-container .v-input__control {
+  border-color: #2d7a5e !important;
+}
+
+.partition-select-container .v-input__control {
+  border-color: #1b5e3c !important;
+}
+
+/* ✅ Liste déroulante uniquement pour ce select */
+.partition-select-container .v-menu__content {
+  background-color: #e8f5e9 !important;
+}
+
+.partition-select-container .v-list-item, 
+.partition-select-container .v-list-item__title {
+  color: #2d7a5e !important;
+}
+
+.theme--light.v-list-item {
+  background-color: #c8e6c9 !important;
+  color: white
+}
 </style>

@@ -71,7 +71,7 @@
                 ></v-ethiopian-date-picker>
             </v-card>
             <v-card v-if="showGregorian" min-width="300px">
-              <v-card-title class="primary white--text">
+              <v-card-title class=" white--text">
                 Gregorian Calendar<v-spacer/><v-btn
                   dark
                   class="white--text"

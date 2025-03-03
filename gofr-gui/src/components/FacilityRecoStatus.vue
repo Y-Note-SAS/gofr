@@ -165,7 +165,7 @@
         >
           <v-layout column>
             <v-flex xs1>
-              <b>{{ $t(`App.hardcoded-texts.Source 1 No Match`) }}</b>
+              <b>{{ $t(`App.hardcoded-texts.Source 1 NO MATCH`) }}</b>
             </v-flex>
             <v-flex
               xs1
@@ -346,7 +346,7 @@
         >
           <v-layout column>
             <v-flex xs1>
-              <b>{{ $t(`App.hardcoded-texts.Source 1 No Match`) }}</b>
+              <b>{{ $t(`App.hardcoded-texts.Source 1 NO MATCH`) }}</b>
             </v-flex>
             <v-flex
               xs1
@@ -507,7 +507,7 @@
             >mdi-thumb-down</v-icon>
           </v-tab>
           <v-tab key="nomatch">
-            {{ $t(`App.hardcoded-texts.Source 1 No Match`) }} ({{totalNoMatch}})
+            {{ $t(`App.hardcoded-texts.Source 1 NO MATCH`) }} ({{totalNoMatch}})
             <v-icon
               color="white"
               right

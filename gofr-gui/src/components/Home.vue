@@ -204,8 +204,5 @@ export default {
   color: #2d7a5e !important;
 }
 
-.theme--light.v-list-item {
-  background-color: #c8e6c9 !important;
-  color: white
-}
+
 </style>

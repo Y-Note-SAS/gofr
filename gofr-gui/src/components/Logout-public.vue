@@ -13,7 +13,7 @@ export default {
     if(this.$store.state.idp === 'keycloak') {
       VueCookies.set('loggedout-public', true)
       let redirect = window.location.href.split('#')[0]
-      this.$keycloak.logout({ post_logout_redirect_uri : redirect, client_id: 'gofr-gui' })
+      this.$keycloak.logout({ post_logout_redirect_uri: redirect, client_id: 'gofr-gui' })
     } else {
       axios({
         method: 'GET',

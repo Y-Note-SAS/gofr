@@ -12,6 +12,7 @@ export default {
       this.$cookies.remove('userObj')
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
+      console.log('value',  this.$store.state)
       let redirect = window.location.href.split('#')[0]
       let url = `https://kc-fosa.minsante.cm/realms/GOFR/protocol/openid-connect/logout?post_logout_redirect_uri=${redirect}&client_id=gofr-gui`
       window.location.href = url 

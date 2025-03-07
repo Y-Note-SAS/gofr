@@ -13,7 +13,8 @@ export default {
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
       let redirect = window.location.href.split('#')[0]
-      this.$keycloak.logout({ postLogoutRedirectUri : redirect, clientId : 'gofr-gui' })
+      console.log("redirect value,", redirect)
+      this.$keycloak.logout({ post_logout_redirect_uri : redirect, client_id : 'gofr-gui' })
     } else {
       axios({
         method: 'GET',

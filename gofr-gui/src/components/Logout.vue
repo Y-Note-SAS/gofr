@@ -13,7 +13,7 @@ export default {
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
       let redirect = window.location.href.split('#')[0]
-      let url = `${this.$store.state.keycloak.baseURL}/realms/${this.$store.state.keycloak.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${redirect}&client_id=${this.$store.state.keycloak.UIClientId}`
+      let url = `${this.$store.state.keycloak.baseURL}/realms/${this.$store.state.keycloak.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(redirect)}&client_id=${this.$store.state.keycloak.UIClientId}`
       window.location.href = url
     } else {
       axios({

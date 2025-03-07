@@ -13,8 +13,8 @@ export default {
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
       let redirect = window.location.href.split('#')[0]
-      console.log("redirect value,", redirect)
-      this.$keycloak.logout({ post_logout_redirect_uri : redirect, client_id : 'gofr-gui' })
+      let url = `${this.$store.state.config.generalConfig.keycloakConfig.url}/realms/${this.$store.state.config.generalConfig.keycloakConfig.realm}/protocol/openid-connect/logout?post_redirect_uri=${redirect}&client_id=${this.$store.state.config.generalConfig.keycloakConfig.clientId}`
+      window.location.href = url 
     } else {
       axios({
         method: 'GET',

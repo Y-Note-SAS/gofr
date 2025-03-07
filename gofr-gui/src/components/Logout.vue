@@ -6,27 +6,14 @@
 <script>
 import axios from 'axios'
 export default {
-mounted() {
-  // Vérifie si l'utilisateur est connecté avant d'exécuter le logout
-  if (!this.$store.state.auth.userID) {
-    console.warn('Utilisateur non connecté, pas de logout exécuté.');
-    return; 
-  }
-
-  this.$store.state.auth.userID = '';
-
-  if (this.$store.state.idp === 'keycloak') {
-    this.$cookies.remove('userObj');
-    this.$store.state.auth.username = '';
-    this.$store.state.auth.userObj = {};
-
-    let postLogoutRedirectUri = encodeURIComponent('https://fosa.minsante.cm/#/logout');
-    let clientId = 'gofr-gui';
-    
-    let logoutUrl = `https://kc-fosa.minsante.cm/realms/GOFR/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirectUri}&client_id=${clientId}`;
-
-    console.log('Redirection vers Keycloak logout:', logoutUrl);
-    window.location.href = logoutUrl;
+ mounted () {
+    this.$store.state.auth.userID = ''
+    if(this.$store.state.idp === 'keycloak') {
+      this.$cookies.remove('userObj')
+      this.$store.state.auth.username = ''
+      this.$store.state.auth.userObj = {}
+      let redirect = window.location.href.split('#')[0]
+      this.$keycloak.logout({ postLogoutRedirectUri : redirect, clientId : 'gofr-gui' })
     } else {
       axios({
         method: 'GET',

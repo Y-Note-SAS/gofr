@@ -13,7 +13,7 @@ export default {
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
       let redirect = window.location.href.split('#')[0]
-      let url = `https://kc-fosa.minsante.cm/realms/GOFR/protocol/openid-connect/logout?post_logout_redirect_uri=https%3A%2F%2Fmon-application.com%2Flogout&client_id=gofr-gui`
+      let url = `https://kc-fosa.minsante.cm/realms/GOFR/protocol/openid-connect/logout?post_logout_redirect_uri=${redirect}&client_id=gofr-gui`
       window.location.href = url 
     } else {
       axios({

@@ -12,8 +12,11 @@ export default {
       this.$cookies.remove('userObj')
       this.$store.state.auth.username = ''
       this.$store.state.auth.userObj = {}
-      let redirect = window.location.href.split('#')[0]
-      this.$keycloak.logout({ post_logout_redirect_uri: redirect, client_id: 'gofr-gui' })
+      let postLogoutRedirectUri = encodeURIComponent('https://fosa.minsante.cm/#/logout');
+      let clientId = 'gofr-gui';
+      let logoutUrl = `https://kc-fosa.minsante.cm/realms/GOFR/protocol/openid-connect/logout?post_logout_redirect_uri=${postLogoutRedirectUri}&client_id=${clientId}`;
+
+    window.location.href = logoutUrl;
     } else {
       axios({
         method: 'GET',

@@ -272,21 +272,21 @@ getDHIS2StoreConfig((storeConfig) => {
         onLoad: 'login-required'
       }
       let keycloak = Keycloak(initOptions);
+
       const Plugin = {
         install(Vue) {
-          Vue.$keycloak = keycloak
-        }
-      }
-      Vue.$keycloak.onAuthLogout = () => {
-        console.log('User logged out');
-        router.push({ name: 'Login' }); // Redirige vers la page de connexion
-      };
-      
-      Vue.$keycloak.onAuthError = (error) => {
-        console.error('Auth error:', error);
-        if (error.error === 'expired_code') {
-          router.push({ name: 'Login' }); // Redirige vers la page de connexion
-        }
+          Vue.$keycloak = keycloak;
+          Vue.$keycloak.onAuthLogout = () => {
+            console.log('User logged out');
+            router.push({ name: 'Login' });
+            };
+          Vue.$keycloak.onAuthError = (error) => {
+            console.error('Auth error:', error);
+            if (error.error === 'expired_code') {
+              router.push({ name: 'Login' });
+            }
+          };
+        },
       };
 
       Plugin.install = Vue => {

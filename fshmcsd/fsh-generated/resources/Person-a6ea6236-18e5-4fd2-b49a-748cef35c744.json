@@ -1,0 +1,53 @@
+{
+    "resourceType": "Person",
+    "id": "a6ea6236-18e5-4fd2-b49a-748cef35c744",
+    "meta": {
+      "profile": [
+        "http://gofr.org/fhir/StructureDefinition/gofr-person-user"
+      ]
+    },
+    "extension": [
+      {
+        "url": "http://gofr.org/fhir/StructureDefinition/gofr-owning-organization",
+        "valueReference": {
+          "reference": "Organization/54cdcbe3-87e0-421f-b657-8313fce5f418"
+        }
+      },
+      {
+        "url": "http://gofr.org/fhir/StructureDefinition/gofr-password",
+        "extension": [
+          {
+            "url": "hash",
+            "valueString": "7a890abe7b2b15a3efbfcdca8487fb0de66343f62014fb4a6493bd5c5dd49be8c4c3ff38fe5774e38a6edcf5d25343f799641418675a0396b9dd7e3f65012549"
+          },
+          {
+            "url": "salt",
+            "valueString": "1a9cf9bb97c5ddf142ae7635fe5fc0f7"
+          }
+        ]
+      },
+      {
+        "url": "http://gofr.org/fhir/StructureDefinition/gofr-assign-role",
+        "valueReference": {
+          "reference": "Basic/gofr-role-admin"
+        }
+      }
+    ],
+    "name": [
+      {
+        "text": "GOFR Admin"
+      }
+    ],
+    "telecom": [
+      {
+        "system": "email",
+        "value": "m.kouam@y-note.cm"
+      },
+      {
+        "system": "phone",
+        "value": ""
+      }
+    ],
+    "active": true
+  }
+  

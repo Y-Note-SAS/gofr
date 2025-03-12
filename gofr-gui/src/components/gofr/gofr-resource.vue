@@ -281,6 +281,7 @@ export default {
       }
       this.overlay = true
       this.loading = true
+      console.log('opts get', opts);
       axios( opts ).then(() => {
         this.overlay = false
         this.loading = false
@@ -291,7 +292,7 @@ export default {
         this.overlay = false
         this.loading = false
         this.$store.commit('setMessage', { type: 'error', text: 'Request submition failed.' })
-        console.error('erreur get ', err.message);
+        console.log('erreur get ', err.message);
       })
     },
     processRequest(newStatus) {

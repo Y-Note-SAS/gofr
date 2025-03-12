@@ -291,7 +291,7 @@ export default {
         this.overlay = false
         this.loading = false
         this.$store.commit('setMessage', { type: 'error', text: 'Request submition failed.' })
-        console.error(err);
+        console.error('erreur get ', err.message);
       })
     },
     processRequest(newStatus) {

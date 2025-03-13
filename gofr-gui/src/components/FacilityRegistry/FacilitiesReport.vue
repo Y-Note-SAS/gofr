@@ -31,7 +31,7 @@
           >Cancel</v-btn>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             @click="changeRequestStatus"
           >Proceed</v-btn>
         </v-card-actions>
@@ -44,7 +44,7 @@
       max-width="800px"
     >
       <v-toolbar
-        color="primary"
+        color="#2d7a5e"
         dark
       >
         <v-toolbar-title>
@@ -278,7 +278,7 @@
                     text-sm-right
                   >
                     <v-btn
-                      color="primary"
+                      color="#2d7a5e"
                       :disabled="$v.$invalid"
                       dark
                       @click="saveEdit()"
@@ -320,7 +320,7 @@
               hide-details
             ></v-text-field>
             <template v-if="loadingTree">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <liquor-tree
               @node:selected="selectedJurisdiction"

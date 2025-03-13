@@ -1,17 +1,18 @@
 <template>
-  <v-container grid-list-xs>
+  <v-container grid-list-xs >
     <v-alert
       dense
-      type="info"
+      type="success"
+     
     >
-      <v-row>
-        <v-col cols="7">
+      <v-row >
+        <v-col cols="7" >
           {{ $t(`App.hardcoded-texts.Detailed View Of`) }} {{dataSource.display}} {{ $t(`App.hardcoded-texts.Data Source`) }}
         </v-col>
         <v-spacer></v-spacer>
         <v-col>
           <v-btn
-            color="primary"
+            color="#52a583"
             @click.native="$router.push('/ViewDataSources')"
             small
           >
@@ -46,7 +47,7 @@
       <v-col cols="5">
         <v-card width='730px'>
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -359,7 +360,7 @@ export default {
       }).then(() => {
         this.$store.state.dynamicProgress = false
         this.$store.state.dialogError = true
-        this.$store.state.errorColor = 'primary'
+        this.$store.state.errorColor = '#2d7a5e'
         this.$store.state.errorTitle = 'Information'
         this.$store.state.errorDescription = "Permissions update successfully. Reload app to see changes"
       }).catch((err) => {

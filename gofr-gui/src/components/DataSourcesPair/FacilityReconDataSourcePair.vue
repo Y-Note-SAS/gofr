@@ -28,7 +28,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click.native="confirmPairDeleteDialog = false"
             >{{ $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
             <v-spacer></v-spacer>
@@ -88,7 +88,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click.native="pairLimitWarn = false"
             >{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
           </v-card-actions>
@@ -104,7 +104,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -160,7 +160,7 @@
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               rounded
             >
               <v-icon left>mdi-content-save</v-icon>{{ $t(`App.hardcoded-texts.Save`) }} {{ $t(`App.hardcoded-texts.Mapping`) }}
@@ -178,7 +178,7 @@
       >
         <v-card>
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -206,7 +206,7 @@
       >
         <v-card width='530px'>
           <v-toolbar
-            color="primary"
+            color="#2d7a5e"
             dark
           >
             <v-toolbar-title>
@@ -275,7 +275,7 @@
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               dark
               @click.native="share('', 'saveShare')"
             >
@@ -314,7 +314,7 @@
         <v-flex>
           <v-card
             style="width: 1000px"
-            color='cyan lighten-5'
+            color='#a6f9dab7 '
           >
             <v-card-title primary-title>
               <v-toolbar
@@ -413,7 +413,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 :disabled='!canCreatePair || !pairSelected'
-                color="primary"
+                color="#2d7a5e"
                 rounded
                 @click="checkLevels"
               >
@@ -425,7 +425,7 @@
         <v-flex>
           <v-card
             style="width: 1000px"
-            color='cyan lighten-4'
+            color='#a6f9dab7'
           >
             <v-card-title primary-title>
               <v-toolbar
@@ -478,7 +478,7 @@
                     <td v-if='item.user.id === $store.state.auth.userID'>
                       <v-btn
                         text
-                        color="primary"
+                        color="#2d7a5e"
                         @click="share(item, 'showDialog')"
                       >
                         <v-icon>mdi-share-variant-outline</v-icon>{{ $t(`App.hardcoded-texts.Share`) }}
@@ -508,7 +508,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 :disabled="!canActivatePair"
-                color="primary"
+                color="#2d7a5e"
                 rounded
                 @click="activatePair"
               >

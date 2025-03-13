@@ -7,7 +7,7 @@
     >
       <v-card>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>

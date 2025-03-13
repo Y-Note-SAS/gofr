@@ -26,6 +26,7 @@
           :items="results"
           item-key="id"
           :options.sync="options"
+          loading-class="custom-loader"
           :server-items-length="total"
           :footer-props="{ 'items-per-page-text':$t('App.hardcoded-texts.TableText'), 'items-per-page-options': [5,10,20,50] }"
           :loading="loading"
@@ -183,3 +184,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.custom-loader .v-progress-linear__indeterminate {
+  background-color: #1E5F46 !important; /* Remplace par la couleur de ton choix */
+}
+</style>

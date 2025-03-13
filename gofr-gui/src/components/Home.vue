@@ -203,6 +203,14 @@ export default {
 .partition-select-container .v-list-item__title {
   color: #2d7a5e !important;
 }
+.v-list .v-list-item--active { 
+  background-color: rgb(220, 255, 220)!important; 
+  color: #000000 !important;
+}
+.v-list .v-list-item--active .v-list-item__title  {
+  color: #2d7a5e !important;
+}
+
 
 
 </style>

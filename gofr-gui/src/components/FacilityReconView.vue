@@ -154,7 +154,7 @@
               <h3 class="headline mb-0">{{ $t(`App.hardcoded-texts.Source 1 Data Tree`) }}</h3>
             </v-card-title>
             <template v-if="loadingSource1Tree">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <template v-else>
               <v-card-text>
@@ -176,7 +176,7 @@
               <h3 class="headline mb-0">{{ $t(`App.hardcoded-texts.Source 2 Data Tree`) }}</h3>
             </v-card-title>
             <template v-if="loadingSource2Tree">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <template v-else>
               <v-card-text>
@@ -198,7 +198,7 @@
               <h3 class="headline mb-0">{{ $t(`App.hardcoded-texts.Source 1 Data Grid`) }}</h3>
             </v-card-title>
             <template v-if="loadingSource1Grid">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <template v-else>
               <v-card-text>
@@ -230,7 +230,7 @@
               <h3 class="headline mb-0">{{ $t(`App.fhir-resources-texts.Source 2 Data Grid`) }}</h3>
             </v-card-title>
             <template v-if="loadingSource2Grid">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <template v-else>
               <v-card-text>

@@ -64,7 +64,7 @@
                 <v-checkbox
                   v-if='$store.state.config.generalConfig.allowShareToAllForNonAdmin || $store.state.auth.role === "Admin"'
                   @change="sharingOptions"
-                  color="primary"
+                  color="#2d7a5e"
                   :label="$t(`App.hardcoded-texts.Share with all other users`)"
                   v-model="shareWithAll"
                 >

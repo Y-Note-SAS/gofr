@@ -862,7 +862,7 @@
           centered
           grow
           dark
-          background-color="cyan"
+          background-color="#1E5F46"
         >
           <v-tabs-slider color="red"></v-tabs-slider>
           <v-tab key="match">

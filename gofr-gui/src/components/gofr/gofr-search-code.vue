@@ -13,7 +13,7 @@
           hide-details>
         </v-text-field>
         <v-spacer></v-spacer>
-        <v-btn :class="addLink ? addLink.class || 'primary' : 'primary'" :to="addLink ? addLink.url : '/resource/add/'+page">
+        <v-btn :class="addLink ? addLink.class || '#2d7a5e' : '#2d7a5e'" :to="addLink ? addLink.url : '/resource/add/'+page">
           <v-icon v-if="addLink && addLink.icon">{{ addLink.icon }}</v-icon>
           <v-icon v-else>mdi-database-plus</v-icon>
           {{ $t(`App.hardcoded-texts.Add`) }} {{ $t(`App.fhir-resources-texts.${label}`) }}
@@ -29,6 +29,7 @@
         :options.sync="options"
         :footer-props="{ 'items-per-page-text':$t('App.hardcoded-texts.TableText'), 'items-per-page-options': [5,10,20,50] }"
         :loading="loading"
+        color="#2d7a5"
         class="elevation-1"
         @click:row="clickIt"
       ></v-data-table>

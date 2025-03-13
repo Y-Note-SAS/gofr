@@ -19,7 +19,7 @@
               :size="100"
               :width="15"
               :value="mappingStatusProgressPercent"
-              color="primary"
+              color="#2d7a5e"
               v-if="progressType == 'percent'"
             >
               <v-avatar
@@ -304,7 +304,7 @@
       <v-spacer></v-spacer>
       <v-col>
         <v-chip
-          color="cyan"
+          color="#1E5F46"
           text-color='black'
           style='height:138px;width:137px'
         >
@@ -340,7 +340,7 @@
       </v-col>
       <v-col>
         <v-chip
-          color="cyan"
+          color="#1E5F46"
           text-color='black'
           style='height:138px;width:137px'
         >
@@ -376,7 +376,7 @@
       </v-col>
       <v-col>
         <v-chip
-          color="cyan"
+          color="#1E5F46"
           text-color='black'
           style='height:138px;width:137px'
         >
@@ -489,7 +489,7 @@
           centered
           grow
           dark
-          background-color="cyan"
+          background-color="#1E5F46"
         >
           <v-tabs-slider color="red"></v-tabs-slider>
           <v-tab key="match">
@@ -730,7 +730,7 @@ export default {
         }
         this.$store.state.errorTitle = 'Reconciliation Done'
         this.$store.state.errorDescription = 'Reconciliation is complete, no more changes can be done'
-        this.$store.state.errorColor = 'primary'
+        this.$store.state.errorColor = '#2d7a5e'
         this.$store.state.dialogError = true
       }).catch((err) => {
         if(!err.response) {
@@ -751,7 +751,7 @@ export default {
         }
         this.$store.state.errorTitle = 'Reconciliation on progress'
         this.$store.state.errorDescription = 'You may continue doing reconciliation now'
-        this.$store.state.errorColor = 'primary'
+        this.$store.state.errorColor = '#2d7a5e'
         this.$store.state.dialogError = true
       }).catch((err) => {
         if(!err.response) {

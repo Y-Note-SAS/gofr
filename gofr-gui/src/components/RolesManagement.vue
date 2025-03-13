@@ -36,7 +36,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
-          color="primary"
+          color="#2d7a5e"
           @click="saveRole"
         >
           <v-icon left>mdi-content-save</v-icon> {{ $t(`App.hardcoded-texts.Save`) }}
@@ -76,7 +76,7 @@ export default {
         this.$store.state.dynamicProgress = false
         this.$store.state.dialogError = true
         this.$store.state.errorTitle = 'Info'
-        this.$store.state.errorColor = 'primary'
+        this.$store.state.errorColor = '#2d7a5e'
         this.$store.state.errorDescription = `Role ${this.role.text} updated successfully`
         this.getRoles()
       }).catch((error) => {

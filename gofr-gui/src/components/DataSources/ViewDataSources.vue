@@ -66,7 +66,7 @@
     >
       <v-card width='530px'>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -131,7 +131,7 @@
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             dark
             @click.native="saveEdit('match')"
           >
@@ -147,7 +147,7 @@
     >
       <v-card width='550px'>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -164,7 +164,7 @@
         </v-toolbar>
         <v-card-text>
           <template v-if="loadingLocationTree">
-            <v-progress-linear :indeterminate="true"></v-progress-linear>
+            <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
           </template>
           <template v-else>
             <v-card-text>
@@ -223,7 +223,7 @@
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
+            color="#2d7a5e"
             :disabled='loadingLocationTree || permissions.length === 0 || sharedUsers.length === 0'
             @click.native="share('', 'saveShare')"
           >
@@ -242,7 +242,7 @@
     >
       <v-card>
         <v-toolbar
-          color="primary"
+          color="#2d7a5e"
           dark
         >
           <v-toolbar-title>
@@ -334,7 +334,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click="sync('full')"
               rounded
               v-if="remoteServers.length > 0"
@@ -342,7 +342,7 @@
               <v-icon left>mdi-sync</v-icon>{{ $t(`App.hardcoded-texts.Force Full Sync`) }}
             </v-btn>
             <v-btn
-              color="primary"
+              color="#2d7a5e"
               @click="sync('full')"
               rounded
               disabled
@@ -351,7 +351,7 @@
               <v-icon left>mdi-sync</v-icon>{{ $t(`App.hardcoded-texts.Force Full Sync`) }}
             </v-btn>
             <v-btn
-              color="primary lighten-1"
+              color="#2d7a5e lighten-1"
               @click="sync('update')"
               rounded
               v-if="remoteServers.length > 0"
@@ -359,7 +359,7 @@
               <v-icon left>mdi-sync</v-icon>{{ $t(`App.hardcoded-texts.sync_update`) }}
             </v-btn>
             <v-btn
-              color="primary lighten-1"
+              color="#2d7a5e lighten-1"
               @click="sync('update')"
               rounded
               disabled

@@ -8,7 +8,7 @@
       max-width="950px"
     >
       <v-toolbar
-        color="primary"
+        color="#2d7a5e"
         dark
       >
         <v-spacer></v-spacer>
@@ -406,7 +406,7 @@
         <template v-slot:expand="props">
           <v-card
             flat
-            color="primary"
+            color="#2d7a5e"
           >
             <v-card-text>
               <template v-if="props.item.value === 'name'">
@@ -900,7 +900,7 @@
                 <td>
                   <v-btn
                     icon
-                    color="primary"
+                    color="#2d7a5e"
                     @click="view(props.item.id)"
                   >
                     <v-icon>list</v-icon>

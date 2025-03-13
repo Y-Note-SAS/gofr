@@ -12,7 +12,7 @@
         >
           <v-flex xs5>
             <template v-if="loadingTree">
-              <v-progress-linear :indeterminate="true"></v-progress-linear>
+              <v-progress-linear :indeterminate="true" color="#1E5F46"></v-progress-linear> 
             </template>
             <v-text-field
               v-if="jurisdictionHierarchy.length > 0"

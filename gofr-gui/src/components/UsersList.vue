@@ -8,7 +8,7 @@
       transition="dialog-transition"
     >
       <v-toolbar
-        color="primary"
+        color="#2d7a5e"
         dark
       >
         <v-spacer></v-spacer>
@@ -111,7 +111,7 @@
       </v-alert>
     </center>
     <v-card
-      color="cyan lighten-5"
+      color="#2d7a5e"
       width="1500px"
       class="mx-auto"
     >

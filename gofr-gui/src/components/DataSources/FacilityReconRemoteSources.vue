@@ -85,7 +85,7 @@
               <v-checkbox
                 v-if='canShareToAll'
                 @change="sharingOptions"
-                color="primary"
+                color="#2d7a5e"
                 :label="$t(`App.hardcoded-texts.Share with all other users`)"
                 v-model="shareWithAll"
               >

@@ -403,7 +403,7 @@
                         <v-layout row wrap>
                           <v-spacer></v-spacer>
                           <v-flex xs1>
-                            <v-btn class="white--text" color="primary" @click="recoProgressNotificationChanged" small>
+                            <v-btn class="white--text" color="#2d7a5e" @click="recoProgressNotificationChanged" small>
                               <v-icon>mdi-content-save</v-icon>{{ $t(`App.hardcoded-texts.Save`) }}
                             </v-btn>
                           </v-flex>
@@ -596,7 +596,7 @@ export default {
       this.$store.state.config.generalConfig.smtp.secured = this.smtp.secured
       this.saveConfiguration('generalConfig', 'smtp')
       this.$store.state.dialogError = true
-      this.$store.state.errorColor = 'primary'
+      this.$store.state.errorColor = '#2d7a5e'
       this.$store.state.errorTitle = 'Info'
       this.$store.state.errorDescription = 'SMTP saved'
     },

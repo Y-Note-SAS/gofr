@@ -9,6 +9,7 @@ const logger = require('../winston');
 
 router.post('/add', (req, res) => {
   const data = req.body;
+  console.log("data get ", data)
   let statusCode;
   let statusDisplay;
   if (data.requestStatus === 'approved') {
@@ -26,7 +27,9 @@ router.post('/add', (req, res) => {
     type: 'batch',
     entry: [],
   };
+  console.log("status code ", statusCode)
   const approvRes = lodash.cloneDeep(data.resource);
+  console.log("approvRes ", approvRes)
   if (statusCode === 'approved') {
     const profIndex = approvRes.meta.profile.indexOf(data.profile);
     approvRes.meta.profile.splice(profIndex, 1);
@@ -39,6 +42,7 @@ router.post('/add', (req, res) => {
         }
       }
     }
+    console.log('passed ')
     if (approvRes.extension && approvRes.extension.length === 0) {
       delete approvRes.extension;
     }
@@ -50,6 +54,7 @@ router.post('/add', (req, res) => {
         url: `Location/${approvRes.id}`,
       },
     });
+    console.log("Entry ", bundle.entry)
   }
 
   const reqRes = data.resource;

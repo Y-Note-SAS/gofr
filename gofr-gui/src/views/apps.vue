@@ -54,7 +54,7 @@
             <v-spacer></v-spacer>
           </v-layout>
         </v-card-text>
-        <v-progress-linear :indeterminate="true" v-else></v-progress-linear>
+        <v-progress-linear :indeterminate="true" color="#2d7a5e" v-else></v-progress-linear>
       </v-card>
     </center>
   </v-container>

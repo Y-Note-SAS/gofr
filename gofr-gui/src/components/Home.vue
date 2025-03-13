@@ -127,7 +127,7 @@
         </v-layout>
       </v-flex>
     </v-layout>
-    <v-progress-linear v-else :indeterminate="true"></v-progress-linear>
+    <v-progress-linear v-else :indeterminate="true" color="#1E5F46"></v-progress-linear>
   </v-container>
 </template>
 

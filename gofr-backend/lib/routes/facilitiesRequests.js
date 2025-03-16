@@ -42,7 +42,7 @@ router.post('/add', (req, res) => {
         }
       }
     }
-    console.log('passed ')
+    console.log('passed', approvRes)
     if (approvRes.extension && approvRes.extension.length === 0) {
       delete approvRes.extension;
     }
@@ -106,6 +106,7 @@ router.post('/add', (req, res) => {
   });
   fhirAxios.create(bundle).then(() => res.status(200).send()).catch((err) => {
     logger.error(err);
+    console.log("erreur create , ", err.response.data)
     return res.status(500).send();
   });
 });

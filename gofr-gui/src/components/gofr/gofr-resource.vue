@@ -302,7 +302,7 @@ export default {
       } else if(this.$store.state.requestResourceUpdateData.requestAction === 'process-update-request') {
         url = "/facilitiesRequests/update"
       }
-      console.log('url get', this.$store);
+      console.log('url get', this.$store.state);
       console.log('this.source.data get', this.source.data);
       console.log('this.$store.state.requestResourceUpdateData.requestUpdatingResource get', this.$store.state.requestResourceUpdateData.requestUpdatingResource);
       let opts = {

@@ -292,7 +292,6 @@ export default {
         this.overlay = false
         this.loading = false
         this.$store.commit('setMessage', { type: 'error', text: 'Request submition failed.' })
-        console.log('erreur get ', err.message);
       })
     },
     processRequest(newStatus) {
@@ -302,9 +301,7 @@ export default {
       } else if(this.$store.state.requestResourceUpdateData.requestAction === 'process-update-request') {
         url = "/facilitiesRequests/update"
       }
-      console.log('url get', this.$store.auth);
-      console.log('this.source.data get', this.source.data);
-      console.log('this.$store.state.requestResourceUpdateData.requestUpdatingResource get', this.$store.state.requestResourceUpdateData.requestUpdatingResource);
+      let partition = this.$store.state.config.userConfig.FRDatasource
       let opts = {
         method: "POST",
         url,
@@ -313,6 +310,7 @@ export default {
         },
         data: {
           resource: this.source.data,
+          partition: partition,
           requestStatus: newStatus,
           requestUpdatingResource: this.$store.state.requestResourceUpdateData.requestUpdatingResource
         }

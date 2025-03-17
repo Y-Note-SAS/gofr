@@ -140,7 +140,7 @@ export default {
           "?_count=" +
           count +
           "&_total=accurate&_profile=" +
-          this.profile;
+          this.profile + ",http://gofr.org/fhir/StructureDefinition/IHE.mCSD.FacilityLocation";
         let sTerms = Object.keys(this.terms);
         for (let term of sTerms) {
           if ( Array.isArray( this.terms[term] ) ) {

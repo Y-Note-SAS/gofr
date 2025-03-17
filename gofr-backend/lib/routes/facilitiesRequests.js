@@ -98,6 +98,7 @@ router.post('/add', (req, res) => {
       url: `Location/${reqRes.id}`,
     },
   });
+  
   fhirAxios.create(bundle, data.partition).then(() => res.status(200).send()).catch((err) => {
     logger.error(err);
     return res.status(500).send();

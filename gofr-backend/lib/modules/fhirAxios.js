@@ -178,9 +178,11 @@ const fhirAxios = {
   }),
   create: (resource, partition) => new Promise((resolve, reject) => {
     let url = fhirAxios.__genUrl(partition);
+    console.log("url get ", url)
     let err;
     if (resource === undefined) {
       err = new InvalidRequestError('resource must be defined');
+      console.log("erreur 404 url", err)
       err.response = { status: 404 };
       reject(err);
     }
@@ -196,6 +198,7 @@ const fhirAxios = {
     axios.post(url.toString(), resource, { auth }).then((response) => {
       resolve(response.data);
     }).catch((err) => {
+      console.log("erreur post data", err)
       reject(err);
     });
   }),

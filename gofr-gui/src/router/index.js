@@ -139,6 +139,7 @@ let router = new Router({
         })
       }
       let hasTask = Vue.$tasksVerification.hasPermissionByName('special', 'custom', 'view-data-source')
+      console.log('has task ', hasTask)
       if (hasTask) {
         return next()
       }

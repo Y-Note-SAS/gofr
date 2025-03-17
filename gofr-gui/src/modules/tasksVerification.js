@@ -40,6 +40,7 @@ export const tasksVerification = {
     }
   },
   hasPermissionByName: (permission, resource, id, partition) => {
+    console.log('permission', permission, 'resource', resource, 'id', id, 'partition', partition)
     const perms = ['*'];
     if (permission !== '*') { perms.push(permission); }
     const resources = ['*'];

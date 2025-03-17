@@ -48,6 +48,7 @@ export default {
     getLanguageList() {
       axios.get("/translator/getTranslatedLanguages").then((response) => {
         this.languages = response.data
+        console.log("languages", this.languages)
         this.languages.sort((a, b) => {
           if (a.language < b.language) {
             return -1;
@@ -57,13 +58,13 @@ export default {
           }
           return 0;
         })
-        let activeLocale = localStorage.getItem('activeLocale') || this.$i18n.locale || "en"
+        let activeLocale = localStorage.getItem('activeLocale') || this.$i18n.locale || "fr"
         let activeLanguage = this.languages.find((lang) => {
           return lang.locale === activeLocale
         })
         this.$i18n.locale = activeLanguage.locale
         this.activeLang = activeLanguage.language
-        loadLanguage(activeLanguage.locale || "en")
+        loadLanguage(activeLanguage.locale || "fr")
       })
     }
   }

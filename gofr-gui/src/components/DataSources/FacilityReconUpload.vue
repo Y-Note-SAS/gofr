@@ -215,7 +215,7 @@
               <v-card-title>{{ $t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }} - <b>{{ $t(`App.hardcoded-texts.Select a CSV file and upload`) }}</b></v-card-title>
               <v-card-text>
                 <v-text-field
-                  label="$t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }"
+                  :label="$t(`App.hardcoded-texts.Upload CSV (utf-8 only)`)"
                   v-model="uploadName"
                   @blur="ensureNameUnique"
                   @input="ensureNameUnique"

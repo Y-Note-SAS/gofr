@@ -1222,7 +1222,7 @@
             "display": "Français",
             "designation": [
               {
-                "language": "en",
+                "language": "fr",
                 "use": {
                   "code": "display",
                   "system": "http://terminology.hl7.org/CodeSystem/designation-usage"

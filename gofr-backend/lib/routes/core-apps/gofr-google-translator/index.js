@@ -87,16 +87,19 @@ router.get("/translationCount/:from/:to", async(req, res) => {
 router.get("/getTranslatedLanguages", async(req, res) => {
   let localesPath = getLocalePath()
   const files = await fs.readdirSync(localesPath);
+  console.log("files get ", files )
   let translations = []
   for(let file of files) {
     if(!translate.languages.isSupported(file.split(".")[0])) {
       continue
     }
+    console.log(" name translate ", translate.languages[file.split(".")[0]])
     translations.push({
       locale: file.split(".")[0],
-      language: translate.languages[file.split(".")[0]]
+      language: translate.languages[file.split(".")[0]] == "French" ? "Français" : translate.languages[file.split(".")[0]]
     })
   }
+  console.log("translations ", translations)
   return res.json(translations)
 })
 
@@ -460,7 +463,7 @@ function truncateObjectValues(object) {
 }
 
 function getLocalePath() {
-  let localesPath = ihrissmartrequire.path("locales/en_startup.json")
+  let localesPath = ihrissmartrequire.path("locales/fr_startup.json")
   localesPath = localesPath.split("/")
   localesPath.pop()
   return localesPath.join("/") + "/"

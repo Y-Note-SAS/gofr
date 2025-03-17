@@ -157,6 +157,7 @@ let router = new Router({
     component: AddDataSources,
     beforeEnter: (to, from, next) => {
       let hasTask = Vue.$tasksVerification.hasPermissionByName('special', 'custom', 'add-data-source')
+      console.log('has task ', hasTask)
       if (hasTask) {
         return next()
       }

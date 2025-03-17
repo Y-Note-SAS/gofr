@@ -110,7 +110,7 @@
                     clearable
                     :items="types"
                     v-model="facilityType"
-                    label="Facility Type"
+                    :label="$t(`App.fhir-resources-texts.Facility Name`)"
                   ></v-select>
                 </v-flex>
               </v-layout>
@@ -125,7 +125,7 @@
                     clearable
                     :items="status"
                     v-model="facilityStatus"
-                    label="Status"
+                    :label="$t(`App.fhir-resources-texts.Status`)"
                   ></v-select>
                 </v-flex>
                 <v-spacer></v-spacer>

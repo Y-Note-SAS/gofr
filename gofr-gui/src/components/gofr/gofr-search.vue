@@ -47,7 +47,6 @@ export default {
   data: function() {
     return {
       debug: "",
-      headers: [],
       results: [],
       options: { itemsPerPage: 10 },
       loading: false,
@@ -57,6 +56,14 @@ export default {
       error_message: null,
       update_again: { rerun: false, restart: false }
     };
+  },
+  computed: {
+    headers() {
+      return this.fields.map(field => ({
+        text: this.$t(`App.hardcoded-texts.${field[0]}`),
+        value: field[1]
+      }));
+    }
   },
   watch: {
     terms: {
@@ -70,11 +77,6 @@ export default {
         this.getData();
       },
       deep: true
-    }
-  },
-  created: function() {
-    for (let field of this.fields) {
-      this.headers.push({ text: field[0], value: field[1] });
     }
   },
   mounted: function() {

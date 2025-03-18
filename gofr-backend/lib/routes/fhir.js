@@ -92,14 +92,17 @@ router.get('/:partition/:resource/:id?', (req, res, next) => {
 });
 
 router.post('/:partition/:resource', (req, res) => {
+  console.log("enter post request ")
   if ( !req.user ) {
     return res.status(401).json( outcomes.NOTLOGGEDIN)
   }
   const allowed = req.user.hasPermissionByObject('write', req.body, req.params.partition);
+  console.log("user allowed ",allowed)
   let resource;
   if (allowed === true) {
     resource = req.body;
   } else if (!allowed) {
+    console.log('not allowec ',allowed)
     return res.status(403).json(outcomes.DENIED);
   } else {
     resource = fhirFilter.filter(req.body, allowed);

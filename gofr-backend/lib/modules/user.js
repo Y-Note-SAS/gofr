@@ -520,6 +520,7 @@ User.prototype.getFilter = function (resource) {
 User.prototype.hasPermissionByObject = function (permission, resource, partition) {
   // First get the base permissions by name then see what constraints
   // apply. Don't get by ID as we need to determine if that was how it matched.
+  console.log('persmission neccessaire ', permission)
   const permissions = this.hasPermissionByName(permission, resource.resourceType, '', partition);
   if (permissions === true) {
     return true;

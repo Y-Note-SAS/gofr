@@ -470,7 +470,7 @@ User.prototype.hasPermissionByName = function (permission, resource, id, partiti
   if (permission !== '*') { perms.push(permission); }
   const resources = ['*'];
   if (resource !== '*') { resources.push(resource); }
-
+  console.log('permission ', permission, 'ressources ', resource, 'id', id, 'partition', partition, 'perms', perms)
   let results = {};
   for (const perm of perms) {
     for (const res of resources) {

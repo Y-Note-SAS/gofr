@@ -124,6 +124,12 @@
             <v-data-table
               :headers="pairLevelsMappingHeader"
               :items="source1Levels"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 v-slot:item="{ item }"
@@ -246,6 +252,12 @@
               :items="users"
               :search="searchUsers"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 v-slot:item="{ item }"
@@ -341,6 +353,12 @@
                     :items="$store.state.dataSources"
                     :loading="$store.state.loadingServers"
                     dark
+                    :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
                   >
                     <v-progress-linear
                       slot="progress"
@@ -373,6 +391,12 @@
                     :items="dataSources2"
                     item-key="id"
                     :loading="$store.state.loadingServers"
+                    :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
                   >
                     <v-progress-linear
                       slot="progress"
@@ -449,6 +473,12 @@
                 :items="$store.state.dataSourcePairs"
                 :search="searchPairs"
                 :loading="$store.state.loadingServers"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <v-progress-linear
                   slot="progress"

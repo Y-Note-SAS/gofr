@@ -205,17 +205,24 @@
                 <v-data-table
                   :headers="source1GridHeader"
                   :items="source1Grid"
+                  :label="$t(`App.menu.Search`)" 
                   :search="searchSource1"
                   :options="source1Pagination"
                   :server-items-length="totalSource1Records"
                   :loading="loadingSource1"
                   hide-default-footer
                   class="elevation-1"
+                  :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
                 >
                 </v-data-table>
               </v-card-text>
               <div class="text-xs-center pt-2">
-                {{source1Pagination}} - {{source1Count}}
+                {{$t(`App.hardcoded-texts.Rows per page`)}} - {{source1Count}}
                 <v-pagination
                   v-model="source1Pagination.page"
                   :length="source1Pages"
@@ -237,12 +244,19 @@
                 <v-data-table
                   :headers="source2GridHeader"
                   :items="source2Grid"
+                  :label="$t(`App.menu.Search`)" 
                   :search="searchSource2"
                   :options="source2Pagination"
                   :server-items-length="totalSource2Records"
                   :loading="loadingSource2"
                   hide-default-footer
                   class="elevation-1"
+                  :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
                 >
                 </v-data-table>
               </v-card-text>

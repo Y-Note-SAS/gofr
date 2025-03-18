@@ -117,7 +117,7 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="1">
-        <b>{{currentLevelText}} {{ $t(`App.hardcoded-texts.Only`) }}</b>
+        <b>{{$t(`App.hardcoded-texts.${currentLevelText}`)}} {{ $t(`App.hardcoded-texts.Only`) }}</b>
       </v-col>
     </v-row>
     <v-row>
@@ -533,6 +533,12 @@
               :items="mappingData.mapped"
               :search="searchMatched"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="items"
@@ -551,6 +557,13 @@
               :items="mappingData.notMapped"
               :search="searchMatched"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :items-per-page-text="$t(`App.hardcoded-texts.Rows per page`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="items"
@@ -567,6 +580,13 @@
               :items="mappingData.noMatch"
               :search="searchMatched"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :items-per-page-text="$t(`App.hardcoded-texts.Rows per page`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="items"
@@ -583,6 +603,13 @@
               :items="mappingData.ignore"
               :search="searchMatched"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :items-per-page-text="$t(`App.hardcoded-texts.Rows per page`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="items"
@@ -599,6 +626,13 @@
               :items="mappingData.flagged"
               :search="searchMatched"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :items-per-page-text="$t(`App.hardcoded-texts.Rows per page`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="items"
@@ -761,6 +795,26 @@ export default {
           console.log(err.response.data.error)
         }
       })
+    },
+    fetchLevels () {
+      const levels = [];
+      for (var k = 1; k < this.$store.state.totalSource1Levels; k++) {
+      let text = this.translateDataHeader('source1', k)
+      levels.push({
+        text: this.$t(`App.hardcoded-texts.${text}`),
+        value: k + 1
+      })
+    }
+    console.log("levelse get ", levels)
+    return levels
+    }
+  },
+  watch: {
+    '$i18n.locale': {
+      handler() {
+        this.locationLevels = this.fetchLevels();
+      },
+      immediate: true
     }
   },
   computed: {
@@ -902,20 +956,16 @@ export default {
     },
     totalRecords () {
       return this.totalMapped + this.totalNotMapped + this.totalNoMatch + this.totalIgnore + this.totalFlagged
-    }
+    },
+    
   },
   components: {
     'appRecoExport': ReconciliationExport
   },
   created () {
     this.mappingStatus()
-    for (var k = 1; k < this.$store.state.totalSource1Levels; k++) {
-      let text = this.translateDataHeader('source1', k)
-      this.locationLevels.push({
-        text: text,
-        value: k + 1
-      })
-    }
+    this.locationLevels = this.fetchLevels();
+    console.log("levels next ", this.locationLevels)
   }
 }
 </script>

@@ -193,6 +193,12 @@
             :search="searchUsers"
             class="elevation-1"
             item-key="id"
+            :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
           >
             <template v-slot:item="{ item }">
               <tr v-if="item.userName !== $store.state.auth.username">
@@ -410,6 +416,12 @@
               dark
               class="elevation-1"
               :loading='$store.state.loadingServers'
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <v-progress-linear
                 slot="progress"
@@ -521,6 +533,12 @@
               dark
               class="elevation-1"
               :loading='$store.state.loadingServers'
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <v-progress-linear
                 slot="progress"

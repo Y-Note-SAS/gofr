@@ -167,6 +167,12 @@
               :items="allPotentialMatches"
               :search="searchPotential"
               class="elevation-1"
+              :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
             >
               <template
                 slot="headers"
@@ -347,7 +353,7 @@
         </v-flex>
         <v-spacer></v-spacer>
         <v-flex xs2>
-          <b>{{ $t(`App.hardcoded-texts.Reconciling`) }} {{currentLevelText}}</b>
+          <b>{{ $t(`App.hardcoded-texts.Reconciling`) }} {{$t(`App.hardcoded-texts.${currentLevelText}`)}}</b>
         </v-flex>
         <v-spacer></v-spacer>
         <v-flex
@@ -618,7 +624,7 @@
               <v-text-field
                 v-model="searchUnmatchedSource1"
                 append-icon="mdi-magnify"
-                label="Search"
+                :label="$t(`App.hardcoded-texts.Search`)"
                 single-line
                 hide-details
               ></v-text-field>
@@ -635,6 +641,12 @@
                 :search="searchUnmatchedSource1"
                 light
                 class="elevation-1"
+                 :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"
@@ -682,7 +694,7 @@
               <v-text-field
                 v-model="searchUnmatchedSource2"
                 append-icon="mdi-magnify"
-                label="Search"
+                :label="$t(`App.hardcoded-texts.Search`)"
                 single-line
                 hide-details
               ></v-text-field>
@@ -694,6 +706,12 @@
                 :search="searchUnmatchedSource2"
                 light
                 class="elevation-1"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"
@@ -907,6 +925,12 @@
                 :items="$store.state.matchedContent"
                 :search="searchMatched"
                 class="elevation-1"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"
@@ -967,6 +991,12 @@
                 :items="$store.state.noMatchContent"
                 :search="searchNotMatched"
                 class="elevation-1"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"
@@ -1022,6 +1052,12 @@
                 :items="$store.state.ignoreContent"
                 :search="searchIgnore"
                 class="elevation-1"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"
@@ -1075,6 +1111,12 @@
                 :items="$store.state.flagged"
                 :search="searchFlagged"
                 class="elevation-1"
+                :no-data-text= "$t(`App.hardcoded-texts.No data Available`)"
+              :footer-props="{
+                'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+                'items-per-page-options': [10, 20, 50, 100],
+                'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+              }"
               >
                 <template
                   v-slot:item="{ item }"

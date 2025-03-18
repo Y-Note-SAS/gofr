@@ -4,7 +4,8 @@
       <v-card-title>
         {{ $t("App.hardcoded-texts.Search") }} {{ $t(`App.fhir-resources-texts.${label}`) }}
         <v-spacer></v-spacer>
-        <v-btn :style="{backgroundColor: addlink ?'#2D7A5E' : '#2D7A5E', color:'white'}" :to="addLink ? addLink.url : '/resource/add/'+page">
+        <v-btn :style="{ backgroundColor: addlink ? '#2D7A5E' : '#2D7A5E', color: 'white' }"
+          :to="addLink ? addLink.url : '/resource/add/' + page">
           <v-icon v-if="addLink && addLink.icon">{{ addLink.icon }}</v-icon>
           <v-icon v-else>mdi-database-plus</v-icon>
           {{ $t("App.hardcoded-texts.Add") }} {{ $t(`App.fhir-resources-texts.${label}`) }}
@@ -13,26 +14,17 @@
       <v-card-title>
         <slot></slot>
       </v-card-title>
-      <v-card-subtitle
-        v-if="error_message"
-        class="white--text error"
-      >{{ error_message }}</v-card-subtitle>
+      <v-card-subtitle v-if="error_message" class="white--text error">{{ error_message }}</v-card-subtitle>
       <v-card-text>
         <v-container>
         </v-container>
-        <v-data-table
-          style="cursor: pointer"
-          :headers="headers"
-          :items="results"
-          item-key="id"
-          :options.sync="options"
-          loading-class="custom-loader"
-          :server-items-length="total"
-          :footer-props="{ 'items-per-page-text':$t('App.hardcoded-texts.TableText'), 'items-per-page-options': [5,10,20,50] }"
-          :loading="loading"
-          class="elevation-1"
-          @click:row="clickIt"
-        ></v-data-table>
+        <v-data-table style="cursor: pointer" :headers="headers" :items="results" item-key="id" :options.sync="options"
+          loading-class="custom-loader" :server-items-length="total"
+          :no-data-text="$t(`App.hardcoded-texts.No data Available`)" :footer-props="{
+          'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+          'items-per-page-options': [10, 20, 50, 100],
+          'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+        }" :loading="loading" class="elevation-1" @click:row="clickIt"></v-data-table>
       </v-card-text>
     </v-card>
 
@@ -44,7 +36,7 @@ import axios from 'axios';
 export default {
   name: "gofr-search",
   props: ["profile", "request-updating-resource", "request-action", "search-action", "fields", "label", "terms", "page", "resource", "add-link"],
-  data: function() {
+  data: function () {
     return {
       debug: "",
       results: [],
@@ -79,11 +71,11 @@ export default {
       deep: true
     }
   },
-  mounted: function() {
+  mounted: function () {
     this.getData(true);
   },
   methods: {
-    clickIt: function(record) {
+    clickIt: function (record) {
       this.$store.state.searchAction = this.searchAction
       this.$store.state.requestResourceUpdateData.requestAction = this.requestAction
       this.$store.state.requestResourceUpdateData.requestUpdatingResource = this.requestUpdatingResource
@@ -92,13 +84,13 @@ export default {
       });
     },
     checkRerun() {
-      if ( !this.loading && this.update_again.rerun ) {
-        this.getData( this.update_again.restart )
+      if (!this.loading && this.update_again.rerun) {
+        this.getData(this.update_again.restart)
         this.update_again = { rerun: false, restart: false }
       }
     },
     getData(restart) {
-      if ( this.loading ) {
+      if (this.loading) {
         this.update_again.rerun = true
         this.update_again.restart = this.update_again.restart || restart
         return
@@ -115,11 +107,11 @@ export default {
         }
         // Should make this smarter to keep the _getpages parameter,
         // but the issue is with tracking permissions on the resource
-        url = url.replace(/_getpages=[^&]*&*/, "").replace("/fhir/"+this.$store.state.config.userConfig.FRDatasource+"?","/fhir/"+this.$store.state.config.userConfig.FRDatasource+"/"+this.resource+"?")
+        url = url.replace(/_getpages=[^&]*&*/, "").replace("/fhir/" + this.$store.state.config.userConfig.FRDatasource + "?", "/fhir/" + this.$store.state.config.userConfig.FRDatasource + "/" + this.resource + "?")
         url = url.substring(url.indexOf("/fhir/"));
 
         //some of the hapi instances requires _total=accurate to always be available for them to return total resources
-        if(url.indexOf('_total=accurate') === -1) {
+        if (url.indexOf('_total=accurate') === -1) {
           url = url + '&_total=accurate'
         }
       }
@@ -141,17 +133,17 @@ export default {
           this.resource +
           "?_count=" +
           count +
-          "&_total=accurate&_profile=" + 
-          (this.profile === "http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request" 
-            ? this.profile 
+          "&_total=accurate&_profile=" +
+          (this.profile === "http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request"
+            ? this.profile
             : this.profile + ",http://gofr.org/fhir/StructureDefinition/IHE.mCSD.FacilityLocation");
         let sTerms = Object.keys(this.terms);
         for (let term of sTerms) {
-          if ( Array.isArray( this.terms[term] ) ) {
-            if ( this.terms[term].length > 0 ) {
+          if (Array.isArray(this.terms[term])) {
+            if (this.terms[term].length > 0) {
               url += "&" + term + "=" + this.terms[term].join(',')
             }
-          } else if ( this.terms[term] ) {
+          } else if (this.terms[term]) {
             url += "&" + term + "=" + this.terms[term];
           }
         }
@@ -166,9 +158,9 @@ export default {
           for (let entry of data.entry) {
             let result = { id: entry.resource.id };
             for (let field of this.fields) {
-              let fieldDisplay = this.$fhirpath.evaluate( entry.resource, field[1] );
-              result[field[1]] = await this.$fhirutils.lookup( fieldDisplay[0], field[2] )
-              if(fieldDisplay.length > 1) {
+              let fieldDisplay = this.$fhirpath.evaluate(entry.resource, field[1]);
+              result[field[1]] = await this.$fhirutils.lookup(fieldDisplay[0], field[2])
+              if (fieldDisplay.length > 1) {
                 result[field[1]] += ' ...'
               }
             }
@@ -191,6 +183,7 @@ export default {
 
 <style scoped>
 .custom-loader .v-progress-linear__indeterminate {
-  background-color: #1E5F46 !important; /* Remplace par la couleur de ton choix */
+  background-color: #1E5F46 !important;
+  /* Remplace par la couleur de ton choix */
 }
 </style>

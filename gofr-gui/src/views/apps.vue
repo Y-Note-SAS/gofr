@@ -46,7 +46,7 @@
                   </v-avatar>
                   <br>
                   <label style="vertical-align: bottom; display: flex;">
-                    {{app.name}}
+                     {{$t(`App.hardcoded-texts.${app.name}`)}}
                   </label>
                 </v-card-text>
               </v-card>

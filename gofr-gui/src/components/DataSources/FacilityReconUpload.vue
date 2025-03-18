@@ -1,16 +1,8 @@
 <template>
   <v-container fluid>
-    <v-dialog
-      persistent
-      transition="scale-transition"
-      v-model="dialog"
-      max-width="500px"
-    >
+    <v-dialog persistent transition="scale-transition" v-model="dialog" max-width="500px">
       <v-card>
-        <v-toolbar
-          color="#2d7a5e"
-          dark
-        >
+        <v-toolbar color="#2d7a5e" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.Information`) }}
           </v-toolbar-title>
@@ -19,71 +11,42 @@
           Data uploaded successfully
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="#2d7a5e"
-            dark
-            @click.native="closeDialog('FacilityReconView')"
-          >
+          <v-btn color="#2d7a5e" dark @click.native="closeDialog('FacilityReconView')">
             <v-icon left>mdi-format-list-bulleted-square</v-icon>
             {{ $t(`App.hardcoded-texts.View Data`) }}
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
-      persistent
-      transition="scale-transition"
-      v-model="invalidRows"
-      max-width="1050px"
-    >
+    <v-dialog persistent transition="scale-transition" v-model="invalidRows" max-width="1050px">
       <v-card>
-        <v-toolbar
-          color="error"
-          dark
-        >
+        <v-toolbar color="error" dark>
           <v-toolbar-title>
-            <v-icon>mdi-close-circle</v-icon>{{ $t(`App.hardcoded-texts.Data Upload was not successful,review below invalid rows in your CSV`) }}
+            <v-icon>mdi-close-circle</v-icon>{{ $t(`App.hardcoded-texts.Data Upload was not successful,review below
+            invalid rows in your CSV`) }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn
-            icon
-            dark
-            @click.native="closeInvalidRows()"
-          >
+          <v-btn icon dark @click.native="closeInvalidRows()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
         <v-card-text>
-          <v-data-table
-            :headers="invalidRowsHeader"
-            :items="invalidRowsContent"
-            light
-            class="elevation-1"
-          >
-            <template
-              slot="items"
-              slot-scope="props"
-            >
-              <td
-                v-for='header in invalidRowsHeader'
-                :key="header.value"
-              >{{props.item[header.value]}}</td>
+          <v-data-table :headers="invalidRowsHeader" :items="invalidRowsContent" light class="elevation-1"
+            :no-data-text="$t(`App.hardcoded-texts.No data Available`)" :footer-props="{
+      'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+      'items-per-page-options': [10, 20, 50, 100],
+      'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+    }">
+            <template slot="items" slot-scope="props">
+              <td v-for='header in invalidRowsHeader' :key="header.value">{{ props.item[header.value] }}</td>
             </template>
           </v-data-table>
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-dialog
-      persistent
-      transition="scale-transition"
-      v-model="confirmUpload"
-      max-width="500px"
-    >
+    <v-dialog persistent transition="scale-transition" v-model="confirmUpload" max-width="500px">
       <v-card>
-        <v-toolbar
-          color="#2d7a5e"
-          dark
-        >
+        <v-toolbar color="#2d7a5e" dark>
           <v-toolbar-title>
             {{ $t(`App.hardcoded-texts.Warning`) }}
           </v-toolbar-title>
@@ -92,92 +55,42 @@
           {{ $t(`App.hardcoded-texts.You are about to upload CSV data into the app, click proceed to upload`) }}
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="error"
-            @click.native="confirmUpload = false"
-          >{{ $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
+          <v-btn color="error" @click.native="confirmUpload = false">{{ $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
           <v-spacer></v-spacer>
-          <v-btn
-            color="#2d7a5e"
-            dark
-            @click.native="performExtraCheck"
-          >{{ $t(`App.hardcoded-texts.Proceed`) }}</v-btn>
+          <v-btn color="#2d7a5e" dark @click.native="performExtraCheck">{{ $t(`App.hardcoded-texts.Proceed`) }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog
-      persistent
-      transition="scale-transition"
-      v-model="errorDialog"
-      max-width="500px"
-    >
+    <v-dialog persistent transition="scale-transition" v-model="errorDialog" max-width="500px">
       <v-card>
         <v-card-title>
-          {{errorTitle}}
+          {{ errorTitle }}
         </v-card-title>
         <v-card-text>
-          {{errorContent}}
+          {{ errorContent }}
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="error"
-            @click.native="errorDialog = false"
-          >{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
+          <v-btn color="error" @click.native="errorDialog = false">{{ $t(`App.hardcoded-texts.Ok`) }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
-    <v-dialog
-      v-model="uploadPrepaProgr"
-      transition="scale-transition"
-      persistent
-      width="300"
-    >
-      <v-card
-        color="#2d7a5e"
-        dark
-      >
+    <v-dialog v-model="uploadPrepaProgr" transition="scale-transition" persistent width="300">
+      <v-card color="#2d7a5e" dark>
         <v-card-text>
-          {{uploadStatus}}
-          <v-progress-linear
-            indeterminate
-            color="white"
-            class="mb-0"
-            v-if='!fileUploadPercentage'
-          ></v-progress-linear>
-          <v-progress-linear
-            v-model="fileUploadPercentage"
-            color="white"
-            class="mb-0"
-            v-else
-          ></v-progress-linear>
+          {{ uploadStatus }}
+          <v-progress-linear indeterminate color="white" class="mb-0" v-if='!fileUploadPercentage'></v-progress-linear>
+          <v-progress-linear v-model="fileUploadPercentage" color="white" class="mb-0" v-else></v-progress-linear>
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-dialog
-      v-model="percentDialog"
-      transition="scale-transition"
-      persistent
-      width="270"
-    >
-      <v-card
-        color="white"
-        dark
-      >
+    <v-dialog v-model="percentDialog" transition="scale-transition" persistent width="270">
+      <v-card color="white" dark>
         <v-card-text>
           <center>
-            <font style="color:#1b4d3e">{{uploadStatus}}</font><br>
-            <v-progress-circular
-              :rotate="-90"
-              :size="100"
-              :width="15"
-              :value="uploadPercent"
-              color="#1b4d3e"
-            >
-              <v-avatar
-                color="indigo"
-                size="50px"
-              >
+            <font style="color:#1b4d3e">{{ uploadStatus }}</font><br>
+            <v-progress-circular :rotate="-90" :size="100" :width="15" :value="uploadPercent" color="#1b4d3e">
+              <v-avatar color="indigo" size="50px">
                 <span class="white--text">
                   <b>{{ uploadPercent }}%</b>
                 </span>
@@ -187,45 +100,27 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-slide-y-transition
-      mode="out-in"
-      v-if='!$store.state.denyAccess'
-    >
+    <v-slide-y-transition mode="out-in" v-if='!$store.state.denyAccess'>
       <v-stepper v-model="e1">
         <v-stepper-header>
-          <v-stepper-step
-            step="1"
-            :complete="e1 > 1"
-          >{{ $t(`App.hardcoded-texts.Upload CSV`) }}</v-stepper-step>
+          <v-stepper-step step="1" :complete="e1 > 1">{{ $t(`App.hardcoded-texts.Upload CSV`) }}</v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step
-            step="2"
-            :complete="e1 > 2"
-          >{{ $t(`App.hardcoded-texts.Map Headers`) }}</v-stepper-step>
-          <v-btn
-            icon
-            @click.native="closeUploadWindow()"
-          >
+          <v-stepper-step step="2" :complete="e1 > 2">{{ $t(`App.hardcoded-texts.Map Headers`) }}</v-stepper-step>
+          <v-btn icon @click.native="closeUploadWindow()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-stepper-header>
         <v-stepper-items>
           <v-stepper-content step="1">
             <v-card class="mb-5">
-              <v-card-title>{{ $t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }} - <b>{{ $t(`App.hardcoded-texts.Select a CSV file and upload`) }}</b></v-card-title>
+              <v-card-title>{{ $t(`App.hardcoded-texts.Upload CSV (utf-8 only)`) }} - <b>{{
+      $t(`App.hardcoded-texts.Select a
+                  CSV file and upload`) }}</b></v-card-title>
               <v-card-text>
-                <v-text-field
-                  :label="$t(`App.hardcoded-texts.Upload CSV (utf-8 only)`)"
-                  v-model="uploadName"
-                  @blur="ensureNameUnique"
-                  @input="ensureNameUnique"
-                  :error-messages="uploadNameErrors"
-                  required
-                ></v-text-field>
-                <input
-                  type="file"
-                  @change="fileSelected"
-                >
+                <v-text-field :label="$t(`App.hardcoded-texts.Upload CSV (utf-8 only)`)" v-model="uploadName"
+                  @blur="ensureNameUnique" @input="ensureNameUnique" :error-messages="uploadNameErrors"
+                  required></v-text-field>
+                <input type="file" @change="fileSelected">
                 <br><br>
                 <v-card>
                   <v-card-title primary-title>
@@ -234,124 +129,76 @@
                   <v-card-text>
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
-                        <v-checkbox
-                          v-if="$store.state.dhis.user.orgId"
-                          :disabled="shareWithAll"
-                          v-on="on"
-                          color="#1b4d3e"
-                          label="Share with other users of the same org unit as yours"
-                          v-model="shareToSameOrgid"
-                        ></v-checkbox>
+                        <v-checkbox v-if="$store.state.dhis.user.orgId" :disabled="shareWithAll" v-on="on"
+                          color="#1b4d3e" label="Share with other users of the same org unit as yours"
+                          v-model="shareToSameOrgid"></v-checkbox>
                       </template>
                       <span>
-                        {{ $t(`App.hardcoded-texts.Share this dataset with all other users that are on the same org unit as you`) }}
+                        {{ $t(`App.hardcoded-texts.Share this dataset with all other users that are on the same org unit
+                        as
+                        you`) }}
                       </span>
                     </v-tooltip>
                     <v-checkbox
                       v-if='$store.state.config.generalConfig.allowShareToAllForNonAdmin || $store.state.auth.role === "Admin"'
-                      @change="sharingOptions"
-                      color="#2d7a5e"
-                      label="Share with all other users"
-                      v-model="shareWithAll"
-                    >
+                      @change="sharingOptions" color="#2d7a5e" label="Share with all other users"
+                      v-model="shareWithAll">
                     </v-checkbox>
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
-                        <v-checkbox
-                          v-if="shareWithAll && $store.state.dhis.user.orgId"
-                          v-on="on"
-                          color="#1b4d3e"
+                        <v-checkbox v-if="shareWithAll && $store.state.dhis.user.orgId" v-on="on" color="#1b4d3e"
                           :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
-                          v-model="limitShareByOrgId"
-                        >
+                          v-model="limitShareByOrgId">
                         </v-checkbox>
                       </template>
                       <span>
-                        {{ $t(`App.hardcoded-texts.if activated, other users will see locations (including location children) that has the same location id as their location id`) }}
+                        {{ $t(`App.hardcoded-texts.if activated, other users will see locations (including location
+                        children) that has the same location id as their location id`) }}
                       </span>
                     </v-tooltip>
                   </v-card-text>
                 </v-card>
               </v-card-text>
             </v-card>
-            <v-btn
-              color="#2d7a5e"
-              @click.native="e1 = 2"
-              v-if='uploadedFileName && uploadName && uploadNameErrors.length === 0'
-            >{{ $t(`App.hardcoded-texts.Continue`) }}</v-btn>
-            <v-btn
-              color="#2d7a5e"
-              @click.native="e1 = 2"
-              v-else
-              disabled
-            >{{ $t(`App.hardcoded-texts.Continue`) }}</v-btn>
+            <v-btn color="#2d7a5e" @click.native="e1 = 2"
+              v-if='uploadedFileName && uploadName && uploadNameErrors.length === 0'>{{
+      $t(`App.hardcoded-texts.Continue`)
+    }}</v-btn>
+            <v-btn color="#2d7a5e" @click.native="e1 = 2" v-else disabled>{{ $t(`App.hardcoded-texts.Continue`)
+              }}</v-btn>
           </v-stepper-content>
           <v-stepper-content step="2">
             <b>{{ $t(`App.hardcoded-texts.Map an appropriate CSV header against those on the app`) }}.</b>
-            <v-layout
-              row
-              wrap
-              ref="form"
-              v-model="valid"
-            >
+            <v-layout row wrap ref="form" v-model="valid">
               <v-flex xs6>
                 <v-subheader>{{ $t(`App.hardcoded-texts.Facility`) }}*</v-subheader>
               </v-flex>
               <v-flex xs6>
-                <v-select
-                  :items="filteredItemFacility"
-                  v-model="facility"
-                  @blur="$v.facility.$touch()"
-                  @change="$v.facility.$touch()"
-                  :error-messages="facilityErrors"
-                  label="Select"
-                  required
-                  single-line
-                  clearable
-                >
+                <v-select :items="filteredItemFacility" v-model="facility" @blur="$v.facility.$touch()"
+                  @change="$v.facility.$touch()" :error-messages="facilityErrors" label="Select" required single-line
+                  clearable>
                 </v-select>
               </v-flex>
               <v-flex xs6>
                 <v-subheader>{{ $t(`App.hardcoded-texts.Code`) }}*</v-subheader>
               </v-flex>
               <v-flex xs6>
-                <v-select
-                  :items="filteredItemCode"
-                  v-model="code"
-                  @blur="$v.code.$touch()"
-                  @change="$v.code.$touch()"
-                  :error-messages="codeErrors"
-                  :label="$t(`App.hardcoded-texts.Select`)"
-                  required
-                  single-line
-                  clearable
-                >
+                <v-select :items="filteredItemCode" v-model="code" @blur="$v.code.$touch()" @change="$v.code.$touch()"
+                  :error-messages="codeErrors" :label="$t(`App.hardcoded-texts.Select`)" required single-line clearable>
                 </v-select>
               </v-flex>
               <v-flex xs6>
                 <v-subheader>{{ $t(`App.hardcoded-texts.Latitude`) }}</v-subheader>
               </v-flex>
               <v-flex xs6>
-                <v-select
-                  :items="filteredItemLat"
-                  v-model="lat"
-                  label="Select"
-                  single-line
-                  clearable
-                >
+                <v-select :items="filteredItemLat" v-model="lat" label="Select" single-line clearable>
                 </v-select>
               </v-flex>
               <v-flex xs6>
                 <v-subheader>{{ $t(`App.hardcoded-texts.Longitude`) }}</v-subheader>
               </v-flex>
               <v-flex xs6>
-                <v-select
-                  :items="filteredItemLong"
-                  v-model="long"
-                  label="Select"
-                  single-line
-                  clearable
-                >
+                <v-select :items="filteredItemLong" v-model="long" label="Select" single-line clearable>
                 </v-select>
               </v-flex>
               <template>
@@ -359,13 +206,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 1</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel1"
-                    v-model="level1"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel1" v-model="level1" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -374,13 +215,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 2</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel2"
-                    v-model="level2"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel2" v-model="level2" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -389,13 +224,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 3</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel3"
-                    v-model="level3"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel3" v-model="level3" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -404,13 +233,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 4</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel4"
-                    v-model="level4"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel4" v-model="level4" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -419,13 +242,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 5</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel5"
-                    v-model="level5"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel5" v-model="level5" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -434,13 +251,7 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 6</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel6"
-                    v-model="level6"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel6" v-model="level6" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
@@ -449,61 +260,35 @@
                   <v-subheader>{{ $t(`App.hardcoded-texts.Level`) }} 7</v-subheader>
                 </v-flex>
                 <v-flex xs6>
-                  <v-select
-                    :items="filteredItemLevel7"
-                    v-model="level7"
-                    label="Select"
-                    single-line
-                    clearable
-                  >
+                  <v-select :items="filteredItemLevel7" v-model="level7" label="Select" single-line clearable>
                   </v-select>
                 </v-flex>
               </template>
             </v-layout>
-            <v-layout
-              row
-              wrap
-            >
+            <v-layout row wrap>
               <v-spacer></v-spacer>
               <v-flex xs1>
                 <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                  <v-btn
-                    v-if='!showLevel7'
-                    class="mx-14"
-                    fab
-                    dark
-                    small
-                    color="#1b4d3e"
-                    v-on="on"
-                    @click="showMoreLevel"
-                  >
-                    <v-icon dark>
-                      mdi-plus
-                    </v-icon>
-                  </v-btn>
-                </template>
-                <span>{{ $t(`App.hardcoded-texts.Add More Level`) }}</span>
-              </v-tooltip>
+                  <template v-slot:activator="{ on }">
+                    <v-btn v-if='!showLevel7' class="mx-14" fab dark small color="#1b4d3e" v-on="on"
+                      @click="showMoreLevel">
+                      <v-icon dark>
+                        mdi-plus
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t(`App.hardcoded-texts.Add More Level`) }}</span>
+                </v-tooltip>
               </v-flex>
             </v-layout>
-            <v-layout
-              row
-              wrap
-            >
+            <v-layout row wrap>
               <v-flex xs1>
-                <v-btn
-                  color="error"
-                  @click.native="e1 = 1"
-                >Go Back</v-btn>
+                <v-btn color="error" @click.native="e1 = 1">Go Back</v-btn>
               </v-flex>
               <v-spacer></v-spacer>
               <v-flex xs1>
-                <v-btn
-                  color="#2d7a5e"
-                  @click.native="confirmUpload = true"
-                  :disabled="$v.$invalid"
-                >{{ $t(`App.hardcoded-texts.Upload`) }}</v-btn>
+                <v-btn color="#2d7a5e" @click.native="confirmUpload = true" :disabled="$v.$invalid">{{
+                  $t(`App.hardcoded-texts.Upload`) }}</v-btn>
               </v-flex>
             </v-layout>
           </v-stepper-content>
@@ -522,7 +307,7 @@ import { eventBus } from '../../main'
 
 export default {
   mixins: [dataSourcesMixin, generalMixin],
-  data () {
+  data() {
     return {
       emptyProgressAttempt: 0,
       partitionID: '',
@@ -583,7 +368,7 @@ export default {
     }
   },
   methods: {
-    fileSelected (e) {
+    fileSelected(e) {
       this.uploadedFileName = e.target.files[0]['name']
       if (e.target.files[0]['type'] !== 'text/csv' &&
         !(e.target.files[0]['type'] === 'application/vnd.ms-excel' &&
@@ -604,7 +389,7 @@ export default {
       }.bind(this), false)
       reader.readAsText(e.target.files[0], 'utf-8')
     },
-    ensureNameUnique () {
+    ensureNameUnique() {
       this.uploadNameErrors = []
       if (this.uploadName === '') {
         return this.uploadNameErrors.push('Upload name is required')
@@ -624,11 +409,11 @@ export default {
         }
       }
     },
-    confirmSubmit () {
+    confirmSubmit() {
       this.confirmUpload = true
     },
     hasEmptyProgress() {
-      if(this.emptyProgressAttempt > 5) {
+      if (this.emptyProgressAttempt > 5) {
         this.$store.state.uploadRunning = false
         this.uploadPrepaProgr = false
         this.percentDialog = false
@@ -643,7 +428,7 @@ export default {
         }, 2000)
       }
     },
-    checkUploadProgress () {
+    checkUploadProgress() {
       const clientId = this.$store.state.clientId
       axios.get('/progress/uploadProgress/' + clientId).then((uploadProgress) => {
         if (!uploadProgress.data || (!uploadProgress.data.status && !uploadProgress.data.percent && !uploadProgress.data.error)) {
@@ -689,7 +474,7 @@ export default {
         }, 2000);
       })
     },
-    performExtraCheck () {
+    performExtraCheck() {
       // reload general config and see if still allowed to upload more data sources
       this.$store.state.dynamicProgress = true
       this.$store.state.progressTitle = 'Performing extra validations'
@@ -704,7 +489,7 @@ export default {
         }
       })
     },
-    submitCSV () {
+    submitCSV() {
       let formData = new FormData()
       formData.append('file', this.file)
       formData.append('csvName', this.uploadName)
@@ -755,7 +540,7 @@ export default {
         this.levelData = levelData
         this.checkUploadProgress()
       }).catch((err) => {
-        if(!err.response) {
+        if (!err.response) {
           console.error(err);
           this.checkUploadProgress()
         } else {
@@ -795,20 +580,20 @@ export default {
         }
       })
     },
-    closeInvalidRows () {
+    closeInvalidRows() {
       this.invalidRows = false
       this.invalidRowsHeader = []
       this.invalidRowsContent = []
       this.e1 = 1
     },
-    closeDialog (component) {
+    closeDialog(component) {
       this.$router.push({ name: component })
       this.dialog = false
     },
-    closeUploadWindow () {
+    closeUploadWindow() {
       eventBus.$emit('dataSourceSaved')
     },
-    showMoreLevel () {
+    showMoreLevel() {
       if (!this.showLevel3) {
         this.showLevel3 = true
         return
@@ -831,64 +616,64 @@ export default {
     }
   },
   computed: {
-    facilityErrors () {
+    facilityErrors() {
       const errors = []
       if (!this.$v.facility.$dirty) return errors
       !this.$v.facility.required && errors.push('Facility is required')
       return errors
     },
-    codeErrors () {
+    codeErrors() {
       const errors = []
       if (!this.$v.code.$dirty) return errors
       !this.$v.code.required && errors.push('Code is required')
       return errors
     },
-    filteredItemFacility () {
+    filteredItemFacility() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemCode () {
+    filteredItemCode() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLat () {
+    filteredItemLat() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLong () {
+    filteredItemLong() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel1 () {
+    filteredItemLevel1() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel2 () {
+    filteredItemLevel2() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel3 () {
+    filteredItemLevel3() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level4 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel4 () {
+    filteredItemLevel4() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level5 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel5 () {
+    filteredItemLevel5() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level6 && o !== this.level7)
     },
-    filteredItemLevel6 () {
+    filteredItemLevel6() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level7)
     },
-    filteredItemLevel7 () {
+    filteredItemLevel7() {
       let uploadedHeaders = this.uploadedHeaders
       return uploadedHeaders.filter(o => o !== this.facility && o !== this.code && o !== this.lat && o !== this.long && o !== this.level1 && o !== this.level2 && o !== this.level3 && o !== this.level4 && o !== this.level5 && o !== this.level6)
     }
   },
-  created () {
+  created() {
     if (this.$store.state.uploadProgressData.percentDialog) {
       this.percentDialog = this.$store.state.uploadProgressData.percentDialog
     }
@@ -908,7 +693,7 @@ export default {
     //   this.UploadProgressTimer = setInterval(this.checkUploadProgress, 1000)
     // }
   },
-  destroyed () {
+  destroyed() {
     this.$store.state.uploadProgressData.dialog = this.dialog
     this.$store.state.uploadProgressData.percentDialog = this.percentDialog
     this.$store.state.uploadProgressData.uploadPrepaProgr = this.uploadPrepaProgr
@@ -927,6 +712,7 @@ export default {
   position: relative;
   overflow: hidden;
 }
+
 .jbtn-file input[type="file"] {
   position: absolute;
   top: 0;
@@ -940,10 +726,12 @@ export default {
   cursor: inherit;
   display: block;
 }
+
 .input.invalid input {
   border: 1px solid red;
   background-color: #ffc9aa;
 }
+
 .input.invalid label {
   color: red;
 }

@@ -1,192 +1,104 @@
 <template>
   <v-container fluid>
-    <v-dialog
-      v-model="approveUserDialog"
-      persistent
-      :overlay="false"
-      max-width="500px"
-      transition="dialog-transition"
-    >
-      <v-toolbar
-        color="#2d7a5e"
-        dark
-      >
+    <v-dialog v-model="approveUserDialog" persistent :overlay="false" max-width="500px" transition="dialog-transition">
+      <v-toolbar color="#2d7a5e" dark>
         <v-spacer></v-spacer>
-        <v-icon
-          @click="approveUserDialog = false"
-          style="cursor: pointer"
-        >mdi-close</v-icon>
+        <v-icon @click="approveUserDialog = false" style="cursor: pointer">mdi-close</v-icon>
       </v-toolbar>
       <v-card>
         <v-card-title primary-title>
-          {{ $t(`App.hardcoded-texts.User`) }} {{user.userName}}
+          {{ $t(`App.hardcoded-texts.User`) }} {{ user.userName }}
         </v-card-title>
         <v-card-text>
-          <v-layout
-            column
-            wrap
-          >
+          <v-layout column wrap>
             <v-flex>
-              <v-layout
-                row
-                wrap
-              >
+              <v-layout row wrap>
                 <v-flex x5>
-                  {{user.firstName}}
+                  {{ user.firstName }}
                 </v-flex>
                 <v-spacer></v-spacer>
                 <v-flex xs5>
-                  {{user.surname}}
+                  {{ user.surname }}
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex>
-              <v-layout
-                row
-                wrap
-              >
+              <v-layout row wrap>
                 <v-flex x5>
-                  {{user.phone}}
+                  {{ user.phone }}
                 </v-flex>
                 <v-spacer></v-spacer>
                 <v-flex xs5>
-                  {{user.email}}
+                  {{ user.email }}
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex>
-              <v-select
-                required
-                :items="roles"
-                v-model="role"
-                single-line
-                clearable
-                @blur="$v.role.$touch()"
-                @change="$v.role.$touch()"
-                :error-messages="roleErrors"
-                filled
-                :label="$t(`App.hardcoded-texts.Role`)"
-              ></v-select>
+              <v-select required :items="roles" v-model="role" single-line clearable @blur="$v.role.$touch()"
+                @change="$v.role.$touch()" :error-messages="roleErrors" filled
+                :label="$t(`App.hardcoded-texts.Role`)"></v-select>
             </v-flex>
           </v-layout>
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="error"
-            @click="changeStatus('Rejected')"
-          >
+          <v-btn color="error" @click="changeStatus('Rejected')">
             <v-icon left>mdi-cancel</v-icon>{{ $t(`App.hardcoded-texts.Reject`) }}
           </v-btn>
           <v-spacer />
-          <v-btn
-            @click="changeStatus('Active')"
-            :disabled="$v.$invalid"
-            class="white--text"
-            color="#1b4d3e"
-            depressed
-          >
+          <v-btn @click="changeStatus('Active')" :disabled="$v.$invalid" class="white--text" color="#1b4d3e" depressed>
             <v-icon left>mdi-check-circle</v-icon>{{ $t(`App.hardcoded-texts.Approve`) }}
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <center>
-      <v-alert
-        style="width: 500px"
-        v-model="alertSuccess"
-        type="success"
-        dismissible
-        transition="scale-transition"
-      >
-        {{alertMsg}}
+      <v-alert style="width: 500px" v-model="alertSuccess" type="success" dismissible transition="scale-transition">
+        {{ alertMsg }}
       </v-alert>
-      <v-alert
-        style="width: 500px"
-        v-model="alertFail"
-        type="error"
-        dismissible
-        transition="scale-transition"
-      >
-        {{alertMsg}}
+      <v-alert style="width: 500px" v-model="alertFail" type="error" dismissible transition="scale-transition">
+        {{ alertMsg }}
       </v-alert>
     </center>
-    <v-card
-      color="#2d7a5e"
-      width="1500px"
-      class="mx-auto"
-    >
-      <v-card-title
-        primary-title
-        width="1000"
-      >
-        <v-toolbar
-          color="white"
-          style="font-weight: bold; font-size: 18px;"
-        >
+    <v-card color="#2d7a5e" width="1500px" class="mx-auto">
+      <v-card-title primary-title width="1000">
+        <v-toolbar color="white" style="font-weight: bold; font-size: 18px;">
           {{ $t(`App.hardcoded-texts.Users List`) }}
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="searchUsers"
-            append-icon="mdi-magnify"
-            :label="$t(`App.hardcoded-texts.Search`)"
-            single-line
-            hide-details
-          ></v-text-field>
+          <v-text-field v-model="searchUsers" append-icon="mdi-magnify" :label="$t(`App.hardcoded-texts.Search`)"
+            single-line hide-details></v-text-field>
         </v-toolbar>
       </v-card-title>
       <v-card-text>
-        <v-data-table
-          :headers="usersHeader"
-          :items="users"
-          :search="searchUsers"
-          dark
-          class="elevation-1"
-          :loading='$store.state.loadingusers'
-        >
-          <v-progress-linear
-            slot="progress"
-            color="#1b4d3e"
-            indeterminate
-          ></v-progress-linear>
-          <template
-            v-slot:item="{ item }"
-          >
+        <v-data-table :headers="usersHeader" :items="users" :search="searchUsers" dark class="elevation-1"
+          :loading='$store.state.loadingusers' :no-data-text="$t(`App.hardcoded-texts.No data Available`)"
+          :footer-props="{
+      'items-per-page-text': $t(`App.hardcoded-texts.Rows per page`),
+      'items-per-page-options': [10, 20, 50, 100],
+      'items-per-page-all-text': $t(`App.hardcoded-texts.All`)
+    }">
+          <v-progress-linear slot="progress" color="#1b4d3e" indeterminate></v-progress-linear>
+          <template v-slot:item="{ item }">
             <tr>
-              <td>{{item.firstName}}</td>
-              <td>{{item.surname}}</td>
-              <td>{{item.otherName}}</td>
-              <td>{{item.phone}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.userName}}</td>
-              <td v-if='item.role'>{{item.role.name}}</td>
+              <td>{{ item.firstName }}</td>
+              <td>{{ item.surname }}</td>
+              <td>{{ item.otherName }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.userName }}</td>
+              <td v-if='item.role'>{{ item.role.name }}</td>
               <td v-else></td>
-              <td>{{item.status}}</td>
+              <td>{{ item.status }}</td>
               <td v-if='item.status === "Pending" || item.status === "Rejected"'>
-                <v-btn
-                  color="success"
-                  small
-                  @click="displayApprovalDialog(item)"
-                >{{ $t(`App.hardcoded-texts.Approve/Reject`) }}</v-btn>
+                <v-btn color="success" small @click="displayApprovalDialog(item)">{{
+      $t(`App.hardcoded-texts.Approve/Reject`) }}</v-btn>
               </td>
               <td v-else>
-                <v-btn
-                  small
-                  color="error"
-                  v-if='item.status === "Active"'
-                  @click="accountAction('Inactive', item)"
-                >{{ $t(`App.hardcoded-texts.Deactivate`) }}</v-btn>
-                <v-btn
-                  small
-                  color="success"
-                  v-else
-                  @click="accountAction('Active', item)"
-                >{{ $t(`App.hardcoded-texts.Activate`) }}</v-btn>
+                <v-btn small color="error" v-if='item.status === "Active"' @click="accountAction('Inactive', item)">{{
+      $t(`App.hardcoded-texts.Deactivate`) }}</v-btn>
+                <v-btn small color="success" v-else @click="accountAction('Active', item)">{{
+      $t(`App.hardcoded-texts.Activate`) }}</v-btn>
                 |
-                <v-btn
-                  small
-                  color="error"
-                  @click="accountAction('reset', item)"
-                >
+                <v-btn small color="error" @click="accountAction('reset', item)">
                   <v-icon left>mdi-refresh</v-icon> {{ $t(`App.hardcoded-texts.Reset Password`) }}
                 </v-btn>
               </td>
@@ -207,7 +119,7 @@ export default {
   validations: {
     role: { required }
   },
-  data () {
+  data() {
     return {
       users: [],
       user: {},
@@ -221,11 +133,11 @@ export default {
     }
   },
   methods: {
-    displayApprovalDialog (item) {
+    displayApprovalDialog(item) {
       this.user = item
       this.approveUserDialog = true
     },
-    changeStatus (status) {
+    changeStatus(status) {
       let formData = new FormData()
       formData.append('role', this.role)
       formData.append('status', status)
@@ -248,7 +160,7 @@ export default {
         console.log(err.response.data.error)
       })
     },
-    getUsers () {
+    getUsers() {
       let formData = new FormData()
       formData.append('username', this.username)
       formData.append('password', this.password)
@@ -264,7 +176,7 @@ export default {
         }
       })
     },
-    accountAction (action, user) {
+    accountAction(action, user) {
       let id = user.id
       let formData = new FormData()
       formData.append('id', id)
@@ -318,17 +230,16 @@ export default {
         { text: this.$t(`App.hardcoded-texts.Status`), value: 'status' }
       ]
     },
-    roleErrors () {
+    roleErrors() {
       const errors = []
       if (!this.$v.role.$dirty) return errors
       !this.$v.role.required && errors.push('Role is required')
       return errors
     }
   },
-  created () {
+  created() {
     this.getUsers()
     this.getRoles()
   }
 }
 </script>
-

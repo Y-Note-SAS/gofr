@@ -17,7 +17,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn color="#2d7a5e" @click.native="autoDisableSingleDatasource('cancel')">{{
-            $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
+      $t(`App.hardcoded-texts.Cancel`) }}</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="error" @click.native="autoDisableSingleDatasource('ok')">{{ $t(`App.hardcoded-texts.Ok`)
             }}</v-btn>
@@ -63,7 +63,7 @@
         {{ $t(`App.hardcoded-texts.This lists only those datasets that have been shared to all users`) }}
         <v-card-text>
           <v-data-table :headers="dataSourceHeaders" :items="sharedToAllDatasets" dark class="elevation-1"
-            :search="searchDatasource">
+            :no-data-text="$t(`App.hardcoded-texts.No data Available`)" :search="searchDatasource">
             <v-progress-linear slot="progress" color="green" indeterminate></v-progress-linear>
             <template v-slot:item="{ item }">
               <tr>
@@ -227,10 +227,9 @@
                         :label="$t(`App.hardcoded-texts.Share orgs with other users`)"
                         v-model="$store.state.config.generalConfig.externalAuth.shareOrgUnits">
                       </v-checkbox>
-                      <v-checkbox @change="saveConfiguration('generalConfig', 'externalAuth')" v-if="
-                        $store.state.config.generalConfig.externalAuth.shareOrgUnits &&
-                        $store.state.config.generalConfig.externalAuth.pullOrgUnits
-                      " :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
+                      <v-checkbox @change="saveConfiguration('generalConfig', 'externalAuth')" v-if="$store.state.config.generalConfig.externalAuth.shareOrgUnits &&
+      $store.state.config.generalConfig.externalAuth.pullOrgUnits
+      " :label="$t(`App.hardcoded-texts.Limit orgs sharing by user orgid`)"
                         v-model="$store.state.config.generalConfig.externalAuth.shareByOrgId">
                       </v-checkbox>
                       <v-text-field style="width: 350px" outline

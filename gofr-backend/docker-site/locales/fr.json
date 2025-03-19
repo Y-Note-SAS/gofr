@@ -117,6 +117,7 @@
       "State": "État",
       "Postal Code": "Code postal",
       "Country": "Pays",
+      "Hours of operation": "Heures d'ouverture",
       "Hours of operation (1)": "Heures d'ouverture (1)",
       "Hours of operation (2)": "Heures d'ouverture (2)",
       "Hours of operation (3)": "Heures d'ouverture (3)",
@@ -408,6 +409,8 @@
     },
     "hardcoded-texts": {
       "Continue": "Continuer",
+      "Facility Physical Type": "Type physique de la Formation sanitaire",
+      "Request Status": "Statut de la demande",
       "1": "1",
       "2": "2",
       "3": "3",

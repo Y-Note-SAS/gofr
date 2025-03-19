@@ -405,6 +405,8 @@
     },
     "hardcoded-texts": {
       "1": "1",
+      "Request Status": "Request Status",
+      "Facility Physical Type": "Facility Physical Type",
       "2": "2",
       "3": "3",
       "4": "4",

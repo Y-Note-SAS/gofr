@@ -52,7 +52,6 @@
           >
             <template v-slot:activator>
               <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase">
-                {{ $t(`App.menu.${item.id}`) }}
               </v-list-item-title>
             </template>
             <template v-for="sub in item.menu">

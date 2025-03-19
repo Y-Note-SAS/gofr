@@ -52,7 +52,7 @@
           >
             <template v-slot:activator>
               <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase">
-                {{ $t(`App.menu.${item.text}`) }}
+                {{ $t(`App.menu.${item.text}`)}}
               </v-list-item-title>
             </template>
             <template v-for="sub in item.menu">
@@ -150,7 +150,7 @@
             <v-list-item-icon>
               <v-icon>{{item.icon}}</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase"></v-list-item-title>
+            <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase">{{item.text === "App.menu.account.msg" ? $t('App.menu.Account') : $t(`App.menu.${item.text}`)}}</v-list-item-title>
           </v-list-item>
         </template>
       </template>

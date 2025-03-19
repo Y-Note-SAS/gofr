@@ -29,6 +29,7 @@
       "Map": "Map",
       "configure System": "configure System",
       "Account": "Account",
+      "App.menu.Account": "Account",
       "Add User": "Add User",
       "Users List": "Users List",
       "Roles Management": "Roles Management",
@@ -370,7 +371,8 @@
       "Source 1 No Match":"Source 1 No Match",
       "true": "true",
       "Continue": "Continue",
-      "Source 2 Data Grid": "Source 2 Data Grid"
+      "Source 2 Data Grid": "Source 2 Data Grid",
+      "undefined": "Organization"
     },
     "hardcoded-texts": {
       "1": "1",
@@ -703,7 +705,8 @@
       "initApp": "Initializing App",
       "GOFR Version": "GOFR Version",
       "OK": "Ok",
-      "All Levels": "All Levels"
+      "All Levels": "All Levels",
+      " ":" "
     },
     "title": "Manage",
     "site": "Demo"

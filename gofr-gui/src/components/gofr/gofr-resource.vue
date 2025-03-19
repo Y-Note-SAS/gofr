@@ -90,8 +90,8 @@
               <v-list-item-title class="text-uppercase">
                 <h4>{{ $t(`App.fhir-resources-texts.${section.title}`) }}</h4>
               </v-list-item-title>
-              <v-list-item-subtitle class="white--text">
-                {{ $t(`App.fhir-resources-texts.${section.desc}`) }}
+              <v-list-item-subtitle class="white--text" v-if="section.desc">
+                {{$t(`App.fhir-resources-texts.${section.desc}`)}}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -123,6 +123,7 @@ export default {
     }
   },
   created: function() {
+    console.log('Section Menu:', this.sectionMenu);
     if ( this.fhirId ) {
       this.loading = true
       let partition = this.$store.state.config.userConfig.FRDatasource

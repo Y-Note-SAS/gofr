@@ -29,6 +29,7 @@
       "Map": "Carte",
       "configure System": "Configurer le système",
       "Account": "Compte",
+      "App.menu.Account": "Compte",
       "Add User": "Ajouter un utilisateur",
       "Users List": "Liste des utilisateurs",
       "Roles Management": "Gestion des rôles",
@@ -198,7 +199,7 @@
       "Line": "Ligne",
       "Location": "Localisation",
       "": "",
-      "Telecom ": "Télécommunications",
+      "Telecom": "Télécommunications",
       "Telecom (1)": "Télécommunications (1)",
       "Telecom (2)": "Télécommunications (2)",
       "Telecom (3)": "Télécommunications (3)",
@@ -374,7 +375,8 @@
       "Source 1 No Match": "Source 1 sans correspondance",
       "true": "vrai",
       "Continue": "Continuer",
-      "Source 2 Data Grid": "Grille de données de la source 2"
+      "Source 2 Data Grid": "Grille de données de la source 2",
+      "undefined": "Organisation"    
     },
     "hardcoded-texts": {
       "Continue": "Continuer",

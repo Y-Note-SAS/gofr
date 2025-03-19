@@ -29,7 +29,7 @@
       "Map": "Carte",
       "configure System": "Configurer le système",
       "Account": "Compte",
-      "App.menu.Account": "Compte",
+      "App.menu.account.msg": "Compte",
       "Add User": "Ajouter un utilisateur",
       "Users List": "Liste des utilisateurs",
       "Roles Management": "Gestion des rôles",

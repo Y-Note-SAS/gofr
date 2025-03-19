@@ -265,6 +265,7 @@ export default {
         }
         this.menu.push( entry )
       }
+      console.log(" menu get ", this.menu)
       this.menu.sort( (a,b) => a.order === b.order ? 0 : ( a.order < b.order ? -1 : 1 ) )
     }
   },

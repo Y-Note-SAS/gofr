@@ -52,6 +52,7 @@
           >
             <template v-slot:activator>
               <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase">
+                {{ $t(`App.menu.${item.text}`) }}
               </v-list-item-title>
             </template>
             <template v-for="sub in item.menu">
@@ -70,7 +71,7 @@
                   no-action
                 >
                   <template v-slot:activator>
-                    <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase">{{$t(`App.menu.${sub.text}`)}}</v-list-item-title>
+                    <v-list-item-title class="subtitle-1 font-weight-bold text-uppercase"></v-list-item-title>
                   </template>
                   <template v-for="sub_sub in sub.menu">
                     <v-list-item

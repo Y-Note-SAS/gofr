@@ -448,8 +448,10 @@ User.prototype.__hasPermissionByName = function (permission, resource, partition
       if (partitionIndex === -1) {
         return false;
       }
+      console.log("this.permissions partition ", this.permissions.partitions[partitionIndex][permission][resource])
       return this.permissions.partitions[partitionIndex][permission][resource];
     }
+    console.log("this.permissions ressources ", this.permissions[permission][resource])
     return this.permissions[permission][resource];
   } catch (err) {
     return false;

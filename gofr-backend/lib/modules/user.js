@@ -347,16 +347,12 @@ User.prototype.updatePermissions = async function (roleResources) {
                 HealthcareService: true,
               },
               write: {
-                Location: {
-                  constraint: {
-                    "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
-                  },
-                },
-                QuestionnaireResponse: {
-                  constraint: {
-                    "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
-                  },
-                },
+                Location: true,
+                // QuestionnaireResponse: {
+                //   constraint: {
+                //     "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
+                //   },
+                // },
               },
             };
             if (extraConstraints.length > 0) {

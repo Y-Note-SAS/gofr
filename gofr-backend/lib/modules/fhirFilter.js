@@ -82,6 +82,7 @@ const runFilter = (resource, fields, ignoreDefaults) => {
 
 const fhirFilter = {
   meetsConstraint: (resource, constraint) => {
+    console.log("resources filter ", resource)
     const query = `exists(${constraint})`;
     // Since it starts with exists, should return a single value in an array
     const match = fhirpath.evaluate(resource, query);
@@ -103,6 +104,7 @@ const fhirFilter = {
     // if full access to the resource is allowed then cache and reuse it
     const typeCache = {};
     for (const entry of bundle.entry) {
+      console.log("entry ", entry)
       const resource = entry.resource;
       let fullAccess = false;
       if (typeCache.hasOwnProperty(resource.resourceType)) {
@@ -119,6 +121,7 @@ const fhirFilter = {
       if (fullAccess) {
         continue;
       } else {
+        console.log("filter permission resource partition ", permission, resource, partition)
         const fieldList = user.hasPermissionByObject(permission, resource, partition);
         if (fieldList === true) {
           continue;

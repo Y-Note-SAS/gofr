@@ -123,7 +123,7 @@ export default {
     }
   },
   created: function() {
-    console.log('Section Menu:', this.sectionMenu);
+    console.log("$store.state.searchAction", this.$store.state.searchAction)
     if ( this.fhirId ) {
       this.loading = true
       let partition = this.$store.state.config.userConfig.FRDatasource
@@ -491,6 +491,9 @@ export default {
       opts.data = this.fhir
       axios( opts ).then(response => {
         let data = response.data
+        console.log(" response sent ", response)
+        console.log("option send ", opts)
+        console.log("data received", data)
         this.overlay = false
         this.loading = false
         if ( this.fhirId ) {

@@ -349,7 +349,7 @@ User.prototype.updatePermissions = async function (roleResources) {
               write: {
                 Location: {
                   constraint: {
-                    "meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-update-request' or meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request'": true,
+                    "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
                   },
                 },
                 QuestionnaireResponse: {

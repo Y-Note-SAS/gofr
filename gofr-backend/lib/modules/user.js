@@ -449,6 +449,8 @@ User.prototype.__hasPermissionByName = function (permission, resource, partition
       if (partitionIndex === -1) {
         return false;
       }
+      console.log("first return ", this.permissions.partitions[partitionIndex][permission][resource])
+      console.log("partition index permission resource ", partitionIndex, permission, resource)
       return this.permissions.partitions[partitionIndex][permission][resource];
     }
     return this.permissions[permission][resource];

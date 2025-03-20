@@ -96,8 +96,9 @@ router.post('/:partition/:resource', (req, res) => {
   if ( !req.user ) {
     return res.status(401).json( outcomes.NOTLOGGEDIN)
   }
-  const allowed = true
-  // req.user.hasPermissionByObject('write', req.body, req.params.partition);
+  console.log("user get ", req.user)
+  console.log("body querry ", req.body)
+  const allowed = req.user.hasPermissionByObject('write', req.body, req.params.partition);
   console.log("user allowed ",allowed)
   let resource;
   if (allowed === true) {

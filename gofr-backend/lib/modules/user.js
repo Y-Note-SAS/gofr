@@ -443,6 +443,8 @@ User.prototype.addPermission = function (permission, resource, id, constraint, f
 User.prototype.__hasPermissionByName = function (permission, resource, partition) {
   try {
     if (partition) {
+      console.log("partition total permission ", this.permissions.partitions)
+      console.log("partition name", partition)
       const partitionIndex = this.permissions.partitions && this.permissions.partitions.findIndex(part => part.name === partition);
       if (partitionIndex === -1) {
         return false;
@@ -470,7 +472,6 @@ User.prototype.hasPermissionByName = function (permission, resource, id, partiti
   const resources = ['*'];
   if (resource !== '*') { resources.push(resource); }
   let results = {};
-  console.log('perms gets ', perms)
   for (const perm of perms) {
     for (const res of resources) {
       
@@ -521,7 +522,6 @@ User.prototype.getFilter = function (resource) {
 User.prototype.hasPermissionByObject = function (permission, resource, partition) {
   // First get the base permissions by name then see what constraints
   // apply. Don't get by ID as we need to determine if that was how it matched.
-  console.log('persmission neccessaire ', permission)
   const permissions = this.hasPermissionByName(permission, resource.resourceType, '', partition);
   if (permissions === true) {
     return true;

@@ -123,7 +123,6 @@ export default {
     }
   },
   created: function() {
-    console.log("$store.state.searchAction", this.$store.state.searchAction)
     if ( this.fhirId ) {
       this.loading = true
       let partition = this.$store.state.config.userConfig.FRDatasource
@@ -292,6 +291,7 @@ export default {
       } ).catch((err) => {
         this.overlay = false
         this.loading = false
+        console.log("erreur ", err)
         this.$store.commit('setMessage', { type: 'error', text: 'Request submition failed.' })
         console.error(err)
       })
@@ -491,9 +491,6 @@ export default {
       opts.data = this.fhir
       axios( opts ).then(response => {
         let data = response.data
-        console.log(" response sent ", response)
-        console.log("option send ", opts)
-        console.log("data received", data)
         this.overlay = false
         this.loading = false
         if ( this.fhirId ) {

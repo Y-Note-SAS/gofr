@@ -51,6 +51,7 @@ router.post('/addJurisdiction', (req, res) => {
 });
 
 router.post('/addBuilding', (req, res) => {
+  console.log("start request update facility", req.body)
   logger.info('Received a request to add a new Building');
   const fields = req.body
   mcsd.addBuilding(fields, (error) => {

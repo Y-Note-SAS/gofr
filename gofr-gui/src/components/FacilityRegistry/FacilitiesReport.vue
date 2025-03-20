@@ -717,6 +717,7 @@ export default {
       this.$store.state.progressTitle = 'Saving Changes'
       this.editDialog = false
       this.$store.state.dynamicProgress = true
+      console.log('formdata get', formData)
       axios.post('/FR/addBuilding', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

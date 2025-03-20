@@ -443,15 +443,12 @@ User.prototype.addPermission = function (permission, resource, id, constraint, f
 User.prototype.__hasPermissionByName = function (permission, resource, partition) {
   try {
     if (partition) {
-      console.log("this.permissions.partitions", this.permissions.partitions, partition, "partitionIndex")
       const partitionIndex = this.permissions.partitions && this.permissions.partitions.findIndex(part => part.name === partition);
       if (partitionIndex === -1) {
         return false;
       }
-      console.log("this.permissions partition ", this.permissions.partitions[partitionIndex][permission][resource])
       return this.permissions.partitions[partitionIndex][permission][resource];
     }
-    console.log("this.permissions ressources ", this.permissions[permission][resource])
     return this.permissions[permission][resource];
   } catch (err) {
     return false;
@@ -472,7 +469,6 @@ User.prototype.hasPermissionByName = function (permission, resource, id, partiti
   if (permission !== '*') { perms.push(permission); }
   const resources = ['*'];
   if (resource !== '*') { resources.push(resource); }
-  console.log('permission ', permission, 'ressources ', resource, 'id', id, 'partition', partition, 'perms', perms)
   let results = {};
   for (const perm of perms) {
     for (const res of resources) {

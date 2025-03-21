@@ -85,6 +85,7 @@ async function startUp() {
     }
     if (config.get('app:idp') === 'keycloak') {
       if (req.cookies && req.cookies.userObj) {
+        console.log("req.cookies.userObj", req.cookies.userObj);
         req.user = user.restoreUser(JSON.parse(req.cookies.userObj));
         console.log("req.user 1", req.user.permissions.partitions);
         console.log("req.user 3", req.user.permissions);

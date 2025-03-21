@@ -347,18 +347,18 @@ User.prototype.updatePermissions = async function (roleResources) {
                 Organization: true,
                 HealthcareService: true,
               },
-              write: {
-                Location: {
-                  constraint: {
-                    "meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-update-request' or meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request'": true,
-                  },
-                },
-                QuestionnaireResponse: {
-                  constraint: {
-                    "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
-                  },
-                },
-              },
+              // write: {
+              //   Location: {
+              //     constraint: {
+              //       "meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-update-request' or meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request'": true,
+              //     },
+              //   },
+              //   QuestionnaireResponse: {
+              //     constraint: {
+              //       "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
+              //     },
+              //   },
+              // },
             };
             if (extraConstraints.length > 0) {
               for (const constr of extraConstraints) {

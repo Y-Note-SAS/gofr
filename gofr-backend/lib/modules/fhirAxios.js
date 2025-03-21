@@ -6,6 +6,10 @@ const async = require('async');
 const logger = require('../winston');
 const config = require('../config');
 
+// Application des limites de taille de requête dans la configuration par défaut d'Axios (150mb)
+axios.defaults.maxBodyLength = 150 * 1024 * 1024;
+axios.defaults.maxContentLength = 150 * 1024 * 1024;
+
 axios.defaults.paramsSerializer = function (params) {
   if (params instanceof URLSearchParams) {
     return params.toString();

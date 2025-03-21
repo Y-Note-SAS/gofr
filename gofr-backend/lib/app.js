@@ -55,6 +55,9 @@ let keycloak;
 const levelMaps = config.get('levelMaps');
 
 const app = express();
+// Application des limites de taille de requête (150mb)
+app.use(express.json({ limit: '150mb' }));
+app.use(express.urlencoded({ limit: '150mb', extended: false }));
 app.use(fileUpload({
   createParentPath: true,
 }));

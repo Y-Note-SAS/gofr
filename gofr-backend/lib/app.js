@@ -86,7 +86,7 @@ async function startUp() {
     if (config.get('app:idp') === 'keycloak') {
       if (req.cookies && req.cookies.userObj) {
         req.user = user.restoreUser(JSON.parse(req.cookies.userObj));
-        console.log("req.user ", req.user);
+        console.log("req.user 1", req.user.permissions);
         return keycloak.protect()(req, res, next);
       }
       // for backend processes making API Calls
@@ -100,7 +100,7 @@ async function startUp() {
         }).then((resp) => {
           if (resp.data.resource) {
             req.user = user.restoreUser(resp.data);
-            console.log("req.user ", req.user);
+            console.log("req.user 2", req.user.permissions);
             return keycloak.protect()(req, res, next);
           }
         }).catch((err) => {

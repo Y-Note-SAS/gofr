@@ -301,6 +301,7 @@ class User {
 
 
 User.prototype.restorePermissions = function (permissions) {
+  console.log("permissions total ", permissions)
   this.permissions = permissions;
 };
 

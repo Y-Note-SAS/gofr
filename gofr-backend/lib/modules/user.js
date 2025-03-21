@@ -347,12 +347,16 @@ User.prototype.updatePermissions = async function (roleResources) {
                 HealthcareService: true,
               },
               write: {
-                Location: true,
-                // QuestionnaireResponse: {
-                //   constraint: {
-                //     "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
-                //   },
-                // },
+                Location: {
+                  constraint: {
+                    "meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-update-request' or meta.profile contains 'http://gofr.org/fhir/StructureDefinition/gofr-facility-add-request'": true,
+                  },
+                },
+                QuestionnaireResponse: {
+                  constraint: {
+                    "questionnaire='http://gofr.org/fhir/Questionnaire/gofr-facility-add-request-questionnaire'": true,
+                  },
+                },
               },
             };
             if (extraConstraints.length > 0) {
@@ -440,7 +444,7 @@ User.prototype.__hasPermissionByName = function (permission, resource, partition
   try {
     if (partition) {
       console.log("partition total permission ", this.permissions.partitions)
-      console.log("partition name", partition)
+      console.log("partition name", resource)
       const partitionIndex = this.permissions.partitions && this.permissions.partitions.findIndex(part => part.name === partition);
       if (partitionIndex === -1) {
         return false;

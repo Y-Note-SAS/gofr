@@ -242,6 +242,7 @@ export default {
           profile: [ "http://gofr.org/fhir/StructureDefinition/gofr-facility-update-request" ]
         }
       }
+      console.log(" Fhir send ", this.fhir)
       try {
         await this.processChildren( this.field, this.fhir, this.$children )
       } catch( err ) {

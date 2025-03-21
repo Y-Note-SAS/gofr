@@ -306,6 +306,7 @@ User.prototype.restorePermissions = function (permissions) {
 };
 
 User.prototype.updatePermissions = async function (roleResources) {
+  console.log("ressource Roles ", roleResources)
   if (this.resource.hasOwnProperty('extension')) {
     const roles = this.resource.extension.filter(ext => ext.url === ROLE_EXTENSION);
     for (const role of roles) {

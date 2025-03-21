@@ -95,7 +95,7 @@ router.post('/:partition/:resource', (req, res) => {
   if ( !req.user ) {
     return res.status(401).json( outcomes.NOTLOGGEDIN)
   }
-
+  console.log("resource dhir roles ",req.user.updatePermissions());
   const allowed = req.user.hasPermissionByObject('write', req.body, req.params.partition);
   let resource;
   if (allowed === true) {

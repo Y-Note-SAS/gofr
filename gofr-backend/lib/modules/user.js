@@ -443,13 +443,13 @@ User.prototype.addPermission = function (permission, resource, id, constraint, f
 User.prototype.__hasPermissionByName = function (permission, resource, partition) {
   try {
     if (partition) {
-      console.log("partition total permission ", this.permissions.partitions)
-      console.log("partition name", resource)
+      // console.log("partition total permission ", this.permissions.partitions)
+      // console.log("partition name", resource)
       const partitionIndex = this.permissions.partitions && this.permissions.partitions.findIndex(part => part.name === partition);
       if (partitionIndex === -1) {
         return false;
       }
-      console.log("first return ", this.permissions.partitions[partitionIndex][permission][resource])
+      // console.log("first return ", this.permissions.partitions[partitionIndex][permission][resource])
       console.log("partition index permission resource ", partitionIndex, permission, resource)
       return this.permissions.partitions[partitionIndex][permission][resource];
     }
